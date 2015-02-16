@@ -5,8 +5,6 @@ The PUG App for Android.
 
 Authors
 ===============
-@MativoDominc
-@Egide
-
+@MativoDominc & @saladthieves
 # pug
 
