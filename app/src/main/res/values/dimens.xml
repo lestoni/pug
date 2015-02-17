@@ -28,4 +28,7 @@
     <dimen name="dimen_90">90dp</dimen>
     <dimen name="dimen_100">100dp</dimen>
 
+    <dimen name="card_corner_radius">10dp</dimen>
+    <dimen name="button_radius">5dp</dimen>
+
 </resources>

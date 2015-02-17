@@ -4,5 +4,19 @@
     <string name="app_name">PUG</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="login_app_title">PICK UP GAME</string>
+    <string name="login_app_description">"The universal app \nfor basketballers"</string>
+    <string name="sign_with_facebook">Sign In with Facebook</string>
+    <string name="log_in">Log In</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="login_take_tour">Take the Tour</string>
+    <string name="tour_icon_description">Tour Icon</string>
+    <string name="pug_icon">PUG ICON</string>
+
+    <array name="language" >
+        <item>ENG</item>
+        <item>FRE</item>
+        <item>PORT</item>
+    </array>
 
 </resources>

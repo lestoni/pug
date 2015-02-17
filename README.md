@@ -1,10 +1,9 @@
-android-consumer
-================
 
 The PUG App for Android.
+=======================
 
 Authors
-===============
-@MativoDominc & @saladthieves
+=============================
+@mativodominic & @saladthieves
 # pug
 
