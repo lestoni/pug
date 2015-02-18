@@ -12,6 +12,8 @@
     <color name="orange">#eb6d07</color>
 
     <color name="dark">#000000</color>
+
+    <!--  LOGIN SCREEN COLORS  -->
     <color name="login_button">#f36f21</color>
     <color name="login_button_selected">#eb935f</color>
 
@@ -22,5 +24,10 @@
     <color name="line">#b4b4b4</color>
     <color name="login_panel_bottom">#e5e5e5</color>
     <color name="spinner_stroke">#efefef</color>
+
+    <!-- DRAWER LAYOUT COLORS -->
+    <color name="drawer_image_outline">#c6c6c6</color>
+    <color name="drawer_image_outline_selected">#f4651f</color>
+    <color name="drawer_separator">#bcbcbd</color>
 
 </resources>
