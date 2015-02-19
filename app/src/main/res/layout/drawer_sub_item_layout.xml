@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:text="View Profile"
+    android:id="@+id/textDrawerSubItem"
+    android:gravity="center_vertical"
+    android:textColor="@color/drawer_sub_item_title"
+    android:textIsSelectable="false"
+    android:textSize="16sp" />

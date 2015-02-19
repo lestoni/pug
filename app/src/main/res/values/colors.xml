@@ -16,11 +16,9 @@
     <!--  LOGIN SCREEN COLORS  -->
     <color name="login_button">#f36f21</color>
     <color name="login_button_selected">#eb935f</color>
-
     <color name="login_button_facebook">#4e71ab</color>
     <color name="login_button_facebook_selected">#46659a</color>
     <color name="login_button_facebook_icon_color">#46659a</color>
-
     <color name="line">#b4b4b4</color>
     <color name="login_panel_bottom">#e5e5e5</color>
     <color name="spinner_stroke">#efefef</color>
@@ -29,5 +27,10 @@
     <color name="drawer_image_outline">#c6c6c6</color>
     <color name="drawer_image_outline_selected">#f4651f</color>
     <color name="drawer_separator">#bcbcbd</color>
+    <color name="drawer_skill_progress_indicator">#f4ad1f</color>
+    <color name="drawer_skill_progress_default">#f4651f</color>
+    <color name="drawer_item_divider">#e3e3e3</color>
+    <color name="drawer_sub_item_title">#3e3e3e</color>
+    <color name="drawer_layout_divider">#d6d6d6</color>
 
 </resources>
