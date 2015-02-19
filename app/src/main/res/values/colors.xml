@@ -31,5 +31,6 @@
     <color name="drawer_skill_progress_default">#f4651f</color>
     <color name="drawer_item_divider">#e3e3e3</color>
     <color name="drawer_sub_item_title">#3e3e3e</color>
+    <color name="drawer_layout_divider">#d6d6d6</color>
 
 </resources>

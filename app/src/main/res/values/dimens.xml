@@ -21,6 +21,7 @@
     <!-- large -->
     <dimen name="dimen_40">40dp</dimen>
     <dimen name="dimen_45">45dp</dimen>
+    <dimen name="dimen_48">48dp</dimen>
     <dimen name="dimen_50">50dp</dimen>
     <dimen name="dimen_55">55dp</dimen>
     <dimen name="dimen_60">60dp</dimen>

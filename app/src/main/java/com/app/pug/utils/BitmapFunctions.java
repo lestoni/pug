@@ -383,9 +383,7 @@ public class BitmapFunctions {
     }
 
     public static int convertDpToPixel(float dp, Context context){
-        Resources resources = context.getResources();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        float px = dp * (metrics.densityDpi / 160f);
+        float px = dp *  (context.getResources().getDisplayMetrics().densityDpi / 160f);
         return (int)px;
     }
 
