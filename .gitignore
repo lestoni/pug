@@ -5,3 +5,4 @@
 .DS_Store
 /build
 /app/build.gradle
+/app/src/main/res/values-w820dp
