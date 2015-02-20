@@ -1,7 +1,7 @@
 package com.app.pug;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -20,17 +20,18 @@ public class LoginActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_login);
-        setContentView(R.layout.drawer_layout);
+       //setContentView(R.layout.activity_login);
+        //setContentView(R.layout.drawer_layout);
+        setContentView(R.layout.home_pager_items);
 
-        cropProfileImage();
-        testDrawer();
+        //cropProfileImage();
+        //testDrawer();
     }
 
     private void cropProfileImage() {
-       ImageView i = (ImageView) findViewById(R.id.imageDrawer);
-       int size = BitmapFunctions.convertDpToPixel(getResources().getDimension(R.dimen.dimen_120), this);
-       i.setImageBitmap(BitmapFunctions.getRoundedShape(R.drawable.ic_background_, this, size, size));
+        ImageView i = (ImageView) findViewById(R.id.imageDrawer);
+        int size = BitmapFunctions.convertDpToPixel(getResources().getDimension(R.dimen.dimen_120), this);
+        i.setImageBitmap(BitmapFunctions.getRoundedShape(R.drawable.ic_background_, this, size, size));
     }
 
     private void testDrawer() {

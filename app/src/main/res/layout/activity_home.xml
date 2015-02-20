@@ -7,12 +7,19 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:id="@+id/panelPromptHome"
+        android:id="@+id/homePanel"
         android:layout_width="match_parent"
         android:background="@color/home_pager_background"
-        android:layout_height="wrap_content"
+        android:layout_height="220dp"
         android:paddingTop="16dp"
-        android:paddingRight="16dp">
+        android:paddingBottom="16dp"
+        android:paddingLeft="8dp">
+
+        <android.support.v4.view.ViewPager
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/homePager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
@@ -21,5 +28,6 @@
         android:layout_height="wrap_content"
         android:divider="@color/home_list_divider"
         android:dividerHeight="@dimen/dimen_0.5"
+
         android:id="@+id/listHome" />
 </LinearLayout>

@@ -37,5 +37,9 @@
     <color name="home_background">#25262a</color>
     <color name="home_list_divider">#171a1e</color>
     <color name="home_pager_background">#171a1e</color>
+    <color name="pager_item_divider">#515151</color>
+    <color name="pager_text_color">#a74f1b</color>
+    <color name="home_list_item_color">#85d2c5</color>
+    <color name="home_list_item_image_background">#182029</color>
 
 </resources>
