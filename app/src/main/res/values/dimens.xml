@@ -36,5 +36,6 @@
     <dimen name="card_corner_radius">10dp</dimen>
     <dimen name="button_radius">5dp</dimen>
     <dimen name="dimen_drawer_width">240dp</dimen>
+    <dimen name="home_panel_review_height">200dp</dimen>
 
 </resources>
