@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/home_background"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <LinearLayout
         android:orientation="vertical"
@@ -28,6 +30,7 @@
         android:layout_height="wrap_content"
         android:divider="@color/home_list_divider"
         android:dividerHeight="@dimen/dimen_0.5"
-
+        android:scrollbars="none"
+        tools:listitem="@layout/home_list_items"
         android:id="@+id/listHome" />
 </LinearLayout>
