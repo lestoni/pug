@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="transparent">#00000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="light_gray">#b2b2b2</color>
-    <color name="gray">#8c8c8c</color>
-    <color name="dark_gray">#25262A</color>
+    <color name="black">#000000</color>
 
+    <color name="super_light_gray">#e8e8e8</color>
+    <color name="light_gray">#b2b2b2</color>
+    <color name="gray">#939393</color>
+    <color name="dark_gray">#25262A</color>
+    <color name="red">#FF0000</color>
     <color name="dark_blue">#102041</color>
 
     <color name="yellow">#f4ad1d</color>
@@ -12,6 +16,12 @@
     <color name="orange">#eb6d07</color>
 
     <color name="dark">#000000</color>
+
+    <!-- FIND CREATE GAME SCREEN -->
+    <color name="game_screen_button_container_background">#55000000</color>
+
+    <!-- GAME DETAILS SCREEN -->
+    <color name="game_details_screen_background">#25262A</color>
 
     <!--  LOGIN SCREEN COLORS  -->
     <color name="login_button">#f36f21</color>
