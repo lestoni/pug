@@ -15,7 +15,10 @@
         android:layout_margin="@dimen/dimen_15"
         android:background="@drawable/game_edittext_background"
         android:hint="Search by name or location"
-        android:padding="@dimen/dimen_15" />
+        android:padding="@dimen/dimen_15"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textColorHint="@color/light_gray" />
 
     <RelativeLayout
         android:id="@+id/browseLabelContainer"
@@ -34,7 +37,8 @@
             android:layout_centerInParent="true"
             android:drawablePadding="@dimen/dimen_10"
             android:drawableLeft="@drawable/browse_location_icon"
-            android:text="Browse by courts around you" />
+            android:text="Browse by courts around you"
+            android:textColor="@color/light_gray" />
     </RelativeLayout>
 
     <ListView

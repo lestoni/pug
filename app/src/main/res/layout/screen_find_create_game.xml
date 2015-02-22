@@ -29,7 +29,7 @@
             android:paddingRight="@dimen/dimen_10"
             android:paddingTop="@dimen/dimen_15"
             android:paddingBottom="@dimen/dimen_15"
-            android:text="FIND OPEN GAMES"
+            android:text="FIND GAMES"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/gray" />
 
@@ -45,7 +45,7 @@
             android:paddingRight="@dimen/dimen_10"
             android:paddingTop="@dimen/dimen_15"
             android:paddingBottom="@dimen/dimen_15"
-            android:text="CREATE NEW GAME"
+            android:text="CREATE GAME"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/black" />
     </LinearLayout>
