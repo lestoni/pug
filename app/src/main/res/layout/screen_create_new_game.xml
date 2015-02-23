@@ -137,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/dimen_50"
+            android:layout_marginBottom="@dimen/dimen_25"
             android:background="@drawable/game_button_background"
             android:gravity="center"
             android:hint="12:00:00"

@@ -1,35 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:background="@color/home_background"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".HomeActivity">
 
-    <com.app.pug.widgets.ViewPagerContainer
-        android:id="@+id/homePanel"
+    <RelativeLayout
+        android:id="@+id/home_content"
         android:layout_width="match_parent"
-        android:background="@color/home_pager_background"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp">
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_blue"
+            android:gravity="top|center_horizontal"
+            android:minHeight="?attr/actionBarSize"
+            app:theme="@style/Toolbar">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_toolbar_icon" />
+        </android.support.v7.widget.Toolbar>
 
         <android.support.v4.view.ViewPager
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/homePager"
-            android:layout_width="160dp"
-            android:layout_gravity="center_vertical"
-            android:layout_height="220dp" />
+            android:id="@+id/home_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/navigation_tab_container"
+            android:layout_below="@+id/toolbar" />
 
-    </com.app.pug.widgets.ViewPagerContainer>
+        <LinearLayout
+            android:id="@+id/navigation_tab_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:background="@color/super_light_gray">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@color/home_list_divider"
-        android:dividerHeight="@dimen/dimen_0.5"
-        android:scrollbars="none"
-        tools:listitem="@layout/home_list_items"
-        android:id="@+id/listHome" />
-</LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tab_icon_home_inactive"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/dimen_10"
+                android:paddingBottom="@dimen/dimen_10" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tab_icon_game_inactive"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/dimen_10"
+                android:paddingBottom="@dimen/dimen_10" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tab_icon_achievements_inactive"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/dimen_10"
+                android:paddingBottom="@dimen/dimen_10" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tab_icon_profile_inactive"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/dimen_10"
+                android:paddingBottom="@dimen/dimen_10" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tab_icon_settings_inactive"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/dimen_10"
+                android:paddingBottom="@dimen/dimen_10" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <include layout="@layout/navigation_drawer_layout" />
+
+</android.support.v4.widget.DrawerLayout>

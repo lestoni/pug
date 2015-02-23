@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public abstract class Act extends ActionBarActivity {
+
     public static final String TAG = "PUG - APP";
     private Screen currentScreen;
 
@@ -32,13 +33,13 @@ public abstract class Act extends ActionBarActivity {
         toast(getResources().getString(id));
     }
 
-    /**
+   /* *//**
      * Switch screens
      *
      * @param current    Current Fragment
      * @param newScreen  Fragment To launch
      * @param addToStack whether to add the current fragment to the stack
-     */
+     *//*
     public void switchScreen(Screen current, Screen newScreen, boolean addToStack) {
         try {
             FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
@@ -52,11 +53,11 @@ public abstract class Act extends ActionBarActivity {
         }
     }
 
-    /**
+    *//**
      * Switch screens from a Fragment Activity
      *
      * @param newScreen Fragment To launch
-     */
+     *//*
     public void switchScreen(Screen newScreen) {
         try {
             FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
@@ -66,21 +67,21 @@ public abstract class Act extends ActionBarActivity {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    }
+    }*/
 
     /**
      * Get the current Screen
      */
-    public Screen getCurrentScreen() {
+/*    public Screen getCurrentScreen() {
         return currentScreen;
-    }
+    }*/
 
     /**
      * Get the current screen name
      */
-    public String getCurrentScreenName() {
+/*    public String getCurrentScreenName() {
         return currentScreen.getClass().getSimpleName();
-    }
+    }*/
 
     /**
      * Switch screens (put the current screen on the stack by default)
@@ -89,9 +90,9 @@ public abstract class Act extends ActionBarActivity {
      * @param newScreen The Fragment to launch
      */
 
-    public void switchScreen(Screen current, Screen newScreen) {
+/*    public void switchScreen(Screen current, Screen newScreen) {
         switchScreen(current, newScreen, true);
-    }
+    }*/
 
     /**
      * Read a Bitmap from a given directory
