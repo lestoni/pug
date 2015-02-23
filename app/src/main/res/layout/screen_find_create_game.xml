@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/game_button_left_normal"
+            android:background="@drawable/game_button_left_selected"
             android:drawableLeft="@drawable/game_button_left_normal_icon"
             android:gravity="center"
             android:paddingLeft="@dimen/dimen_10"
@@ -30,6 +30,7 @@
             android:paddingTop="@dimen/dimen_15"
             android:paddingBottom="@dimen/dimen_15"
             android:text="FIND GAMES"
+            android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/gray" />
 
@@ -38,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/game_button_right_selected"
+            android:background="@drawable/game_button_right_normal"
             android:drawableLeft="@drawable/game_button_right_selected_icon"
             android:gravity="center"
             android:paddingLeft="@dimen/dimen_10"
@@ -46,6 +47,7 @@
             android:paddingTop="@dimen/dimen_15"
             android:paddingBottom="@dimen/dimen_15"
             android:text="CREATE GAME"
+            android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/black" />
     </LinearLayout>

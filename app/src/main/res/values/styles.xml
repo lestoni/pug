@@ -3,14 +3,23 @@
     <!-- BASE APPLICATION STYLES FILE -->
 
     <!-- base theme -->
-    <style name="BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="BaseThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/dark_blue</item>
         <item name="colorPrimaryDark">@color/dark_blue</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="colorPrimaryDark">@color/dark_blue</item>
     </style>
 
     <!-- application theme (applied into the manifest file) -->
-    <style name="pug_theme" parent="BaseTheme" />
+    <style name="pug_theme" parent="BaseThemeNoActionBar" />
 
+    <style name="Toolbar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:textColorPrimary">#ffffff</item>
+    </style>
 </resources>

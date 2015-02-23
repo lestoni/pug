@@ -45,8 +45,7 @@
         android:textStyle="bold"
         android:typeface="serif" />
 
-    <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="220dp"
@@ -105,6 +104,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/fb_button_selector"
                 android:clickable="true"
+                android:onClick="onLogin"
                 android:drawableLeft="@drawable/ic_facebook"
                 android:drawablePadding="16dp"
                 android:drawableStart="@drawable/ic_facebook"
@@ -130,6 +130,7 @@
                 android:background="@drawable/button_selector"
                 android:clickable="true"
                 android:focusable="true"
+                android:onClick="onLogin"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/log_in"
                 android:textAppearance="?android:attr/textAppearanceMedium"

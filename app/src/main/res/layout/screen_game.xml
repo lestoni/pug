@@ -53,6 +53,7 @@
             android:layout_centerHorizontal="true"
             android:paddingLeft="@dimen/dimen_50"
             android:paddingRight="@dimen/dimen_50"
+            android:layout_marginBottom="12dp"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/dimen_10"
             android:background="@drawable/join_game_button_background"
@@ -78,6 +79,7 @@
             android:gravity="center"
             android:paddingTop="@dimen/dimen_20"
             android:paddingBottom="@dimen/dimen_20"
+            android:textStyle="bold"
             android:background="@drawable/game_screen_tab_item_background_inactive"
             android:textColor="@color/light_gray" />
 
@@ -89,6 +91,7 @@
             android:id="@+id/tab_players"
             android:layout_weight="1"
             android:gravity="center"
+            android:textStyle="bold"
             android:paddingTop="@dimen/dimen_20"
             android:paddingBottom="@dimen/dimen_20"
             android:background="@drawable/game_screen_tab_item_background_active"

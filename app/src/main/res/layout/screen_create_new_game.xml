@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:scrollbars="none"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -32,7 +32,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/game_edittext_background"
-            android:drawableLeft="@drawable/location_edittext_icon"
             android:gravity="center"
             android:hint="Coders Reunion"
             android:padding="@dimen/dimen_15"
@@ -68,6 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/game_edittext_background"
+            android:drawableLeft="@drawable/location_edittext_icon"
             android:gravity="center"
             android:hint="Half Nelson Playground"
             android:padding="@dimen/dimen_15"

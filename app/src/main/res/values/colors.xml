@@ -53,4 +53,19 @@
     <color name="home_list_item_color">#85d2c5</color>
     <color name="home_list_item_image_background">#182029</color>
 
+    <!-- ACTION BAR -->
+    <color name="text_primary">#ffffff</color>
+    <color name="text_secondary">#727272</color>
+    <color name="primary">#25262a</color>
+    <color name="primary_dark">#171a1e</color>
+
+    <!-- PAGER BACKGROUNDS -->
+    <color name="pager_1">#4bbcea</color>
+    <color name="pager_2">#f36f21</color>
+    <color name="pager_3">#ff6a69</color>
+
+    <!-- GAME FIND CREATE -->
+    <color name="game_find_open_background">#f8f8f8</color>
+    <color name="game_search_background">#fcfcfc</color>
+
 </resources>

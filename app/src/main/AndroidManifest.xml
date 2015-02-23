@@ -6,12 +6,19 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/pug_theme" >
+        android:theme="@style/BaseTheme">
+
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" >
+            android:configChanges="keyboardHidden|fontScale|layoutDirection|navigation|orientation|uiMode"
+            android:theme="@style/pug_theme"></activity>
+
+        <activity
+            android:name="HomeActivity"
+            android:configChanges="keyboardHidden|fontScale|layoutDirection|navigation|orientation|uiMode"
+            android:theme="@style/pug_theme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

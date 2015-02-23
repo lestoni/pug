@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- BASE APPLICATION STYLES FILE (API 11+)-->
-
-    <!-- application theme (applied into the manifest file) -->
-    <style name="pug_theme" parent="BaseTheme" />
-
-</resources>

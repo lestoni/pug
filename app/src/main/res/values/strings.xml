@@ -13,10 +13,18 @@
     <string name="tour_icon_description">Tour Icon</string>
     <string name="pug_icon">PUG ICON</string>
 
-    <array name="language" >
+    <array name="language">
         <item>ENG</item>
         <item>FRE</item>
         <item>PORT</item>
     </array>
+
+    <string name="title_activity_home">Home</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
 
 </resources>

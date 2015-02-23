@@ -31,13 +31,14 @@
         android:layout_height="wrap_content"
         android:text="2 AVAILABLE"
         android:textColor="@color/white"
-        android:textSize="8sp"
+        android:textSize="10sp"
         android:layout_alignBottom="@+id/game_item_status_icon"
         android:layout_toRightOf="@+id/game_item_status_icon"
         android:layout_toEndOf="@+id/game_item_status_icon"
         android:layout_alignTop="@+id/game_item_status_icon"
         android:gravity="center_vertical"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginLeft="2dp" />
 
     <LinearLayout
         android:id="@+id/game_item_info_container"
@@ -60,26 +61,29 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/info_container_location"
+                android:id="@+id/info_container_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/dimen_4"
+                android:paddingBottom="@dimen/dimen_2"
                 android:paddingLeft="@dimen/dimen_10"
-                android:drawableRight="@drawable/wheelchair_accessible"
+                android:drawableRight="@drawable/wheelchair_accessible_small"
                 android:paddingTop="@dimen/dimen_4"
+                android:maxLines="1"
                 android:text="174th Street Playground"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/black" />
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginRight="5dp" />
 
             <TextView
-                android:id="@+id/info_container_area"
+                android:id="@+id/info_container_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/browse_location_icon_small"
                 android:drawablePadding="@dimen/dimen_5"
-                android:paddingBottom="@dimen/dimen_3"
+                android:paddingBottom="@dimen/dimen_4"
                 android:paddingLeft="@dimen/dimen_10"
-                android:paddingTop="@dimen/dimen_3"
+                android:maxLines="1"
+                android:textSize="13sp"
                 android:text="E 174 St. &amp; Bronx River Ave."
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/gray"
@@ -93,6 +97,7 @@
             android:layout_height="fill_parent"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/dimen_10"
+            android:weightSum="100"
             android:background="@drawable/info_container_bottom_background">
 
             <TextView
@@ -101,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:drawableLeft="@drawable/browse_location_timedate"
-                android:drawablePadding="@dimen/dimen_5"
+                android:drawablePadding="@dimen/dimen_3"
                 android:text="13:15 April 19"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/black"
@@ -124,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:drawableLeft="@drawable/browse_location_asside_icon"
-                android:drawablePadding="@dimen/dimen_5"
+                android:drawablePadding="@dimen/dimen_3"
                 android:paddingBottom="@dimen/dimen_3"
                 android:paddingTop="@dimen/dimen_3"
                 android:text="5 Aside"
@@ -149,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:drawableLeft="@drawable/browse_location_mins"
-                android:drawablePadding="@dimen/dimen_5"
+                android:drawablePadding="@dimen/dimen_3"
                 android:paddingBottom="@dimen/dimen_3"
                 android:paddingTop="@dimen/dimen_3"
                 android:text="7 Mins"
