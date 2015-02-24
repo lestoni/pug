@@ -1,126 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    android:orientation="vertical">
+    android:scrollbars="none"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/game_details_row_location"
-        android:background="@color/game_details_screen_background"
-        android:paddingTop="@dimen/dimen_10"
-        android:paddingBottom="@dimen/dimen_10"
-        android:layout_marginBottom="@dimen/dimen_1"
-        android:layout_weight="1">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/location_row_icon"
-            android:src="@drawable/location_row_icon"
-            android:layout_marginLeft="@dimen/dimen_20"
-            android:layout_marginRight="@dimen/dimen_10"
-            android:layout_centerVertical="true" />
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/location_row_icon"
-            android:layout_toEndOf="@+id/location_row_icon">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="LOCATION"
-                android:id="@+id/location_name_label"
-                android:textColor="@color/yellow" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Nelson Avenue between Featherbed Lane and W 174 Street"
-                android:id="@+id/location_value_label"
-                android:textColor="@color/white"
-                android:layout_marginTop="@dimen/dimen_5"
-                android:layout_marginRight="@dimen/dimen_10" />
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_1"
-        android:layout_weight="1">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/date_row"
+            android:layout_height="wrap_content"
+            android:id="@+id/game_details_row_location"
             android:background="@color/game_details_screen_background"
             android:paddingTop="@dimen/dimen_10"
             android:paddingBottom="@dimen/dimen_10"
-            android:layout_weight="1"
-            android:layout_marginRight="@dimen/dimen_1">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/date_row_icon"
-                android:src="@drawable/date_row_icon"
-                android:layout_marginLeft="@dimen/dimen_20"
-                android:layout_marginRight="@dimen/dimen_10"
-                android:layout_centerVertical="true" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/date_row_icon"
-                android:layout_toEndOf="@+id/date_row_icon" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="DATE"
-                    android:id="@+id/date_name_label"
-                    android:textColor="@color/yellow" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="19 Feb, 2015"
-                    android:id="@+id/date_value_label"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="@dimen/dimen_5"
-                    android:layout_marginRight="@dimen/dimen_10" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/time_row"
-            android:background="@color/game_details_screen_background"
-            android:paddingTop="@dimen/dimen_10"
-            android:paddingBottom="@dimen/dimen_10"
+            android:layout_marginBottom="@dimen/dimen_1"
             android:layout_weight="1">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/time_row_icon"
-                android:src="@drawable/time_row_icon"
+                android:id="@+id/location_row_icon"
+                android:src="@drawable/location_row_icon"
                 android:layout_marginLeft="@dimen/dimen_20"
                 android:layout_marginRight="@dimen/dimen_10"
                 android:layout_centerVertical="true" />
@@ -130,229 +36,332 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/time_row_icon"
-                android:layout_toEndOf="@+id/time_row_icon" >
+                android:layout_toRightOf="@+id/location_row_icon"
+                android:layout_toEndOf="@+id/location_row_icon">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="TIME"
-                    android:id="@+id/time_name_label"
+                    android:text="LOCATION"
+                    android:id="@+id/location_name_label"
                     android:textColor="@color/yellow" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="13:15"
-                    android:id="@+id/time_value_label"
+                    android:text="Nelson Avenue between Featherbed Lane and W 174 Street"
+                    android:id="@+id/location_value_label"
                     android:textColor="@color/white"
                     android:layout_marginTop="@dimen/dimen_5"
                     android:layout_marginRight="@dimen/dimen_10" />
             </LinearLayout>
+
         </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_1"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/date_row"
+                android:background="@color/game_details_screen_background"
+                android:paddingTop="@dimen/dimen_10"
+                android:paddingBottom="@dimen/dimen_10"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/dimen_1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/date_row_icon"
+                    android:src="@drawable/date_row_icon"
+                    android:layout_marginLeft="@dimen/dimen_20"
+                    android:layout_marginRight="@dimen/dimen_10"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/date_row_icon"
+                    android:layout_toEndOf="@+id/date_row_icon">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="DATE"
+                        android:id="@+id/date_name_label"
+                        android:textColor="@color/yellow" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="19 Feb, 2015"
+                        android:id="@+id/date_value_label"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/dimen_5"
+                        android:layout_marginRight="@dimen/dimen_10" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/time_row"
+                android:background="@color/game_details_screen_background"
+                android:paddingTop="@dimen/dimen_10"
+                android:paddingBottom="@dimen/dimen_10"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/time_row_icon"
+                    android:src="@drawable/time_row_icon"
+                    android:layout_marginLeft="@dimen/dimen_20"
+                    android:layout_marginRight="@dimen/dimen_10"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/time_row_icon"
+                    android:layout_toEndOf="@+id/time_row_icon">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="TIME"
+                        android:id="@+id/time_name_label"
+                        android:textColor="@color/yellow" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="13:15"
+                        android:id="@+id/time_value_label"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/dimen_5"
+                        android:layout_marginRight="@dimen/dimen_10" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_1"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/game_mode_row"
+                android:background="@color/game_details_screen_background"
+                android:paddingTop="@dimen/dimen_10"
+                android:paddingBottom="@dimen/dimen_10"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/dimen_1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/game_mode_row_icon"
+                    android:src="@drawable/game_mode_row_icon"
+                    android:layout_marginLeft="@dimen/dimen_20"
+                    android:layout_marginRight="@dimen/dimen_10"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/game_mode_row_icon"
+                    android:layout_toEndOf="@+id/game_mode_row_icon">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="GAME MODE"
+                        android:id="@+id/game_mode_name_label"
+                        android:textColor="@color/yellow" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="5 Aside"
+                        android:id="@+id/ame_mode_value_label"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/dimen_5"
+                        android:layout_marginRight="@dimen/dimen_10" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/duration_row"
+                android:background="@color/game_details_screen_background"
+                android:paddingTop="@dimen/dimen_10"
+                android:paddingBottom="@dimen/dimen_10"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/duration_row_icon"
+                    android:src="@drawable/duration_row_icon"
+                    android:layout_marginLeft="@dimen/dimen_20"
+                    android:layout_marginRight="@dimen/dimen_10"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/duration_row_icon"
+                    android:layout_toEndOf="@+id/duration_row_icon">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="DURATION"
+                        android:id="@+id/duration_name_label"
+                        android:textColor="@color/yellow" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="10 Mins"
+                        android:id="@+id/duration_value_label"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/dimen_5"
+                        android:layout_marginRight="@dimen/dimen_10" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_1"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/availability_row"
+                android:background="@color/game_details_screen_background"
+                android:paddingTop="@dimen/dimen_10"
+                android:paddingBottom="@dimen/dimen_10"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/dimen_1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/availability_row_icon"
+                    android:src="@drawable/availability_row_icon"
+                    android:layout_marginLeft="@dimen/dimen_20"
+                    android:layout_marginRight="@dimen/dimen_10"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/availability_row_icon"
+                    android:layout_toEndOf="@+id/availability_row_icon">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="AVAILABILITY"
+                        android:id="@+id/availability_name_label"
+                        android:textColor="@color/yellow" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="3 Spots"
+                        android:id="@+id/availability_value_label"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/dimen_5"
+                        android:layout_marginRight="@dimen/dimen_10" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/entry_fee_row"
+                android:background="@color/game_details_screen_background"
+                android:paddingTop="@dimen/dimen_10"
+                android:paddingBottom="@dimen/dimen_10"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/entry_fee_row_icon"
+                    android:src="@drawable/entry_fee_row_icon"
+                    android:layout_marginLeft="@dimen/dimen_20"
+                    android:layout_marginRight="@dimen/dimen_10"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/entry_fee_row_icon"
+                    android:layout_toEndOf="@+id/entry_fee_row_icon">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="ENTRY FEE"
+                        android:id="@+id/entry_fee_name_label"
+                        android:textColor="@color/yellow" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Free"
+                        android:id="@+id/entry_fee_value_label"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/dimen_5"
+                        android:layout_marginRight="@dimen/dimen_10" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_1"
-        android:layout_weight="1">
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/game_mode_row"
-            android:background="@color/game_details_screen_background"
-            android:paddingTop="@dimen/dimen_10"
-            android:paddingBottom="@dimen/dimen_10"
-            android:layout_weight="1"
-            android:layout_marginRight="@dimen/dimen_1">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/game_mode_row_icon"
-                android:src="@drawable/game_mode_row_icon"
-                android:layout_marginLeft="@dimen/dimen_20"
-                android:layout_marginRight="@dimen/dimen_10"
-                android:layout_centerVertical="true" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/game_mode_row_icon"
-                android:layout_toEndOf="@+id/game_mode_row_icon" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="GAME MODE"
-                    android:id="@+id/game_mode_name_label"
-                    android:textColor="@color/yellow" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="5 Aside"
-                    android:id="@+id/ame_mode_value_label"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="@dimen/dimen_5"
-                    android:layout_marginRight="@dimen/dimen_10" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/duration_row"
-            android:background="@color/game_details_screen_background"
-            android:paddingTop="@dimen/dimen_10"
-            android:paddingBottom="@dimen/dimen_10"
-            android:layout_weight="1" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/duration_row_icon"
-                android:src="@drawable/duration_row_icon"
-                android:layout_marginLeft="@dimen/dimen_20"
-                android:layout_marginRight="@dimen/dimen_10"
-                android:layout_centerVertical="true" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/duration_row_icon"
-                android:layout_toEndOf="@+id/duration_row_icon" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="DURATION"
-                    android:id="@+id/duration_name_label"
-                    android:textColor="@color/yellow" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="10 Mins"
-                    android:id="@+id/duration_value_label"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="@dimen/dimen_5"
-                    android:layout_marginRight="@dimen/dimen_10" />
-            </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_1"
-        android:layout_weight="1">
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/availability_row"
-            android:background="@color/game_details_screen_background"
-            android:paddingTop="@dimen/dimen_10"
-            android:paddingBottom="@dimen/dimen_10"
-            android:layout_weight="1"
-            android:layout_marginRight="@dimen/dimen_1">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/availability_row_icon"
-                android:src="@drawable/availability_row_icon"
-                android:layout_marginLeft="@dimen/dimen_20"
-                android:layout_marginRight="@dimen/dimen_10"
-                android:layout_centerVertical="true" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/availability_row_icon"
-                android:layout_toEndOf="@+id/availability_row_icon" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="AVAILABILITY"
-                    android:id="@+id/availability_name_label"
-                    android:textColor="@color/yellow" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="3 Spots"
-                    android:id="@+id/availability_value_label"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="@dimen/dimen_5"
-                    android:layout_marginRight="@dimen/dimen_10" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/entry_fee_row"
-            android:background="@color/game_details_screen_background"
-            android:paddingTop="@dimen/dimen_10"
-            android:paddingBottom="@dimen/dimen_10"
-            android:layout_weight="1" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/entry_fee_row_icon"
-                android:src="@drawable/entry_fee_row_icon"
-                android:layout_marginLeft="@dimen/dimen_20"
-                android:layout_marginRight="@dimen/dimen_10"
-                android:layout_centerVertical="true" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/entry_fee_row_icon"
-                android:layout_toEndOf="@+id/entry_fee_row_icon" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="ENTRY FEE"
-                    android:id="@+id/entry_fee_name_label"
-                    android:textColor="@color/yellow" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Free"
-                    android:id="@+id/entry_fee_value_label"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="@dimen/dimen_5"
-                    android:layout_marginRight="@dimen/dimen_10" />
-            </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
-</LinearLayout>
+</ScrollView>

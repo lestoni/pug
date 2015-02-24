@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/game_details_screen_background">
@@ -58,9 +57,9 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Joined"
+            android:layout_gravity="right"
             android:textColor="@color/gray"
-            android:id="@+id/joined_label"
-            android:layout_alignParentRight="false" />
+            android:id="@+id/joined_label" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,7 +68,6 @@
             android:text="1 hr"
             android:id="@+id/hour_label"
             android:textColor="@color/cyan"
-            android:layout_alignParentRight="false"
             android:layout_gravity="right" />
 
     </LinearLayout>

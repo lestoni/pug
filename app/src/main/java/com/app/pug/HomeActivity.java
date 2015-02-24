@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.app.pug.fragments.GameScreenFragment;
+import com.app.pug.fragments.GameFragment;
 import com.app.pug.fragments.NavigationDrawerFragment;
 import com.app.pug.framework.Act;
 
@@ -52,6 +52,11 @@ public class HomeActivity extends Act
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
 
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, GameFragment.newInstance())
+                .commit();
+
+        /*
         fragmentManager.beginTransaction()
                 .replace(R.id.container, GameScreenFragment.newInstance())
                 .commit();
