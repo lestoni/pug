@@ -50,7 +50,7 @@ public class HomeFragment extends Screen {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.activity_home, container, false);
+        v = inflater.inflate(R.layout.screen_home, container, false);
 
         list = (ListView) v.findViewById(R.id.listHome);
 

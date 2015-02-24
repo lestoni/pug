@@ -73,7 +73,7 @@ public class NavigationDrawerFragment extends Fragment {
     public NavigationDrawerFragment() {
     }
 
-    @Override
+/*    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -89,35 +89,26 @@ public class NavigationDrawerFragment extends Fragment {
 
         // Select either the default item (0) or the last selected item.
         selectItem(mCurrentSelectedPosition);
-    }
+    }*/
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        // Indicate that this fragment would like to influence the set of actions in the action bar.
-        setHasOptionsMenu(true);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.navigation_drawer_layout, container, false);
-        mDrawerListView = (ListView) v.findViewById(R.id.listDrawer);
-
-        mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position);
-            }
-        });
-
-        //Set drawer adapter
-        testDrawer();
-
-        cropProfileImage();
-
-
-        mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
+//        mDrawerListView = (ListView) v.findViewById(R.id.listDrawer);
+//        mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                selectItem(position);
+//            }
+//        });
+//
+//        //Set drawer adapter
+//        testDrawer();
+//
+//        cropProfileImage();
+//
+//
+//        mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return v;
     }
 

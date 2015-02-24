@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.app.pug" >
+    package="com.app.pug">
 
     <application
         android:allowBackup="true"
@@ -11,18 +11,18 @@
         <activity
             android:name=".LoginActivity"
             android:configChanges="keyboardHidden|fontScale|layoutDirection|navigation|orientation|uiMode"
-            android:theme="@style/pug_theme"></activity>
-
-        <activity
-            android:name="HomeActivity"
-            android:configChanges="keyboardHidden|fontScale|layoutDirection|navigation|orientation|uiMode"
             android:theme="@style/pug_theme">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".HomeActivity"
+            android:configChanges="keyboardHidden|fontScale|layoutDirection|navigation|orientation|uiMode"
+            android:theme="@style/pug_theme" />
     </application>
 
 </manifest>
