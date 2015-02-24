@@ -1,7 +1,9 @@
 package com.app.pug;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -15,7 +17,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.app.pug.adapters.ScreenPagerAdapter;
-import com.app.pug.fragments.NavigationDrawerFragment;
 import com.app.pug.framework.Act;
 import com.app.pug.models.DrawerItem;
 import com.app.pug.util.DrawerAdapter;
@@ -24,13 +25,7 @@ import com.app.pug.utils.Utils;
 
 import java.util.ArrayList;
 
-
 public class HomeActivity extends Act {
-
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
-    private NavigationDrawerFragment mNavigationDrawerFragment;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -42,6 +37,11 @@ public class HomeActivity extends Act {
     private ViewPager homeViewPager;
     private DrawerLayout drawerLayout;
 
+    private boolean mUserLearnedDrawer;
+    private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
+    private View drawerContainer;
+    private android.support.v7.app.ActionBarDrawerToggle mDrawerToggle;
+
     /**
      * Number of Fragments
      */
@@ -51,10 +51,15 @@ public class HomeActivity extends Act {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-//
+
+        // drawer. See PREF_USER_LEARNED_DRAWER for details.
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        mUserLearnedDrawer = sp.getBoolean(PREF_USER_LEARNED_DRAWER, false);
+
         tlb = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tlb);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        tlb.setNavigationIcon(R.drawable.ic_drawer);
 
         initializeNavigationDrawer();
 
@@ -66,21 +71,63 @@ public class HomeActivity extends Act {
 
         initializeTabs();
         changeTabWithFragment(0);     // or the restored position after screen rotation (if available)
+
+        initDrawer();
     }
 
+    /**
+     * Manage the Navigation Drawer
+     * We will maintain a preference, so that the navigation opens automatically the first time.
+     */
+    private void initDrawer() {
+        drawerContainer = findViewById(R.id.navigation_drawer_content);
 
-/*    @Override
-    public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        mDrawerToggle = new android.support.v7.app.ActionBarDrawerToggle(
+                this,                    /* host Activity */
+                drawerLayout,                    /* DrawerLayout object */
+                tlb,                            /* nav drawer image to replace 'Up' caret */
+                R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
+                R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
+        ) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+            }
 
-        fragmentManager.beginTransaction().replace(R.id.container, GameScreenFragment.newInstance()).commit();
-        *//*
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, HomeFragment.newInstance())
-                .commit();
-        *//*
-    }*/
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+
+                if (!mUserLearnedDrawer) {
+                    // The user manually opened the drawer; store this flag to prevent auto-showing
+                    // the navigation drawer automatically in the future.
+                    mUserLearnedDrawer = true;
+                    SharedPreferences sp = PreferenceManager
+                            .getDefaultSharedPreferences(HomeActivity.this);
+                    sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
+                }
+
+                supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+            }
+        };
+
+        // If the user hasn't 'learned' about the drawer, open it to introduce them to the drawer,
+        // per the navigation drawer design guidelines.
+        if (!mUserLearnedDrawer) {
+            drawerLayout.openDrawer(drawerContainer);
+        }
+
+        // Defer code dependent on restoration of previous instance state.
+        drawerLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mDrawerToggle.syncState();
+            }
+        });
+
+        drawerLayout.setDrawerListener(mDrawerToggle);
+    }
 
     /**
      * Lookup and initialize the navigation drawer and its views
@@ -145,17 +192,27 @@ public class HomeActivity extends Act {
 
     private int getImageResource(int position, boolean active) {
         switch (position) {
-            case 0: return active ? R.drawable.tab_icon_home_active : R.drawable.tab_icon_home_inactive;
-            case 1: return active ? R.drawable.tab_icon_game_active : R.drawable.tab_icon_game_inactive;
-            case 2: return active ? R.drawable.tab_icon_achievements_active : R.drawable.tab_icon_achievements_inactive;
-            case 3: return active ? R.drawable.tab_icon_profile_active : R.drawable.tab_icon_profile_inactive;
-            default : return active ? R.drawable.tab_icon_settings_active : R.drawable.tab_icon_settings_inactive;
+            case 0:
+                return active ? R.drawable.tab_icon_home_active : R.drawable.tab_icon_home_inactive;
+            case 1:
+                return active ? R.drawable.tab_icon_game_active : R.drawable.tab_icon_game_inactive;
+            case 2:
+                return active ? R.drawable.tab_icon_achievements_active : R.drawable.tab_icon_achievements_inactive;
+            case 3:
+                return active ? R.drawable.tab_icon_profile_active : R.drawable.tab_icon_profile_inactive;
+            default:
+                return active ? R.drawable.tab_icon_settings_active : R.drawable.tab_icon_settings_inactive;
         }
     }
 
     private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
-        @Override public void onPageScrollStateChanged(int arg0) {}
-        @Override public void onPageScrolled(int arg0, float arg1, int arg2) {}
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        }
 
         @Override
         public void onPageSelected(int position) {
@@ -190,19 +247,6 @@ public class HomeActivity extends Act {
             homeViewPager.setCurrentItem(currentItem - 1);
         }
     }
-
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
-            //getMenuInflater().inflate(R.menu.home, menu);
-            restoreActionBar();
-            return true;
-        }
-        return super.onCreateOptionsMenu(menu);
-    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

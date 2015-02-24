@@ -49,7 +49,7 @@
         android:divider="@null"
         android:scrollbars="none"
         android:dividerHeight="@dimen/dimen_4"
-        android:background="@color/game_find_open_background"
+        android:background="@color/white"
         android:listSelector="@color/transparent"
         android:layout_below="@+id/browseLabelContainer"
         tools:listitem="@layout/open_game_item_layout"

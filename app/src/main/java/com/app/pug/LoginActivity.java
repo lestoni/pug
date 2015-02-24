@@ -19,6 +19,7 @@ public class LoginActivity extends ActionBarActivity {
      * @param v Clicked View
      */
     public void onLogin(View v) {
+        finish();
         startActivity(new Intent(this, HomeActivity.class));
     }
 }

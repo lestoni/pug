@@ -20,7 +20,7 @@
     <!-- application theme (applied into the manifest file) -->
     <style name="pug_theme" parent="BaseThemeNoActionBar" />
 
-    <style name="Toolbar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Toolbar" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="android:textColorPrimary">@color/white</item>

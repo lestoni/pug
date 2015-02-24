@@ -4,11 +4,8 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.Toast;
-
-import com.app.pug.R;
 
 import java.io.File;
 import java.io.FileInputStream;

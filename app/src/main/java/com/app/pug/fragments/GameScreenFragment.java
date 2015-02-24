@@ -1,7 +1,6 @@
 package com.app.pug.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -78,9 +77,11 @@ public class GameScreenFragment extends Screen implements View.OnClickListener {
         // change text color accordingly
         find_open_games_button.setTextColor(getResources().getColor(isFindButton ? R.color.black : R.color.gray));
         create_new_game_button.setTextColor(getResources().getColor(isFindButton ? R.color.gray : R.color.black));
+
         // change backgrounds accordingly
         find_open_games_button.setBackgroundResource(isFindButton ? R.drawable.game_button_left_selected : R.drawable.game_button_left_normal);
         create_new_game_button.setBackgroundResource(isFindButton ? R.drawable.game_button_right_normal : R.drawable.game_button_right_selected);
+
         // change the icons accordingly
         find_open_games_button.setCompoundDrawablesWithIntrinsicBounds(isFindButton ?
                         R.drawable.game_button_left_selected_icon : R.drawable.game_button_left_normal_icon,
@@ -96,29 +97,6 @@ public class GameScreenFragment extends Screen implements View.OnClickListener {
         } else {
             launchCreateGameFragment();
         }
-
-        /*switch (v.getId()) {
-            case R.id.create_new_game_button:
-                *//**
-                 * Un select find_open_games_button by changing its background, later on we should add an animation.
-                 *//*
-                find_open_games_button.setBackgroundResource(R.drawable.game_button_left_normal);
-                create_new_game_button.setBackgroundResource(R.drawable.game_button_right_selected);
-                setButtonPadding();
-
-                launchCreateGameFragment();
-                break;
-            case R.id.find_open_games_button:
-                *//**
-                 * Un select create_new_game_button by changing its background, later on we should add an animation.
-                 *//*
-                create_new_game_button.setBackgroundResource(R.drawable.game_button_right_selected);
-                find_open_games_button.setBackgroundResource(R.drawable.game_button_left_normal);
-                setButtonPadding();
-
-                launchFindOpenGameFragment();
-                break;
-        }*/
     }
 
     private void setButtonPadding() {

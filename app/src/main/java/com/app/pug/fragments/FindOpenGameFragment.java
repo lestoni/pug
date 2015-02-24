@@ -1,11 +1,14 @@
 package com.app.pug.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.app.pug.GameActivity;
 import com.app.pug.R;
 import com.app.pug.framework.Screen;
 import com.app.pug.models.OpenGameItem;
@@ -64,5 +67,15 @@ public class FindOpenGameFragment extends Screen {
 
         adap = new FindOpenListAdapter(getActivity(), R.layout.open_game_item_layout, items);
         findGameScrollView.setAdapter(adap);
+
+        findGameScrollView.setOnItemClickListener(itemListener);
     }
+
+    private AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            startActivity(new Intent(getActivity(), GameActivity.class));
+        }
+    };
+
 }
