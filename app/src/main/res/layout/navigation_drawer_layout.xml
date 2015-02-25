@@ -135,17 +135,15 @@
         android:layout_below="@+id/navigation_drawer_content_top"
         android:background="@color/drawer_layout_divider" />
 
-    <ListView
+    <ExpandableListView
         android:id="@+id/listDrawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
+        android:choiceMode="singleChoice"
+        android:childDivider="@android:color/transparent"
+        android:dividerHeight="@dimen/dimen_0.5"
         android:divider="@android:color/transparent"
         android:layout_below="@+id/navigation_drawer_separator" />
-    <!--android:choiceMode="singleChoice"-->
-    <!---->
-    <!--android:dividerHeight="0dp"-->
-    <!--android:scrollbars="none"-->
-    <!--tools:listitem="@layout/drawer_item_layout" />-->
 
 </RelativeLayout>

@@ -50,8 +50,8 @@
         android:layout_toRightOf="@+id/game_item_image"
         android:background="@drawable/game_item_info_container_background"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/dimen_1"
-        android:paddingRight="@dimen/dimen_1">
+        android:paddingBottom="@dimen/dimen_3"
+        android:paddingRight="@dimen/dimen_2">
 
         <LinearLayout
             android:id="@+id/info_container_top"

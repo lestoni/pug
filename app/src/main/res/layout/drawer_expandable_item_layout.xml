@@ -4,8 +4,8 @@
     android:layout_height="48dp">
 
     <ImageView
-        android:layout_width="@dimen/dimen_20"
-        android:layout_height="@dimen/dimen_20"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:id="@+id/imageIconDrawerItem"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
@@ -26,7 +26,17 @@
         android:layout_toEndOf="@+id/imageIconDrawerItem"
         android:layout_marginLeft="32dp"
         android:textColor="@color/dark"
-        android:textIsSelectable="false"
+        android:clickable="true"
         android:textSize="16sp" />
 
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:id="@+id/imageToggleDrawerItem"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_item_open" />
 </RelativeLayout>

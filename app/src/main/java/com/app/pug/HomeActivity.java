@@ -3,6 +3,7 @@ package com.app.pug;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -11,21 +12,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.app.pug.adapters.ScreenPagerAdapter;
 import com.app.pug.framework.Act;
 import com.app.pug.models.DrawerItem;
-import com.app.pug.util.DrawerAdapter;
+import com.app.pug.util.DrawerExpandableAdapter;
 import com.app.pug.utils.BitmapFunctions;
 import com.app.pug.utils.Utils;
 
 import java.util.ArrayList;
 
-public class HomeActivity extends Act {
+public class HomeActivity extends Act implements ExpandableListView.OnChildClickListener {
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -46,6 +48,7 @@ public class HomeActivity extends Act {
      * Number of Fragments
      */
     public static final int SCREEN_COUNT = 5;
+    private boolean doubleBackToExitPressedOnce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +145,7 @@ public class HomeActivity extends Act {
             @Override
             public Bitmap run() throws Exception {
                 int size = BitmapFunctions.convertDpToPixel(getResources().getDimension(R.dimen.dimen_120), getApplicationContext());
-                return BitmapFunctions.getRoundedShape(R.drawable.ic_background_, getApplicationContext(), size, size);
+                return BitmapFunctions.getRoundedShape(R.drawable.ic_list_item_4, getApplicationContext(), size, size);
             }
 
             @Override
@@ -153,15 +156,17 @@ public class HomeActivity extends Act {
             }
         }, "LoadImageDrawerTask");
 
-        ListView drawerListView = (ListView) drawerRoot.findViewById(R.id.listDrawer);
+        ExpandableListView drawerListView = (ExpandableListView) drawerRoot.findViewById(R.id.listDrawer);
         ArrayList<DrawerItem> drawerItemsList = new ArrayList<DrawerItem>();
         drawerItemsList.add(new DrawerItem(R.drawable.ic_item_profile, "View Profile", false, null));
         drawerItemsList.add(new DrawerItem(R.drawable.ic_item_my_game, "My Game", true, new String[]{"Tournaments", "Teams", "Skills", "Training"}));
         drawerItemsList.add(new DrawerItem(R.drawable.ic_item_gallery, "Gallery", false, null));
         drawerItemsList.add(new DrawerItem(R.drawable.ic_item_inbox, "Inbox", false, null));
 
-        DrawerAdapter adapter = new DrawerAdapter(this, R.layout.drawer_item_layout, R.layout.drawer_expanded_item_layout, drawerItemsList);
+        DrawerExpandableAdapter adapter = new DrawerExpandableAdapter(this, R.layout.drawer_expandable_item_layout, R.layout.drawer_sub_item_layout, drawerItemsList);
         drawerListView.setAdapter(adapter);
+
+        drawerListView.setOnChildClickListener(this);
     }
 
     public void initializeTabs() {
@@ -242,7 +247,23 @@ public class HomeActivity extends Act {
 
         int currentItem = homeViewPager.getCurrentItem();
         if (currentItem == 0) {
-            super.onBackPressed();
+            //How about we implement a double click Back Button to close?
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 2000);
+
         } else {
             homeViewPager.setCurrentItem(currentItem - 1);
         }
@@ -263,4 +284,28 @@ public class HomeActivity extends Act {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Callback method to be invoked when a child in this expandable list has
+     * been clicked.
+     *
+     * @param parent        The ExpandableListView where the click happened
+     * @param v             The view within the expandable list/ListView that was clicked
+     * @param groupPosition The group position that contains the child that
+     *                      was clicked
+     * @param childPosition The child position within the group
+     * @param id            The row id of the child that was clicked
+     * @return True if the click was handled
+     */
+    @Override
+    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+        DrawerExpandableAdapter.DrawerChildItemHolder dci = (DrawerExpandableAdapter.DrawerChildItemHolder) v.getTag();
+        if (dci != null) {
+            String item = dci.itemName.getText().toString();
+            if (!item.equals("")) {
+                Toast.makeText(this, item, Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        return false;
+    }
 }
