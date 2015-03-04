@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
@@ -97,6 +98,8 @@ public class ProfileScreenFragment extends Screen {
         viewPager.setOffscreenPageLimit(2);
         viewPager.setPageMargin(15);
 
+        viewPager.setOnTouchListener(mSuppressInterceptListener);
+
         CircleIndicator customIndicator = (CircleIndicator) v.findViewById(R.id.indicator_custom);
         customIndicator.setViewPager(viewPager);
         customIndicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -114,6 +117,21 @@ public class ProfileScreenFragment extends Screen {
         });
     }
 
+    /**
+     * When we have nested View Pagers like in this case,
+     * Disallow the parent from intercepting touch events on the child
+     */
+    private View.OnTouchListener mSuppressInterceptListener = new View.OnTouchListener() {
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && v instanceof ViewGroup ) {
+                if(viewPager.getCurrentItem() < viewPager.getChildCount() - 1) ((ViewGroup) v).requestDisallowInterceptTouchEvent(true);
+                else if(viewPager.getCurrentItem() == viewPager.getChildCount() - 1) ((ViewGroup) v).requestDisallowInterceptTouchEvent(false);
+            }
+            return false;
+        }
+    };
     private class PagerAdapter extends FragmentPagerAdapter {
 
         public PagerAdapter(FragmentManager manager) {

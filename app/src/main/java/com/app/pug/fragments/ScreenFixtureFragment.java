@@ -1,12 +1,15 @@
 package com.app.pug.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.app.pug.R;
+import com.app.pug.TournamentDetailsActivity;
 import com.app.pug.framework.Screen;
 import com.app.pug.models.FixtureItem;
 import com.app.pug.models.FixtureModel;
@@ -22,6 +25,7 @@ import java.util.ArrayList;
 public class ScreenFixtureFragment extends Screen {
     private View v;
     private final static String TAG = "ScreenFixtureFragment";
+    private FixtureExpandableAdapter ad;
 
     public static ScreenFixtureFragment newInstance() {
         return new ScreenFixtureFragment();
@@ -58,14 +62,38 @@ public class ScreenFixtureFragment extends Screen {
         models.add(m1);
         models.add(m2);
 
-        FixtureExpandableAdapter ad = new FixtureExpandableAdapter(getActivity(), models);
+        ad = new FixtureExpandableAdapter(getActivity(), models);
         ExpandableListView list = (ExpandableListView) v.findViewById(R.id.listFixture);
         list.setAdapter(ad);
 
+        /**
+         * Expand all the categories.
+         */
         int count = ad.getGroupCount();
         for(int i = 0; i < count; i++) {
             list.expandGroup(i);
         }
 
+        list.setOnChildClickListener(childListener);
+
     }
+
+    /**
+     * To be invoked when the child views in the Expandable List View is clicked.
+     */
+    private ExpandableListView.OnChildClickListener childListener = new ExpandableListView.OnChildClickListener() {
+        @Override
+        public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+            FixtureItem i = ad.getChild(groupPosition, childPosition);
+            Toast.makeText(getActivity(), i.getTeam1()+" vs "+i.getTeam2()+" @"+i.getTime(), Toast.LENGTH_LONG).show();
+
+            /**
+             * Open the Details Activity.
+             */
+            Intent in = new Intent(getActivity(), TournamentDetailsActivity.class);
+            in.putExtra("fixture", i);
+            getActivity().startActivity(in);
+            return true;
+        }
+    };
 }

@@ -38,6 +38,12 @@
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|fontScale|layoutDirection|navigation|orientation|uiMode"
             android:theme="@style/pug_theme" />
+
+        <activity
+            android:name=".TournamentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|fontScale|layoutDirection|navigation|orientation|uiMode"
+            android:theme="@style/pug_theme" />
     </application>
 
 </manifest>

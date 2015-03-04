@@ -1,11 +1,13 @@
 package com.app.pug.models;
 
+import java.io.Serializable;
+
 /**
  * Created by MATIVO-PC on 3/4/2015, 12:19 AM
  * Project:  PUG
  * Package Name: com.app.pug.models
  */
-public class FixtureItem {
+public class FixtureItem implements Serializable{
     private String team1, team2, time, playground;
     private  int icon_team_1, icon_team_2;
     private int numJoined, numSpotsLeft;

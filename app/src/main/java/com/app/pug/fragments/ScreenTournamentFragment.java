@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,7 +23,7 @@ public class ScreenTournamentFragment extends Screen {
     private View v;
     private final static String TAG = "ScreenTournamentFragment";
     private Toolbar toolBar;
-    private ViewPager homeViewPager;
+    private ViewPager viewPager;
 
     public static ScreenTournamentFragment newInstance() {
         return new ScreenTournamentFragment();
@@ -55,14 +56,31 @@ public class ScreenTournamentFragment extends Screen {
     }
 
     private void initViewPager() {
-        homeViewPager = (ViewPager) v.findViewById(R.id.homePagerFixture);
+        viewPager = (ViewPager) v.findViewById(R.id.homePagerFixture);
         TournamentPagerAdapter adapter = new TournamentPagerAdapter(getActivity().getSupportFragmentManager());
-        homeViewPager.setAdapter(adapter);
-        //homeViewPager.setOnPageChangeListener(pageChangeListener);
-        homeViewPager.setOffscreenPageLimit(1);
+        viewPager.setAdapter(adapter);
+        //viewPager.setOnPageChangeListener(pageChangeListener);
+        viewPager.setOffscreenPageLimit(1);
+        viewPager.setCurrentItem(1);
 
-        homeViewPager.setCurrentItem(1);
+        viewPager.setOnTouchListener(mSuppressInterceptListener);
     }
+
+    /**
+     * When we have nested View Pagers like in this case,
+     * Disallow the parent from intercepting touch events on the child
+     */
+    private View.OnTouchListener mSuppressInterceptListener = new View.OnTouchListener() {
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && v instanceof ViewGroup ) {
+                if(viewPager.getCurrentItem() < viewPager.getChildCount() - 1) ((ViewGroup) v).requestDisallowInterceptTouchEvent(true);
+                else if(viewPager.getCurrentItem() == viewPager.getChildCount() - 1) ((ViewGroup) v).requestDisallowInterceptTouchEvent(false);
+            }
+            return false;
+        }
+    };
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
