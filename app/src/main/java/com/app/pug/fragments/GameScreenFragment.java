@@ -3,11 +3,14 @@ package com.app.pug.fragments;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.app.pug.HomeActivity;
 import com.app.pug.R;
 import com.app.pug.framework.Screen;
 import com.app.pug.utils.BitmapFunctions;
@@ -23,6 +26,7 @@ public class GameScreenFragment extends Screen implements View.OnClickListener {
     private TextView find_open_games_button, create_new_game_button;
     private FragmentManager mFragmentMgr;
     private Screen screen;
+    private Toolbar toolBar;
 
     public static GameScreenFragment newInstance() {
         return new GameScreenFragment();
@@ -45,8 +49,24 @@ public class GameScreenFragment extends Screen implements View.OnClickListener {
         mFragmentMgr = getChildFragmentManager();
         v = inflater.inflate(R.layout.screen_find_create_game, container, false);
 
+        toolBar = (Toolbar) v.findViewById(R.id.toolbar);
+        ((HomeActivity)getActivity()).setSupportActionBar(toolBar);
+        toolBar.setNavigationIcon(R.drawable.ic_drawer);
+        toolBar.setTitle(null);
+
         toggleFindCreate();
         return v;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //implement action
+                ((HomeActivity)getActivity()).openDrawer();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void toggleFindCreate() {
@@ -136,4 +156,5 @@ public class GameScreenFragment extends Screen implements View.OnClickListener {
                 .replace(R.id.game_screen_container, screen)
                 .commit();
     }
+
 }

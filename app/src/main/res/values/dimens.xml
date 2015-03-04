@@ -37,6 +37,7 @@
     <dimen name="dimen_72">72dp</dimen>
     <dimen name="dimen_80">85dp</dimen>
     <dimen name="dimen_90">90dp</dimen>
+    <dimen name="dimen_96">96dp</dimen>
     <dimen name="dimen_100">100dp</dimen>
     <dimen name="dimen_120">120dp</dimen>
 
@@ -45,5 +46,12 @@
     <dimen name="dimen_drawer_width">240dp</dimen>
     <dimen name="home_panel_review_height">200dp</dimen>
     <dimen name="navigation_drawer_width">260dp</dimen>
+
+    <dimen name="fab_size_normal">56dp</dimen>
+    <dimen name="fab_size_mini">40dp</dimen>
+    <dimen name="fab_shadow_size">12dp</dimen>
+
+    <dimen name="fab_scroll_threshold">4dp</dimen>
+    <dimen name="fab_elevation_lollipop">8dp</dimen>
 
 </resources>

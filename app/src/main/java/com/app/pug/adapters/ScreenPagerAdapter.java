@@ -8,6 +8,8 @@ import com.app.pug.HomeActivity;
 import com.app.pug.fragments.EmptyFragment;
 import com.app.pug.fragments.GameScreenFragment;
 import com.app.pug.fragments.HomeFragment;
+import com.app.pug.fragments.ProfileScreenFragment;
+import com.app.pug.fragments.ScreenTournamentFragment;
 
 public class ScreenPagerAdapter extends FragmentPagerAdapter {
     public ScreenPagerAdapter(FragmentManager manager) {
@@ -21,6 +23,10 @@ public class ScreenPagerAdapter extends FragmentPagerAdapter {
                 return new HomeFragment();
             case 1:
                 return new GameScreenFragment();
+            case 2:
+                return ScreenTournamentFragment.newInstance();
+            case 3:
+                return new ProfileScreenFragment();
             default:
                 return new EmptyFragment();
         }

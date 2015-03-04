@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,7 +28,7 @@ import com.app.pug.utils.Utils;
 
 import java.util.ArrayList;
 
-public class HomeActivity extends Act implements ExpandableListView.OnChildClickListener {
+public class HomeActivity extends Act implements ExpandableListView.OnChildClickListener, AdapterView.OnItemClickListener {
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -49,6 +50,7 @@ public class HomeActivity extends Act implements ExpandableListView.OnChildClick
      */
     public static final int SCREEN_COUNT = 5;
     private boolean doubleBackToExitPressedOnce;
+    private ArrayList<DrawerItem> drawerItemsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +61,6 @@ public class HomeActivity extends Act implements ExpandableListView.OnChildClick
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         mUserLearnedDrawer = sp.getBoolean(PREF_USER_LEARNED_DRAWER, false);
 
-        tlb = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(tlb);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        tlb.setNavigationIcon(R.drawable.ic_drawer);
-
         initializeNavigationDrawer();
 
         homeViewPager = (ViewPager) findViewById(R.id.home_viewPager);
@@ -73,9 +70,18 @@ public class HomeActivity extends Act implements ExpandableListView.OnChildClick
         homeViewPager.setOffscreenPageLimit(SCREEN_COUNT - 1);
 
         initializeTabs();
+
         changeTabWithFragment(0);     // or the restored position after screen rotation (if available)
 
         initDrawer();
+    }
+
+    public void openDrawer() {
+        drawerLayout.openDrawer(drawerContainer);
+    }
+
+    public Toolbar getToolBar() {
+        return tlb;
     }
 
     /**
@@ -157,16 +163,18 @@ public class HomeActivity extends Act implements ExpandableListView.OnChildClick
         }, "LoadImageDrawerTask");
 
         ExpandableListView drawerListView = (ExpandableListView) drawerRoot.findViewById(R.id.listDrawer);
-        ArrayList<DrawerItem> drawerItemsList = new ArrayList<DrawerItem>();
-        drawerItemsList.add(new DrawerItem(R.drawable.ic_item_profile, "View Profile", false, null));
-        drawerItemsList.add(new DrawerItem(R.drawable.ic_item_my_game, "My Game", true, new String[]{"Tournaments", "Teams", "Skills", "Training"}));
-        drawerItemsList.add(new DrawerItem(R.drawable.ic_item_gallery, "Gallery", false, null));
-        drawerItemsList.add(new DrawerItem(R.drawable.ic_item_inbox, "Inbox", false, null));
+        drawerItemsList = new ArrayList<>();
+        drawerItemsList.add(new DrawerItem(R.drawable.ic_item_my_game, "My Plays", new String[]{"Tournaments", "Teams", "Skills", "Training"}, 0, DrawerItem.TYPE.EXPANDABLE));
+        drawerItemsList.add(new DrawerItem(R.drawable.ic_item_gallery, "Gallery", null, 0, DrawerItem.TYPE.GALLERY));
+        drawerItemsList.add(new DrawerItem(R.drawable.ic_item_inbox, "Inbox", null, 2, DrawerItem.TYPE.NOTIFICATION));
+        drawerItemsList.add(new DrawerItem(R.drawable.ic_notifications, "Notifications", null, 21, DrawerItem.TYPE.NOTIFICATION));
+        drawerItemsList.add(new DrawerItem(R.drawable.ic_item_profile, "Friends", null, 0, DrawerItem.TYPE.NORMAL));
 
-        DrawerExpandableAdapter adapter = new DrawerExpandableAdapter(this, R.layout.drawer_expandable_item_layout, R.layout.drawer_sub_item_layout, drawerItemsList);
+        DrawerExpandableAdapter adapter = new DrawerExpandableAdapter(this, R.layout.drawer_sub_item_layout, drawerItemsList);
         drawerListView.setAdapter(adapter);
 
         drawerListView.setOnChildClickListener(this);
+        drawerListView.setOnItemClickListener(this);
     }
 
     public void initializeTabs() {
@@ -224,7 +232,6 @@ public class HomeActivity extends Act implements ExpandableListView.OnChildClick
             changeTabWithFragment(position);
         }
     };
-
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
@@ -300,12 +307,35 @@ public class HomeActivity extends Act implements ExpandableListView.OnChildClick
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
         DrawerExpandableAdapter.DrawerChildItemHolder dci = (DrawerExpandableAdapter.DrawerChildItemHolder) v.getTag();
         if (dci != null) {
-            String item = dci.itemName.getText().toString();
-            if (!item.equals("")) {
-                Toast.makeText(this, item, Toast.LENGTH_SHORT).show();
+            String s = dci.itemName.getText().toString();
+            if (!s.equals("")) {
+                Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
             }
         }
+        return true;
+    }
 
-        return false;
+    /**
+     * Callback method to be invoked when an item in this AdapterView has
+     * been clicked.
+     * <p/>
+     * Implementers can call getItemAtPosition(position) if they need
+     * to access the data associated with the selected item.
+     *
+     * @param parent   The AdapterView where the click happened.
+     * @param view     The view within the AdapterView that was clicked (this
+     *                 will be a view provided by the adapter)
+     * @param position The position of the view in the adapter.
+     * @param id       The row id of the item that was clicked.
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        DrawerExpandableAdapter.DrawerItemHolder d = (DrawerExpandableAdapter.DrawerItemHolder) view.getTag();
+        if(d != null) {
+            String s = d.itemName.getText().toString();
+            if(!s.equals("")){
+                Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

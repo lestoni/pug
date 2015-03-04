@@ -25,6 +25,7 @@ public class GameActivity extends Act {
         setSupportActionBar(tlb);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        tlb.setNavigationIcon(R.drawable.ic_action_previous);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 

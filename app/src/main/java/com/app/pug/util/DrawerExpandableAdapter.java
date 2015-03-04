@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.app.pug.R;
@@ -20,14 +19,16 @@ public class DrawerExpandableAdapter extends BaseExpandableListAdapter {
     private final LayoutInflater inflater;
     private Context context;
     private List<DrawerItem> drawerItemList;
-    private int groupRes;
+
+    private int groupResEx = R.layout.drawer_expandable_item_layout;
+    private int groupResNotification = R.layout.drawer_expandable_item_num_layout;
+
     private int childRes;
     private DrawerItemHolder d;
 
-    public DrawerExpandableAdapter(Context context, int groupRes, int childRes, List<DrawerItem> drawerItemList) {
+    public DrawerExpandableAdapter(Context context, int childRes, List<DrawerItem> drawerItemList) {
         this.drawerItemList = drawerItemList;
         this.context = context;
-        this.groupRes = groupRes;
         this.childRes = childRes;
         this.inflater = LayoutInflater.from(context);
     }
@@ -121,7 +122,6 @@ public class DrawerExpandableAdapter extends BaseExpandableListAdapter {
      * underlying data.
      *
      * @return whether or not the same ID always refers to the same object
-     * @see Adapter#hasStableIds()
      */
     @Override
     public boolean hasStableIds() {
@@ -150,28 +150,41 @@ public class DrawerExpandableAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         View v = convertView;
         DrawerItemHolder d;
-
-        if (v == null) {
-            v = inflater.inflate(groupRes, parent, false);
-            d = new DrawerItemHolder(v);
-            v.setTag(d);
-        } else {
-            d = (DrawerItemHolder) v.getTag();
-        }
-
         DrawerItem i = getGroup(groupPosition);
-        d.itemName.setText(i.getTitle());
-        d.icon.setImageResource(i.getIcon());
 
-        if (getChildrenCount(groupPosition) > 0) {
-            if (isExpanded) {
-                d.iconToggle.setImageResource(R.drawable.ic_item_close);
-            } else {
-                d.iconToggle.setImageResource(R.drawable.ic_item_open);
-            }
-        } else {
-            d.iconToggle.setVisibility(View.GONE);
+        if(i.getType() != DrawerItem.TYPE.NOTIFICATION) {
+            //if (v == null) {
+                v = inflater.inflate(groupResEx, parent, false);
+                d = new DrawerItemHolder(v, i.getType());
+                v.setTag(d);
+           // }
+
+            d.itemName.setText(i.getTitle());
+            d.icon.setImageResource(i.getIcon());
+
+            try {
+                if (getChildrenCount(groupPosition) > 0) {
+                    if (isExpanded) {
+                        d.iconToggle.setImageResource(R.drawable.ic_action_collapse);
+                    } else {
+                        d.iconToggle.setImageResource(R.drawable.ic_action_expand);
+                    }
+                }
+            }catch(Exception ex){ex.printStackTrace(); }
+        }else {
+            //if (v == null) {
+                v = inflater.inflate(groupResNotification, parent, false);
+                d = new DrawerItemHolder(v, i.getType());
+                v.setTag(d);
+            /*} else {
+                d = (DrawerItemHolder) v.getTag();
+            }*/
+
+            d.itemName.setText(i.getTitle());
+            d.icon.setImageResource(i.getIcon());
+            d.itemnotnum.setText(i.getNotifications()+"");
         }
+
         return v;
     }
 
@@ -228,15 +241,23 @@ public class DrawerExpandableAdapter extends BaseExpandableListAdapter {
     }
 
     public static class DrawerItemHolder {
-        TextView itemName;
+        public static TextView itemName, itemnotnum;
         ImageView icon, iconToggle;
-        ListView listView;
-        View toggle;
 
-        public DrawerItemHolder(View v) {
+        public DrawerItemHolder(View v, DrawerItem.TYPE type) {
             itemName = (TextView) v.findViewById(R.id.textDrawerItem);
             icon = (ImageView) v.findViewById(R.id.imageIconDrawerItem);
-            iconToggle = (ImageView) v.findViewById(R.id.imageToggleDrawerItem);
+
+            if(type == DrawerItem.TYPE.EXPANDABLE || type == DrawerItem.TYPE.GALLERY || type == DrawerItem.TYPE.NORMAL) {
+                iconToggle = (ImageView) v.findViewById(R.id.imageToggleDrawerItem);
+                if(type == DrawerItem.TYPE.NORMAL) {
+                    iconToggle.setVisibility(View.GONE);
+                }else if(type == DrawerItem.TYPE.GALLERY) {
+                    iconToggle.setImageResource(R.drawable.ic_action_next_item);
+                }
+            }else if(type == DrawerItem.TYPE.NOTIFICATION) {
+                itemnotnum = (TextView) v.findViewById(R.id.textDrawerNotiNumber);
+            }
         }
     }
 

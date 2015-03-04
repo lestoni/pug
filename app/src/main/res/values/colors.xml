@@ -53,6 +53,10 @@
     <color name="home_list_item_color">#85d2c5</color>
     <color name="home_list_item_image_background">#182029</color>
 
+    <!-- HOME PROMPT PANEL -->
+    <color name="prompt_button_background">#85d2c5</color>
+    <color name="prompt_button_close_selected">#696c6eff</color>
+
     <!-- ACTION BAR -->
     <color name="text_primary">#ffffff</color>
     <color name="text_secondary">#727272</color>
@@ -67,5 +71,23 @@
     <!-- GAME FIND CREATE -->
     <color name="game_find_open_background">#f8f8f8</color>
     <color name="game_search_background">#fcfcfc</color>
+    
+    <!-- SCREEN FOLLOWING -->
+    <color name="rounded_profile_separator">#649b92</color>
+    <color name="fab_background">#85d2c5</color>
+    <color name="fab_ripple">#6bada2</color>
+    <color name="fab_pressed">#6bada2</color>
+
+    <color name="fab_not_following_background">#f5ad1e</color>
+    <color name="fab_not_following_ripple">#a77107</color>
+    <color name="fab_not_following_pressed">#a77107</color>
+    <color name="follow_color">#171a1e</color>
+
+    <!-- SCREEN PROFILE -->
+    <color name="notification_number_background">#f05536</color>
+
+    <!-- TOURNAMENT -->
+    <color name="fixture_group_item_background">#f8f8f8</color>
+    <color name="fixture_child_title_color">#7b7b7b</color>
 
 </resources>

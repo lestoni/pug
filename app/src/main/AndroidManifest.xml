@@ -13,21 +13,28 @@
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|fontScale|layoutDirection|navigation|orientation|uiMode"
             android:theme="@style/pug_theme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
             android:name=".HomeActivity"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|fontScale|layoutDirection|navigation|orientation|uiMode"
-            android:theme="@style/pug_theme" />
+            android:theme="@style/pug_theme" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
 
         <activity
             android:name=".GameActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|fontScale|layoutDirection|navigation|orientation|uiMode"
+            android:theme="@style/pug_theme" />
+
+        <activity
+            android:name=".UserActivity"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|fontScale|layoutDirection|navigation|orientation|uiMode"
             android:theme="@style/pug_theme" />

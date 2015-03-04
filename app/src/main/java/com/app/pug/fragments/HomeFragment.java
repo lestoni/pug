@@ -1,20 +1,26 @@
 package com.app.pug.fragments;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.CardView;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.app.pug.HomeActivity;
 import com.app.pug.R;
+import com.app.pug.UserActivity;
 import com.app.pug.framework.Screen;
 import com.app.pug.models.HomeListItem;
 import com.app.pug.util.HomeListAdapter;
+import com.app.pug.utils.PREFUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +36,7 @@ public class HomeFragment extends Screen {
     private ListView list;
     private HomeListAdapter adap;
     private ViewPager viewPager;
+    private Toolbar toolBar;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -52,7 +59,15 @@ public class HomeFragment extends Screen {
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.screen_home, container, false);
 
+        toolBar = (Toolbar) v.findViewById(R.id.toolbar);
+        ((HomeActivity)getActivity()).setSupportActionBar(toolBar);
+        toolBar.setNavigationIcon(R.drawable.ic_drawer);
+        toolBar.setTitle(null);
+
         list = (ListView) v.findViewById(R.id.listHome);
+        list.setOnItemClickListener(playersListener);
+
+        managePrompt();
 
         testData();
 
@@ -61,9 +76,67 @@ public class HomeFragment extends Screen {
         return v;
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //implement action
+                ((HomeActivity)getActivity()).openDrawer();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private AdapterView.OnItemClickListener playersListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            int pos = 1;
+
+            if((position%2) == 0){
+                pos = 2;
+            }
+
+            Intent intent = new Intent(getActivity(), UserActivity.class);
+            intent.putExtra("pos", pos);
+            getActivity().startActivity(intent);
+        }
+    };
+
+    public void managePrompt() {
+        boolean isFirstUse = PREFUtils.isFirstUse(this.getActivity());
+        if(isFirstUse){
+            //Show the Prompt
+            v.findViewById(R.id.homePrompt).setVisibility(View.VISIBLE);
+            v.findViewById(R.id.promptImageClose).setOnClickListener(promptListener);
+            v.findViewById(R.id.promptReviewSettings).setOnClickListener(promptListener);
+        }
+    }
+
+    /**
+     * OnClick Listener for the Prompt Panel
+     */
+    private View.OnClickListener promptListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            boolean isClose = (view.getId() == R.id.promptImageClose);
+            if(isClose) {
+                //Button Close Prompt
+                v.findViewById(R.id.homePrompt).setVisibility(View.GONE);
+
+                //Change the Pref for the Prompt
+                PREFUtils.setFirstUse(getActivity(), false);
+
+            }else {
+                //Button Review; Close then show the next fragment
+
+            }
+        }
+    };
+
     private void initialisePager() {
         viewPager = (ViewPager) v.findViewById(R.id.homePager);
-        viewPager.setAdapter(new ViewAdapter(5, getActivity()));
+        viewPager.setAdapter(new ViewAdapter(5, getActivity().getSupportFragmentManager()));
         viewPager.setOffscreenPageLimit(5);
         viewPager.setPageMargin(15);
         viewPager.setClipChildren(false);
@@ -76,62 +149,34 @@ public class HomeFragment extends Screen {
         items.add(new HomeListItem(R.drawable.ic_list_item_3, "JohnSon Williams", "Point Guard", "Texas", 500, 2845, 125));
         items.add(new HomeListItem(R.drawable.ic_list_item_4, "Serena Peters", "", "Duke City", 452, 1200, 10));
 
-        adap = new HomeListAdapter(getActivity(), R.layout.home_list_items, items);
+        adap = new HomeListAdapter(getActivity(), R.layout.screen_home_list_item, items);
         list.setAdapter(adap);
     }
 
-    /**
-     * --------------------VIEW PAGER ADAPTER ------------------------------
-     */
-    private class ViewAdapter extends PagerAdapter {
-        private int numPages;
-        private Context context;
+    private class ViewAdapter extends FragmentPagerAdapter {
+        private int total;
 
-        public ViewAdapter(int numPages, Context context) {
-            this.numPages = numPages;
-            this.context = context;
+        public ViewAdapter(int total , FragmentManager manager) {
+            super(manager);
+            this.total = total;
         }
 
+        /**
+         * Return the Fragment associated with a specified position.
+         *
+         * @param position
+         */
+        @Override
+        public Fragment getItem(int position) {
+            return HomePagerFragment.newInstance(position);
+        }
+
+        /**
+         * Return the number of views available.
+         */
         @Override
         public int getCount() {
-            return numPages;
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return (view == object);
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            Log.e(HomeFragment.class.getName(), position + "");
-            CardView root = (CardView) LayoutInflater.from(context).inflate(R.layout.home_pager_items, null);
-            int back = getBackground(position);
-
-            root.setCardBackgroundColor(back);
-            root.findViewById(R.id.pagerRoot).setBackgroundColor(back);
-            ((ViewPager) container).addView(root, 0);
-            return root;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            ((ViewPager) container).removeView((View) object);
-        }
-
-        public int getBackground(int pos) {
-            int position = pos + 1;
-            int mod = position % 3;
-            int color = (R.color.pager_1);
-            if (mod == 1) {
-                color = (R.color.pager_1);
-            } else if (mod == 2) {
-                color = (R.color.pager_2);
-            } else if (mod == 0) {
-                color = (R.color.pager_3);
-            }
-            return color;
+            return total;
         }
     }
-
 }

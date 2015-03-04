@@ -140,10 +140,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
+        android:groupIndicator="@color/transparent"
         android:choiceMode="singleChoice"
         android:childDivider="@android:color/transparent"
         android:dividerHeight="@dimen/dimen_0.5"
-        android:divider="@android:color/transparent"
+        android:divider="@color/drawer_item_divider"
         android:layout_below="@+id/navigation_drawer_separator" />
 
 </RelativeLayout>

@@ -27,4 +27,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
 
+    <string name="prompt_button_review">Review settings</string>
+    <string name="prompt_content">"To help you get tailored experience PUG  recommends you to follow basketball playgrounds, teams and players around you."</string>
+    <string name="hintText">"Medium Text <span style="color:#f5ad1e">14th Street Playground</span>"</string>
+
 </resources>
