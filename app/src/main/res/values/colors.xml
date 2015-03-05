@@ -18,6 +18,9 @@
 
     <color name="dark">#000000</color>
 
+    <!-- NOTIFICATION SCREEN BACKGROUND -->
+    <color name="notification_background">#AA000000</color>
+
     <!-- FIND CREATE GAME SCREEN -->
     <color name="game_screen_button_container_background">#55000000</color>
 

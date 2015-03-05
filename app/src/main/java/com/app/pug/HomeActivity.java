@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.app.pug.adapters.ScreenPagerAdapter;
+import com.app.pug.fragments.NotificationDialog;
 import com.app.pug.framework.Act;
 import com.app.pug.models.DrawerItem;
 import com.app.pug.util.DrawerExpandableAdapter;
@@ -145,6 +146,13 @@ public class HomeActivity extends Act implements ExpandableListView.OnChildClick
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         RelativeLayout drawerRoot = (RelativeLayout) findViewById(R.id.navigation_drawer_content);
         final ImageView imageDrawer = (ImageView) findViewById(R.id.imageDrawer);
+        imageDrawer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NotificationDialog dialog = new NotificationDialog();
+                dialog.show(getSupportFragmentManager(), null);
+            }
+        });
 
         // load and display the image off the UI thread
         Utils.runTask(this, new Utils.ResultTask<Bitmap>() {
