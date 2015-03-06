@@ -5,6 +5,7 @@
     <color name="black">#000000</color>
 
     <color name="super_light_gray">#e8e8e8</color>
+    <color name="lighter_gray">#cccccc</color>
     <color name="light_gray">#b2b2b2</color>
     <color name="gray">#939393</color>
     <color name="dark_gray">#25262A</color>
