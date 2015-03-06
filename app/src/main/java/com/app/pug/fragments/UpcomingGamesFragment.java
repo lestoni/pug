@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -35,7 +35,7 @@ public class UpcomingGamesFragment extends Fragment {
             item.left = left;
             for (int j = joined; j < 5; j++) {
                 ImageView imageView = new ImageView(getActivity());
-                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 int margin = (int) getResources().getDimension(R.dimen.dimen_10);
                 params.setMargins(margin, margin, margin, margin);
                 imageView.setImageResource(R.drawable.game_item_player_icon);

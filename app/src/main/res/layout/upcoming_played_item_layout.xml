@@ -17,10 +17,10 @@
             android:id="@+id/game_item_date_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_5"
             android:gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dimen_10"
             android:text="March 3, 2015 at 5:45PM"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black" />
     </LinearLayout>
 
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="@dimen/dimen_10"
+        android:layout_margin="@dimen/dimen_5"
         android:text="Captain Rivera Playground"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/gray" />
@@ -39,9 +39,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/dimen_10"
-        android:layout_marginBottom="@dimen/dimen_10">
+        android:layout_marginBottom="@dimen/dimen_5"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/position_count_joined"
@@ -62,73 +62,73 @@
     </LinearLayout>
 
     <HorizontalScrollView
+        android:id="@+id/player_item_horizontalscrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_10"
-        android:id="@+id/player_item_horizontalscrollview"
         android:background="@color/lighter_gray">
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:id="@+id/game_item_player_container"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/game_item_player_container">
+            android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/imageView11"
-                android:src="@drawable/game_item_player_icon"
-                android:layout_margin="@dimen/dimen_10" />
-
-            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
                 android:id="@+id/imageView7"
-                android:src="@drawable/game_item_player_icon"
-                android:layout_margin="@dimen/dimen_10" />
-
-            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
                 android:id="@+id/imageView10"
-                android:src="@drawable/game_item_player_icon"
-                android:layout_margin="@dimen/dimen_10" />
-
-            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
                 android:id="@+id/imageView9"
-                android:src="@drawable/game_item_player_icon"
-                android:layout_margin="@dimen/dimen_10" />
-
-            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
                 android:id="@+id/imageView8"
-                android:src="@drawable/game_item_player_icon"
-                android:layout_margin="@dimen/dimen_10" />
-
-            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
                 android:id="@+id/imageView12"
-                android:src="@drawable/game_item_player_icon"
-                android:layout_margin="@dimen/dimen_10" />
-
-            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
                 android:id="@+id/imageView13"
-                android:src="@drawable/game_item_player_icon"
-                android:layout_margin="@dimen/dimen_10" />
-
-            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
                 android:id="@+id/imageView14"
-                android:src="@drawable/game_item_player_icon"
-                android:layout_margin="@dimen/dimen_10" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
 
         </LinearLayout>
     </HorizontalScrollView>

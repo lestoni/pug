@@ -5,8 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.pug.R;
@@ -38,7 +37,7 @@ public class UpcomingPlayedAdapter extends ArrayAdapter<UpcomingPlayedItem> {
             holder.location = (TextView) root.findViewById(R.id.game_item_location);
             holder.joined = (TextView) root.findViewById(R.id.position_count_joined);
             holder.left = (TextView) root.findViewById(R.id.position_count_left);
-            holder.playerHorizontalScrollView = (HorizontalScrollView) root.findViewById(R.id.player_item_horizontalscrollview);
+            holder.playerContainer = (LinearLayout) root.findViewById(R.id.game_item_player_container);
 
             root.setTag(holder);
         } else {
@@ -52,9 +51,9 @@ public class UpcomingPlayedAdapter extends ArrayAdapter<UpcomingPlayedItem> {
         holder.left.setText(String.format(Locale.getDefault(), "(%s)", left == 0 ? "Full" : String.format(Locale.getDefault(), "%d spot%s left",
                 left, left == 1 ? "" : "s")));
 
-//        holder.playerHorizontalScrollView.removeAllViews();
+//        holder.playerContainer.removeAllViews();
 //        for (ImageView drawable : playerItem.images) {
-//            holder.playerHorizontalScrollView.addView(drawable);
+//            holder.playerContainer.addView(drawable);
 //        }
 
         return root;
@@ -65,7 +64,7 @@ public class UpcomingPlayedAdapter extends ArrayAdapter<UpcomingPlayedItem> {
         TextView location;
         TextView joined;
         TextView left;
-        HorizontalScrollView playerHorizontalScrollView;
+        LinearLayout playerContainer;
     }
 
     @Override
