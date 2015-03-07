@@ -1073,7 +1073,8 @@
       <g
          inkscape:groupmode="layer"
          id="layer191"
-         inkscape:label="background">
+         inkscape:label="background"
+         style="display:inline">
         <rect
            y="640"
            x="1792"
@@ -1097,9 +1098,9 @@
            height="66.311981"
            x="1792.8864"
            y="670.84399"
-           inkscape:export-filename="C:\dev\android\projects\PUG\app\src\main\res\drawable-mdpi\c4a_logo.png"
-           inkscape:export-xdpi="57.040001"
-           inkscape:export-ydpi="57.040001" />
+           inkscape:export-filename="C:\dev\android\projects\PUG\app\src\main\res\drawable-xxhdpi\c4a_logo.png"
+           inkscape:export-xdpi="171.12"
+           inkscape:export-ydpi="171.12" />
       </g>
       <g
          inkscape:groupmode="layer"

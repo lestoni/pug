@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="280dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
 
@@ -9,13 +9,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/dawer_content_container"
-        android:layout_marginLeft="@dimen/dimen_30">
+        android:layout_marginLeft="@dimen/dimen_20">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/drawer_logo"
-            android:src="@drawable/drawer_logo" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/drawer_logo_container">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drawer_logo"
+                android:src="@drawable/drawer_logo" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drawer_hide_icon"
+                android:src="@drawable/secondary_drawer_hide_icon"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/dimen_10" />
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,9 +45,11 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="@dimen/dimen_20">
+            android:layout_marginBottom="@dimen/dimen_15"
+            android:background="@drawable/secondary_drawer_item_background"
+            android:padding="@dimen/dimen_5">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -53,9 +71,11 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="@dimen/dimen_20">
+            android:layout_marginBottom="@dimen/dimen_15"
+            android:background="@drawable/secondary_drawer_item_background"
+            android:padding="@dimen/dimen_5">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -77,9 +97,11 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="@dimen/dimen_20">
+            android:layout_marginBottom="@dimen/dimen_15"
+            android:background="@drawable/secondary_drawer_item_background"
+            android:padding="@dimen/dimen_5">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -102,9 +124,11 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="@dimen/dimen_20" >
+            android:layout_marginBottom="@dimen/dimen_15"
+            android:background="@drawable/secondary_drawer_item_background"
+            android:padding="@dimen/dimen_5">
 
             <ImageView
                 android:layout_width="wrap_content"

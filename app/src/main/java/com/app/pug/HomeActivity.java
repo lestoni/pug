@@ -25,6 +25,8 @@ import com.app.pug.models.DrawerItem;
 import com.app.pug.util.DrawerExpandableAdapter;
 import com.app.pug.utils.BitmapFunctions;
 import com.app.pug.utils.Utils;
+import com.nineoldandroids.animation.ObjectAnimator;
+import com.nineoldandroids.view.ViewHelper;
 
 import java.util.ArrayList;
 
@@ -44,6 +46,10 @@ public class HomeActivity extends Act implements ExpandableListView.OnChildClick
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
     private View drawerContainer;
     private android.support.v7.app.ActionBarDrawerToggle mDrawerToggle;
+
+    private RelativeLayout drawerContent;
+    private RelativeLayout secondaryDrawerScreen;
+    private static final int ANIMATION_DURATION = 250;
 
     /**
      * Number of Fragments
@@ -89,7 +95,7 @@ public class HomeActivity extends Act implements ExpandableListView.OnChildClick
      * We will maintain a preference, so that the navigation opens automatically the first time.
      */
     private void initDrawer() {
-        drawerContainer = findViewById(R.id.navigation_drawer_content);
+        drawerContainer = findViewById(R.id.navigation_drawer_root);
 
         mDrawerToggle = new android.support.v7.app.ActionBarDrawerToggle(
                 this,                    /* host Activity */
@@ -102,6 +108,7 @@ public class HomeActivity extends Act implements ExpandableListView.OnChildClick
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
                 supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+                closeSecondaryDrawerScreen();
             }
 
             @Override
@@ -143,7 +150,7 @@ public class HomeActivity extends Act implements ExpandableListView.OnChildClick
      */
     public void initializeNavigationDrawer() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        RelativeLayout drawerRoot = (RelativeLayout) findViewById(R.id.navigation_drawer_content);
+        final RelativeLayout drawerRoot = (RelativeLayout) findViewById(R.id.navigation_drawer_root);
         final ImageView imageDrawer = (ImageView) findViewById(R.id.imageDrawer);
 
         // load and display the image off the UI thread
@@ -175,6 +182,74 @@ public class HomeActivity extends Act implements ExpandableListView.OnChildClick
 
         drawerListView.setOnChildClickListener(this);
         drawerListView.setOnItemClickListener(this);
+
+        // initialize the inner secondary drawer screen
+        secondaryDrawerScreen = (RelativeLayout) findViewById(R.id.drawer_secondary_screen_container);
+
+        final LinearLayout trueBalerToggle = (LinearLayout) findViewById(R.id.drawer_true_baller_container);
+        drawerContent = (RelativeLayout) findViewById(R.id.navigation_drawer_content);
+        trueBalerToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               openSecondaryDrawerScreen();
+            }
+        });
+
+        RelativeLayout drawerLogoContainer = (RelativeLayout) findViewById(R.id.drawer_logo_container);
+        drawerLogoContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeSecondaryDrawerScreen();
+            }
+        });
+    }
+
+    /**
+     * Opens the secondary screen (drawer_secondary_screen.xml)
+     */
+    private void openSecondaryDrawerScreen() {
+        boolean firstTime = secondaryDrawerScreen.getVisibility() != View.VISIBLE;
+        if (firstTime) secondaryDrawerScreen.setVisibility(View.VISIBLE); // set the screen to be visible
+        int width = drawerContent.getWidth();                              // get the drawer content width
+        float x = secondaryDrawerScreen.getX();                             // get the secondary screen's x position
+        ViewHelper.setX(secondaryDrawerScreen, x - width);                  // set it so that it is exactly to the left of the navigation drawer content
+
+        /*
+            Animate the secondary drawer.
+            If it is the first time the secondary drawer was open, avoid negative over-translation on the x axis
+         */
+        ObjectAnimator
+                .ofFloat(secondaryDrawerScreen, "x", x - (firstTime? width : 0) , (firstTime ? x : x + width))
+                .setDuration(ANIMATION_DURATION)
+                .start();
+        /*
+            Hide the navigation drawer content to the right
+         */
+        ObjectAnimator
+                .ofFloat(drawerContent, "x", width)
+                .setDuration(ANIMATION_DURATION)
+                .start();
+    }
+
+    /**
+     * Closes the secondary drawer screen (if it open)
+     */
+    private void closeSecondaryDrawerScreen() {
+        int width = drawerContent.getWidth();
+        float secondaryDrawerScreenX = secondaryDrawerScreen.getX();
+        float drawerContentX = drawerContent.getX();
+        // avoid animation if the navigation drawer's x position is already at 0 (or near 0)
+        if (drawerContentX < 1 && drawerContentX > -1) return;
+        // hide the content drawer screen (move it left to its original position)
+        ObjectAnimator
+                .ofFloat(secondaryDrawerScreen, "x", secondaryDrawerScreenX, secondaryDrawerScreenX - width)
+                .setDuration(ANIMATION_DURATION)
+                .start();
+        // hide the secondary drawer screen (move it left to the side of the display) but don't hide it
+        ObjectAnimator
+                .ofFloat(drawerContent, "x", drawerContentX, drawerContentX - width)
+                .setDuration(ANIMATION_DURATION)
+                .start();
     }
 
     public void initializeTabs() {
