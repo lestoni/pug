@@ -189,9 +189,42 @@
                 </RelativeLayout>
 
                 <View android:layout_height="@dimen/dimen_0.5" android:layout_width="match_parent" android:background="@color/drawer_item_divider" />
+
+                <ExpandableListView
+                    android:id="@+id/listFixture"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:background="@color/white"
+                    android:groupIndicator="@color/transparent"
+                    android:choiceMode="singleChoice"
+                    android:childDivider="@color/drawer_item_divider"
+                    android:dividerHeight="@dimen/dimen_0.5"
+                    android:divider="@color/transparent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:clickable="true" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:background="#fcfcfc"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <EditText
+                        android:id="@+id/searchGameEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_15"
+                        android:background="@drawable/game_edittext_background"
+                        android:hint="Add Comment or question"
+                        android:padding="@dimen/dimen_8"
+                        android:textColor="@color/light_gray"
+                        android:textColorHint="@color/light_gray" />
+
+                    </LinearLayout>
             </LinearLayout>
-
-
 
         </android.support.v7.widget.CardView>
 
