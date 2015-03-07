@@ -190,11 +190,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="4.6899516"
-     inkscape:cx="1849.1034"
-     inkscape:cy="1345.7449"
+     inkscape:zoom="3.3162966"
+     inkscape:cx="1950.7501"
+     inkscape:cy="1358.5508"
      inkscape:document-units="px"
-     inkscape:current-layer="layer193"
+     inkscape:current-layer="layer195"
      showgrid="false"
      inkscape:window-width="1600"
      inkscape:window-height="848"
@@ -1068,6 +1068,37 @@
      inkscape:label="secondary drawer icons">
     <g
        inkscape:groupmode="layer"
+       id="layer194"
+       inkscape:label="hide secondary screen icon">
+      <g
+         inkscape:groupmode="layer"
+         id="layer195"
+         inkscape:label="background"
+         style="display:inline">
+        <rect
+           y="640"
+           x="1920"
+           height="128"
+           width="128"
+           id="rect4017"
+           style="display:inline;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none"
+           inkscape:export-filename="C:\dev\android\projects\PUG\app\src\main\res\drawable-xxhdpi\secondary_drawer_hide_icon.png"
+           inkscape:export-xdpi="67.5"
+           inkscape:export-ydpi="67.5" />
+      </g>
+      <g
+         inkscape:groupmode="layer"
+         id="layer196"
+         inkscape:label="design">
+        <path
+           style="fill:#ececec;fill-opacity:1;fill-rule:evenodd"
+           d="m 1968.2829,657.18573 40.6399,47.15106 -39.9662,46.47747 -9.0934,-9.09342 32.8934,-37.60858 -33.6794,-38.61896 z"
+           id="path3997"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+    <g
+       inkscape:groupmode="layer"
        id="layer190"
        inkscape:label="coders 4 africa logo">
       <g
@@ -1090,7 +1121,7 @@
          inkscape:groupmode="layer"
          id="layer193"
          inkscape:label="design background"
-         style="display:none">
+         style="display:inline">
         <rect
            style="opacity:1;fill:#ff0000;fill-opacity:1"
            id="rect5236"
