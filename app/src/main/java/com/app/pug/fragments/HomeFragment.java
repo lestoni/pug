@@ -164,8 +164,8 @@ public class HomeFragment extends Screen {
 
     private void testData() {
         List<HomeListItem> items = new ArrayList<HomeListItem>();
-        items.add(new HomeListItem(R.drawable.ic_list_item_1, "Lovren James", "Shooting G", "Cleverand", 854, 42, 854));
-        items.add(new HomeListItem(R.drawable.ic_list_item_2, "Mora Moore Jordan", "Small Forward", "Brooklyn, New York", 01, 214, 854));
+        items.add(new HomeListItem(R.drawable.ic_list_item_1, "Lovren James", "Shooting G", "Cleveland", 854, 42, 854));
+        items.add(new HomeListItem(R.drawable.ic_list_item_2, "Mora Moore Jordan", "Small Forward", "Brooklyn, New York", 1, 214, 854));
         items.add(new HomeListItem(R.drawable.ic_list_item_3, "JohnSon Williams", "Point Guard", "Texas", 500, 2845, 125));
         items.add(new HomeListItem(R.drawable.ic_list_item_4, "Serena Peters", "", "Duke City", 452, 1200, 10));
 

@@ -1,5 +1,6 @@
 package com.app.pug.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +17,7 @@ import android.widget.ExpandableListView;
 
 import com.app.pug.HomeActivity;
 import com.app.pug.R;
+import com.app.pug.UpcomingPlayedGamesActivity;
 import com.app.pug.framework.Screen;
 import com.app.pug.models.DrawerItem;
 import com.app.pug.util.DrawerExpandableAdapter;
@@ -83,13 +85,28 @@ public class ProfileScreenFragment extends Screen {
         ExpandableListView drawerListView = (ExpandableListView) v.findViewById(R.id.listDrawer);
         ArrayList<DrawerItem> drawerItemsList = new ArrayList<>();
 
-        drawerItemsList.add(new DrawerItem(R.drawable.ic_item_my_game, "My Plays", new String[]{"Tournaments", "Teams", "Skills", "Training"}, 0, DrawerItem.TYPE.EXPANDABLE));
+        drawerItemsList.add(new DrawerItem(R.drawable.ic_item_my_game, "My Plays", new String[]{"Games", "Tournaments", "Teams", "Skills", "Training"}, 0, DrawerItem.TYPE.EXPANDABLE));
         drawerItemsList.add(new DrawerItem(R.drawable.ic_item_gallery, "Gallery", null, 0, DrawerItem.TYPE.GALLERY));
         drawerItemsList.add(new DrawerItem(R.drawable.ic_item_inbox, "Inbox", null, 2, DrawerItem.TYPE.NOTIFICATION));
         drawerItemsList.add(new DrawerItem(R.drawable.ic_notifications, "Notifications", null, 21, DrawerItem.TYPE.NOTIFICATION));
 
         DrawerExpandableAdapter adapter = new DrawerExpandableAdapter(getActivity(), R.layout.drawer_sub_item_layout, drawerItemsList);
         drawerListView.setAdapter(adapter);
+
+        // register listener to handle child clicks
+        drawerListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                if (groupPosition == 0) {
+                    if (childPosition == 0) {
+                        startActivity(new Intent(getActivity(), UpcomingPlayedGamesActivity.class));
+                    } else if (childPosition == 1) {
+                        ((HomeActivity)getActivity()).setCurrentItem(2);
+                    }
+                }
+                return true;
+            }
+        });
     }
 
     private void initialisePager() {

@@ -14,13 +14,15 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/drawer_logo_container">
+            android:id="@+id/drawer_logo_container"
+            android:layout_marginBottom="@dimen/dimen_30">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/drawer_logo"
-                android:src="@drawable/drawer_logo" />
+                android:src="@drawable/ic_toolbar_icon"
+                android:layout_centerVertical="true" />
 
             <ImageView
                 android:layout_width="wrap_content"

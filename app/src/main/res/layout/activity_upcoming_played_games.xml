@@ -18,7 +18,8 @@
             android:layout_gravity="center"
             android:text="Games"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
     </android.support.v7.widget.Toolbar>
 

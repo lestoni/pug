@@ -91,6 +91,15 @@ public class HomeActivity extends Act implements ExpandableListView.OnChildClick
     }
 
     /**
+     * Set the current screen of the view pager
+     * @param position
+     */
+    public void setCurrentItem(int position) {
+        if (position < 0 || position >= SCREEN_COUNT) return;
+        homeViewPager.setCurrentItem(position);
+    }
+
+    /**
      * Manage the Navigation Drawer
      * We will maintain a preference, so that the navigation opens automatically the first time.
      */
