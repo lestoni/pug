@@ -26,7 +26,7 @@ public class FindOpenGameFragment extends Screen {
     private View v;
     private final static String TAG = "FindOpenGameFragment";
 
-    private ListView findGameScrollView;
+    private ListView findGameListView;
     private List<OpenGameItem> items = new ArrayList<>();
     private FindOpenListAdapter adap;
 
@@ -55,7 +55,7 @@ public class FindOpenGameFragment extends Screen {
     }
 
     private void init() {
-        findGameScrollView = (ListView) v.findViewById(R.id.findGameScrollView);
+        findGameListView = (ListView) v.findViewById(R.id.findGameScrollView);
 
         items.add(new OpenGameItem(0, "17th Street Playground. ", "E174 St. & Bronx River Ave.", "17:00 March 01", 5, 7, 1, "Available"));
         items.add(new OpenGameItem(0, "Capt. Rivera Playground. ", "Forest Ave. & E156 St.", "11:00 April 19", 7, 10, 5, "Full"));
@@ -67,9 +67,9 @@ public class FindOpenGameFragment extends Screen {
         items.add(new OpenGameItem(0, "Harmony Park Musical Playground ", "Downtown Moab, near Mill Creek Parkway", "13:30 April 10", 1, 15, 9, "Full"));
 
         adap = new FindOpenListAdapter(getActivity(), R.layout.open_game_item_layout, items);
-        findGameScrollView.setAdapter(adap);
+        findGameListView.setAdapter(adap);
 
-        findGameScrollView.setOnItemClickListener(itemListener);
+        findGameListView.setOnItemClickListener(itemListener);
     }
 
     private AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {

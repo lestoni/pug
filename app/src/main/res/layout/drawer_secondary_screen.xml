@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dawer_content_container"
+        android:layout_marginLeft="@dimen/dimen_30">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/drawer_logo"
+            android:src="@drawable/drawer_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Support PUG"
+            android:id="@+id/support_pug"
+            android:textColor="@color/gray"
+            android:layout_marginBottom="@dimen/dimen_20"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="@dimen/dimen_20">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drawer_facebook_icon"
+                android:src="@drawable/drawer_facebook_icon"
+                android:layout_marginRight="@dimen/dimen_15" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Follow us on Facebook"
+                android:id="@+id/drawer_facebook_label"
+                android:singleLine="false"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/light_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="@dimen/dimen_20">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drawer_twitter_icon"
+                android:src="@drawable/drawer_twitter_icon"
+                android:layout_marginRight="@dimen/dimen_15" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Follow us on Twitter"
+                android:id="@+id/drawer_twitter_label"
+                android:singleLine="false"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/light_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="@dimen/dimen_20">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drawer_google_plus_icon"
+                android:src="@drawable/drawer_google_plus_icon"
+                android:layout_marginRight="@dimen/dimen_15"
+                android:focusableInTouchMode="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Follow us on G+"
+                android:id="@+id/drawer_google_plus_label"
+                android:singleLine="false"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/light_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="@dimen/dimen_20" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drawer_pinterest_icon"
+                android:src="@drawable/drawer_pinterest_icon"
+                android:layout_marginRight="@dimen/dimen_15"
+                android:focusableInTouchMode="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Follow us on Pinterest"
+                android:id="@+id/drawer_pinterest_label"
+                android:singleLine="false"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/light_gray" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/dawer_content_container"
+        android:layout_marginBottom="@dimen/dimen_10">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="V1.0\nDesigned and Developed By"
+            android:id="@+id/about_label"
+            android:gravity="center_horizontal"
+            android:textColor="@color/light_gray" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/c4a_logo"
+            android:src="@drawable/c4a_logo"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/dimen_10" />
+    </LinearLayout>
+
+</RelativeLayout>

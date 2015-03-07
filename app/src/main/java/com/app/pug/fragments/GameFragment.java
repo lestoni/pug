@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.app.pug.R;
@@ -26,14 +27,10 @@ public class GameFragment extends Screen implements View.OnClickListener {
     private ViewPager viewPager;
     private TextView tabDetails;
     private TextView tabPlayers;
+    private Button joinGameButton;
 
     public static GameFragment newInstance() {
         return new GameFragment();
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -64,6 +61,14 @@ public class GameFragment extends Screen implements View.OnClickListener {
         tabPlayers.setOnClickListener(this);
 
         viewPager.setOnPageChangeListener(pageChangeListener);
+        joinGameButton = (Button) v.findViewById(R.id.join_game_button);
+        joinGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NotificationDialog dialog = new NotificationDialog();
+                dialog.show(getFragmentManager(), null);
+            }
+        });
     }
 
     /**
