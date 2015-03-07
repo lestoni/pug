@@ -85,7 +85,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap33_content"
+                android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="800 Plays"
                 android:textSize="12sp"
