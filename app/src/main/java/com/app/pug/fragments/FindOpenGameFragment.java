@@ -25,8 +25,9 @@ import java.util.List;
 public class FindOpenGameFragment extends Screen {
     private View v;
     private final static String TAG = "FindOpenGameFragment";
+
     private ListView findGameScrollView;
-    private List<OpenGameItem> items = new ArrayList<OpenGameItem>();
+    private List<OpenGameItem> items = new ArrayList<>();
     private FindOpenListAdapter adap;
 
     public static FindOpenGameFragment newInstance() {

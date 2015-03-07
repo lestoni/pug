@@ -21,6 +21,7 @@ import com.app.pug.utils.BitmapFunctions;
  * Package Name: com.app.pug.fragments
  */
 public class GameScreenFragment extends Screen implements View.OnClickListener {
+
     private View v;
     private final static String TAG = "GameScreenFragment";
     private TextView find_open_games_button, create_new_game_button;

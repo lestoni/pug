@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.app.pug.adapters.ScreenPagerAdapter;
+import com.app.pug.fragments.NotificationDialog;
 import com.app.pug.framework.Act;
 import com.app.pug.models.DrawerItem;
 import com.app.pug.util.DrawerExpandableAdapter;
