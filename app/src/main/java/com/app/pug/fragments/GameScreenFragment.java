@@ -113,11 +113,7 @@ public class GameScreenFragment extends Screen implements View.OnClickListener {
                 0, 0, 0);
 
         setButtonPadding();
-        if (isFindButton) {
-            launchFindOpenGameFragment();
-        } else {
-            launchCreateGameFragment();
-        }
+        boolean someValue = isFindButton ? launchFindOpenGameFragment() : launchCreateGameFragment();
     }
 
     private void setButtonPadding() {
@@ -144,18 +140,20 @@ public class GameScreenFragment extends Screen implements View.OnClickListener {
         }
     }
 
-    private void launchFindOpenGameFragment() {
+    private boolean launchFindOpenGameFragment() {
         screen = FindOpenGameFragment.newInstance();
         mFragmentMgr.beginTransaction()
                 .replace(R.id.game_screen_container, screen)
                 .commit();
+        return true;
     }
 
-    private void launchCreateGameFragment() {
+    private boolean launchCreateGameFragment() {
         screen = CreateGameFragment.newInstance();
         mFragmentMgr.beginTransaction()
                 .replace(R.id.game_screen_container, screen)
                 .commit();
+        return true;
     }
 
 }
