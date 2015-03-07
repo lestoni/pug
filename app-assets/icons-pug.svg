@@ -190,9 +190,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="4"
-     inkscape:cx="832.3167"
-     inkscape:cy="559.07442"
+     inkscape:zoom="0.28853696"
+     inkscape:cx="1005.6143"
+     inkscape:cy="990.35715"
      inkscape:document-units="px"
      inkscape:current-layer="layer219"
      showgrid="false"
@@ -240,7 +240,7 @@
          inkscape:groupmode="layer"
          id="layer219"
          inkscape:label="background"
-         style="display:none">
+         style="display:inline">
         <rect
            y="1408"
            x="768"

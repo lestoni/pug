@@ -8,6 +8,7 @@
     <color name="lighter_gray">#cccccc</color>
     <color name="light_gray">#b2b2b2</color>
     <color name="gray">#939393</color>
+    <color name="super_dark_gray">#151515</color>
     <color name="dark_gray">#25262A</color>
     <color name="red">#FF0000</color>
     <color name="dark_blue">#102041</color>

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 import com.app.pug.HomeActivity;
+import com.app.pug.ProfileSkillsActivity;
 import com.app.pug.R;
 import com.app.pug.UpcomingPlayedGamesActivity;
 import com.app.pug.framework.Screen;
@@ -102,6 +103,10 @@ public class ProfileScreenFragment extends Screen {
                         startActivity(new Intent(getActivity(), UpcomingPlayedGamesActivity.class));
                     } else if (childPosition == 1) {
                         ((HomeActivity)getActivity()).setCurrentItem(2);
+                    } else if (childPosition == 2) {
+
+                    } else if (childPosition == 3) {
+                        startActivity(new Intent(getActivity(), ProfileSkillsActivity.class));
                     }
                 }
                 return true;
