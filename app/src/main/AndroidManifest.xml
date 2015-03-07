@@ -35,7 +35,13 @@
             android:name=".HomeActivity"
             android:configChanges="keyboardHidden|fontScale|layoutDirection|navigation|orientation|uiMode"
             android:screenOrientation="portrait"
-            android:theme="@style/pug_theme"></activity>
+            android:theme="@style/pug_theme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".GameActivity"
@@ -66,12 +72,6 @@
             android:configChanges="keyboardHidden|fontScale|layoutDirection|navigation|orientation|uiMode"
             android:screenOrientation="portrait"
             android:theme="@style/pug_theme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
     </application>
 
