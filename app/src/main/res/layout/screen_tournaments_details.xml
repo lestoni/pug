@@ -26,6 +26,13 @@
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:layout_height="wrap_content">
+
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:name="com.google.android.gms.maps.MapFragment"/>
+
                 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -214,7 +221,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:text="Game Details"
+                    android:text="Tournament Details"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:layout_centerHorizontal="true"
