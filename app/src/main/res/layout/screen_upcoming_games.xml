@@ -10,7 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@null"
+        android:choiceMode="singleChoice"
+        android:clickable="true"
         android:dividerHeight="@dimen/dimen_5"
+        android:scrollbars="none"
         android:listSelector="@color/transparent"
         tools:listitem="@layout/upcoming_played_item_layout" />
 </RelativeLayout>

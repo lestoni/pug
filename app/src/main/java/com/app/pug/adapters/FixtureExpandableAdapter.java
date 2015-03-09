@@ -66,6 +66,7 @@ public class FixtureExpandableAdapter extends BaseExpandableListAdapter {
      * @param groupPosition the position of the group
      * @return the data child for the specified group
      */
+
     @Override
     public FixtureModel getGroup(int groupPosition) {
         return modelListModel.get(groupPosition);

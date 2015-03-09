@@ -5,8 +5,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.app.pug.R;
@@ -31,11 +32,11 @@ public class UpcomingGamesFragment extends Fragment {
             item.location = "Captain Rivera Playground";
             int joined = new Random().nextInt(5) + 5;
             item.joined = joined;
-            int left = 10 - joined;
-            item.left = left;
+            item.left = 10 - joined;
             for (int j = joined; j < 5; j++) {
                 ImageView imageView = new ImageView(getActivity());
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
                 int margin = (int) getResources().getDimension(R.dimen.dimen_10);
                 params.setMargins(margin, margin, margin, margin);
                 imageView.setImageResource(R.drawable.game_item_player_icon);
@@ -44,6 +45,12 @@ public class UpcomingGamesFragment extends Fragment {
         }
         UpcomingPlayedAdapter adapter = new UpcomingPlayedAdapter(getActivity(), R.layout.upcoming_played_item_layout, playedItems);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
         return root;
     }
 }

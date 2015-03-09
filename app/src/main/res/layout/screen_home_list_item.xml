@@ -15,6 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
+        android:src="@drawable/ic_list_item_3"
         android:background="@drawable/home_list_item_image"
         android:contentDescription="@null"
         android:layout_marginTop="8dp"
@@ -33,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Lebron James"
+            android:text="LeBron James"
             android:id="@+id/homeListItemName"
             android:textSize="16sp"
             android:textColor="@color/white"
@@ -57,7 +58,7 @@
                 android:drawableLeft="@drawable/ic_item_role"
                 android:textSize="12sp"
                 android:layout_weight="49"
-                android:textColor="@color/white"
+                android:textColor="@color/light_gray"
                 android:paddingTop="2dp" />
 
             <TextView
@@ -70,7 +71,7 @@
                 android:layout_weight="49"
                 android:drawableLeft="@drawable/ic_item_location"
                 android:textSize="12sp"
-                android:textColor="@color/white"
+                android:textColor="@color/light_gray"
                 android:paddingTop="2dp" />
         </LinearLayout>
 

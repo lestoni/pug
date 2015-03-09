@@ -31,14 +31,7 @@ public class UpcomingPlayedAdapter extends ArrayAdapter<UpcomingPlayedItem> {
         Holder holder;
         if (root == null) {
             root = LayoutInflater.from(context).inflate(R.layout.upcoming_played_item_layout, parent, false);
-            holder = new Holder();
-
-            holder.dateTime = (TextView) root.findViewById(R.id.game_item_date_time);
-            holder.location = (TextView) root.findViewById(R.id.game_item_location);
-            holder.joined = (TextView) root.findViewById(R.id.position_count_joined);
-            holder.left = (TextView) root.findViewById(R.id.position_count_left);
-            holder.playerContainer = (LinearLayout) root.findViewById(R.id.game_item_player_container);
-
+            holder = new Holder(root);
             root.setTag(holder);
         } else {
             holder = (Holder) root.getTag();
@@ -65,6 +58,14 @@ public class UpcomingPlayedAdapter extends ArrayAdapter<UpcomingPlayedItem> {
         TextView joined;
         TextView left;
         LinearLayout playerContainer;
+
+        public Holder(View root) {
+            dateTime = (TextView) root.findViewById(R.id.game_item_date_time);
+            location = (TextView) root.findViewById(R.id.game_item_location);
+            joined = (TextView) root.findViewById(R.id.position_count_joined);
+            left = (TextView) root.findViewById(R.id.position_count_left);
+            playerContainer = (LinearLayout) root.findViewById(R.id.game_item_player_container);
+        }
     }
 
     @Override

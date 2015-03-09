@@ -42,13 +42,6 @@ public class ScreenPlayersFragment extends Screen {
         v = inflater.inflate(R.layout.screen_game_players, container, false);
 
         list = (ListView) v.findViewById(R.id.players_list);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                NotificationDialog dialog = new NotificationDialog();
-                dialog.show(getChildFragmentManager(), null);
-            }
-        });
 
         init();
 
