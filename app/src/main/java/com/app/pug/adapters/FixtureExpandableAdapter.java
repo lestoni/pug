@@ -1,6 +1,7 @@
-package com.app.pug.util;
+package com.app.pug.adapters;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,28 +10,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.pug.R;
-import com.app.pug.models.DrawerItem;
+import com.app.pug.models.FixtureItem;
+import com.app.pug.models.FixtureModel;
 
 import java.util.List;
 
-public class DrawerExpandableAdapter extends BaseExpandableListAdapter {
+public class FixtureExpandableAdapter extends BaseExpandableListAdapter {
 
-    private static final String TAG = "DrawerExpandableAdapter";
+    private static final String TAG = "FixtureExpandableAdapter";
     private final LayoutInflater inflater;
     private Context context;
-    private List<DrawerItem> drawerItemList;
+    private List<FixtureModel> modelListModel;
 
-    private int groupResEx = R.layout.drawer_expandable_item_layout;
-    private int groupResNotification = R.layout.drawer_expandable_item_num_layout;
+    private int groupRes = R.layout.screen_fixture_group_item;
+    private int childRes = R.layout.screen_fixture_child_item;
 
-    private int childRes;
-    private DrawerItemHolder d;
-
-    public DrawerExpandableAdapter(Context context, int childRes, List<DrawerItem> drawerItemList) {
-        this.drawerItemList = drawerItemList;
+    public FixtureExpandableAdapter(Context context, List<FixtureModel> modelList) {
+        this.modelListModel = modelList;
         this.context = context;
-        this.childRes = childRes;
         this.inflater = LayoutInflater.from(context);
+    }
+
+    private android.text.Spanned getHtml(String joined, String spotsLeft) {
+        String html = "<font color=\"#85d2c5\">"+joined+" joined</font> ("+spotsLeft+" spots left)";
+        return Html.fromHtml(html);
     }
 
     /**
@@ -40,7 +43,7 @@ public class DrawerExpandableAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public int getGroupCount() {
-        return drawerItemList.size();
+        return modelListModel.size();
     }
 
     /**
@@ -52,7 +55,7 @@ public class DrawerExpandableAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public int getChildrenCount(int groupPosition) {
-        String[] childs = drawerItemList.get(groupPosition).getSubItems();
+        FixtureItem[] childs = modelListModel.get(groupPosition).getItems();
         if (childs == null) return 0;
         else return childs.length;
     }
@@ -64,8 +67,8 @@ public class DrawerExpandableAdapter extends BaseExpandableListAdapter {
      * @return the data child for the specified group
      */
     @Override
-    public DrawerItem getGroup(int groupPosition) {
-        return drawerItemList.get(groupPosition);
+    public FixtureModel getGroup(int groupPosition) {
+        return modelListModel.get(groupPosition);
     }
 
     /**
@@ -77,8 +80,8 @@ public class DrawerExpandableAdapter extends BaseExpandableListAdapter {
      * @return the data of the child
      */
     @Override
-    public String getChild(int groupPosition, int childPosition) {
-        String[] childs = drawerItemList.get(groupPosition).getSubItems();
+    public FixtureItem getChild(int groupPosition, int childPosition) {
+        FixtureItem[] childs = modelListModel.get(groupPosition).getItems();
         if (childs == null) return null;
         else {
             if (childs.length > childPosition)
@@ -98,7 +101,7 @@ public class DrawerExpandableAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public long getGroupId(int groupPosition) {
-        return 0;
+        return groupPosition;
     }
 
     /**
@@ -149,41 +152,26 @@ public class DrawerExpandableAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         View v = convertView;
-        DrawerItemHolder d;
-        DrawerItem i = getGroup(groupPosition);
+        ItemHolder d;
+        FixtureModel i = getGroup(groupPosition);
 
-        if(i.getType() != DrawerItem.TYPE.NOTIFICATION) {
-            //if (v == null) {
-                v = inflater.inflate(groupResEx, parent, false);
-                d = new DrawerItemHolder(v, i.getType());
-                v.setTag(d);
-           // }
+        //if (v == null) {
+            v = inflater.inflate(groupRes, parent, false);
+            d = new ItemHolder(v);
+            v.setTag(d);/*
+        } else {
+            d = (ItemHolder) v.getTag();
+        }*/
 
-            d.itemName.setText(i.getTitle());
-            d.icon.setImageResource(i.getIcon());
+        d.time.setText(i.getTime());
 
-            try {
-                if (getChildrenCount(groupPosition) > 0) {
-                    if (isExpanded) {
-                        d.iconToggle.setImageResource(R.drawable.ic_action_collapse);
-                    } else {
-                        d.iconToggle.setImageResource(R.drawable.ic_action_expand);
-                    }
-                }
-            }catch(Exception ex){ex.printStackTrace(); }
-        }else {
-            //if (v == null) {
-                v = inflater.inflate(groupResNotification, parent, false);
-                d = new DrawerItemHolder(v, i.getType());
-                v.setTag(d);
-            /*} else {
-                d = (DrawerItemHolder) v.getTag();
-            }*/
-
-            d.itemName.setText(i.getTitle());
-            d.icon.setImageResource(i.getIcon());
-            d.itemnotnum.setText(i.getNotifications()+"");
-        }
+        try {
+            if (getChildrenCount(groupPosition) > 0) {
+                    d.iconToggle.setImageResource(R.drawable.ic_action_expand);
+            }else {
+                d.iconToggle.setVisibility(View.GONE);
+            }
+        }catch(Exception ex){ex.printStackTrace(); }
 
         return v;
     }
@@ -209,21 +197,25 @@ public class DrawerExpandableAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         View v = convertView;
-        DrawerChildItemHolder dc;
+        ChildItemHolder c;
+        FixtureItem i = getChild(groupPosition, childPosition);
 
         if (v == null) {
             v = inflater.inflate(childRes, parent, false);
-            //v = View.inflate(context, childRes, parent);
-            dc = new DrawerChildItemHolder(v);
-            v.setTag(dc);
+            c = new ChildItemHolder(v);
+            v.setTag(c);
         } else {
-            dc = (DrawerChildItemHolder) v.getTag();
+            c = (ChildItemHolder) v.getTag();
         }
 
-        String s = getChild(groupPosition, childPosition);
-        if (s != null) {
-            dc.itemName.setText(s);
-        }
+        c.team_left.setText(i.getTeam1());
+        c.team_right.setText(i.getTeam2());
+        c.time.setText(i.getTime());
+        c.playground.setText(i.getPlayground());
+        c.capacity.setText(getHtml(i.getNumJoined()+"", i.getNumSpotsLeft()+""));
+
+        c.team_l.setImageResource(i.getIcon_team_1());
+        c.team_r.setImageResource(i.getIcon_team_2());
 
         return v;
     }
@@ -240,32 +232,29 @@ public class DrawerExpandableAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
-    public static class DrawerItemHolder {
-        public static TextView itemName, itemnotnum;
-        ImageView icon, iconToggle;
+    public static class ItemHolder {
+        public static TextView time;
+        ImageView iconToggle;
 
-        public DrawerItemHolder(View v, DrawerItem.TYPE type) {
-            itemName = (TextView) v.findViewById(R.id.textDrawerItem);
-            icon = (ImageView) v.findViewById(R.id.imageIconDrawerItem);
-
-            if(type == DrawerItem.TYPE.EXPANDABLE || type == DrawerItem.TYPE.GALLERY || type == DrawerItem.TYPE.NORMAL) {
-                iconToggle = (ImageView) v.findViewById(R.id.imageToggleDrawerItem);
-                if(type == DrawerItem.TYPE.NORMAL) {
-                    iconToggle.setVisibility(View.GONE);
-                }else if(type == DrawerItem.TYPE.GALLERY) {
-                    iconToggle.setImageResource(R.drawable.ic_action_next_item);
-                }
-            }else if(type == DrawerItem.TYPE.NOTIFICATION) {
-                itemnotnum = (TextView) v.findViewById(R.id.textDrawerNotiNumber);
-            }
+        public ItemHolder(View v) {
+            time = (TextView) v.findViewById(R.id.fixture_group_title);
+            iconToggle = (ImageView) v.findViewById(R.id.fixture_group_toggle);
         }
     }
 
-    public static class DrawerChildItemHolder {
-        public static TextView itemName;
+    public static class ChildItemHolder {
+        TextView team_left, team_right, time, playground, capacity;
+        ImageView team_l, team_r;
 
-        public DrawerChildItemHolder(View v) {
-            itemName = (TextView) v.findViewById(R.id.textDrawerSubItem);
+        public ChildItemHolder(View v) {
+            team_left = (TextView) v.findViewById(R.id.fix_team_left);
+            team_right = (TextView) v.findViewById(R.id.fix_team_right);
+            time = (TextView) v.findViewById(R.id.fix_child_time);
+            playground = (TextView) v.findViewById(R.id.fix_venue);
+            capacity = (TextView) v.findViewById(R.id.fix_capacity);
+
+            team_l = (ImageView) v.findViewById(R.id.fix_team_image_left);
+            team_r = (ImageView) v.findViewById(R.id.fix_team_image_right);
         }
     }
 }

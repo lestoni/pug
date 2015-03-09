@@ -1,4 +1,4 @@
-package com.app.pug.util;
+package com.app.pug.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,14 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.pug.R;
-import com.app.pug.models.OpenGameItem;
+import com.app.pug.models.HomeListItem;
 
 import java.util.List;
 
-public class FindOpenListAdapter extends ArrayAdapter<OpenGameItem> {
-    private static final String TAG = "FindOpenListAdapter";
+public class HomeListAdapter extends ArrayAdapter<HomeListItem> {
+
+    private static final String TAG = "HomeListAdapter";
     private Context context;
-    private List<OpenGameItem> drawerItemList;
+    private List<HomeListItem> drawerItemList;
     private int layoutResID;
     private DrawerItemHolder d;
 
@@ -25,10 +26,10 @@ public class FindOpenListAdapter extends ArrayAdapter<OpenGameItem> {
      * Constructor of the HomeListAdapter
      *
      * @param context   Context
-     * @param resource  Layout Resource ID
+     * @param resource  Layout Respurce ID
      * @param listItems List of Home Items
      */
-    public FindOpenListAdapter(Context context, int resource, List<OpenGameItem> listItems) {
+    public HomeListAdapter(Context context, int resource, List<HomeListItem> listItems) {
         super(context, 0, listItems);
         this.context = context;
         this.drawerItemList = listItems;
@@ -42,7 +43,7 @@ public class FindOpenListAdapter extends ArrayAdapter<OpenGameItem> {
     }
 
     @Override
-    public OpenGameItem getItem(int position) {
+    public HomeListItem getItem(int position) {
         return drawerItemList.get(position);
     }
 
@@ -70,7 +71,6 @@ public class FindOpenListAdapter extends ArrayAdapter<OpenGameItem> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Initialise view holder and set the data required
-
         View v = convertView;
 
         if (v == null) {
@@ -82,41 +82,55 @@ public class FindOpenListAdapter extends ArrayAdapter<OpenGameItem> {
             d = (DrawerItemHolder) v.getTag();
         }
 
-        OpenGameItem i = getItem(position);
+        HomeListItem i = getItem(position);
         d.name.setText(i.getName());
-        d.location.setText(i.getLocation());
-        d.date.setText(i.getDate());
-        d.aside.setText(i.getAside() + " Aside");
-        d.mins.setText(i.getMins() + " Mins");
 
-        d.cost.setText((i.getAmount() == 0) ? "Free" : "$" + i.getAmount());
-        d.status.setText(i.getStatus());
+        if (!i.getRole().equals("")) {
+            d.role.setText(i.getRole());
+        } else d.role.setVisibility(View.GONE);
 
-        if (i.getStatus().equalsIgnoreCase("Available"))
-            d.icon_status.setImageResource(R.drawable.game_item_status_icon_available);
-        else if (i.getStatus().equalsIgnoreCase("Full")) {
-            d.icon_status.setImageResource(R.drawable.game_item_status_icon_full);
+        if (!i.getLocation().equals("")) {
+            d.location.setText(i.getLocation());
+        } else {
+            d.location.setVisibility(View.GONE);
         }
+
+        if (i.getPlays() > 0) {
+            d.plays.setText(i.getPlays() + " Plays");
+        } else {
+            d.plays.setVisibility(View.GONE);
+        }
+
+        if (i.getFollowers() > 0) {
+            d.followers.setText(i.getFollowers() + " Followers");
+        } else {
+            d.followers.setVisibility(View.GONE);
+        }
+
+        if (i.getFollowing() > 0) {
+            d.following.setText(i.getFollowing() + " Following");
+        } else {
+            d.following.setVisibility(View.GONE);
+        }
+
+        d.icon.setImageResource(i.getIcon());
+
         return v;
     }
 
     private static class DrawerItemHolder {
-        TextView name, location, date, aside, mins, cost, status;
-        ImageView image, icon_status;
+        TextView name, role, location, plays, followers, following;
+        ImageView icon;
 
         public DrawerItemHolder(View v) {
-            name = (TextView) v.findViewById(R.id.info_container_area);
-            location = (TextView) v.findViewById(R.id.info_container_location);
-            date = (TextView) v.findViewById(R.id.info_container_label_timedate);
-            aside = (TextView) v.findViewById(R.id.info_container_label_aside);
-            mins = (TextView) v.findViewById(R.id.info_container_label_mins);
-            cost = (TextView) v.findViewById(R.id.info_container_label_cost);
+            name = (TextView) v.findViewById(R.id.homeListItemName);
+            role = (TextView) v.findViewById(R.id.homeListItemRole);
+            location = (TextView) v.findViewById(R.id.homeListItemLocation);
+            plays = (TextView) v.findViewById(R.id.homeListItemPlays);
+            followers = (TextView) v.findViewById(R.id.homeListItemFollowers);
+            following = (TextView) v.findViewById(R.id.homeListItemFollowing);
 
-            status = (TextView) v.findViewById(R.id.game_item_status_label);
-            icon_status = (ImageView) v.findViewById(R.id.game_item_status_icon);
-
-            image = (ImageView) v.findViewById(R.id.game_item_image);
-
+            icon = (ImageView) v.findViewById(R.id.homeListItemImage);
         }
     }
 }

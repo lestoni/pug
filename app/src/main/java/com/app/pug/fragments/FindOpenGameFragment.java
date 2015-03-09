@@ -10,9 +10,9 @@ import android.widget.ListView;
 
 import com.app.pug.GameActivity;
 import com.app.pug.R;
+import com.app.pug.adapters.FindOpenListAdapter;
 import com.app.pug.framework.Screen;
 import com.app.pug.models.OpenGameItem;
-import com.app.pug.util.FindOpenListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

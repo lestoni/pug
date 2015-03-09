@@ -1,4 +1,4 @@
-package com.app.pug.util;
+package com.app.pug.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,15 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.pug.R;
-import com.app.pug.models.PlayerItem;
+import com.app.pug.models.OpenGameItem;
 
 import java.util.List;
 
-public class PlayerListAdapter extends ArrayAdapter<PlayerItem> {
-
-    private static final String TAG = "PlayerListAdapter";
+public class FindOpenListAdapter extends ArrayAdapter<OpenGameItem> {
+    private static final String TAG = "FindOpenListAdapter";
     private Context context;
-    private List<PlayerItem> drawerItemList;
+    private List<OpenGameItem> drawerItemList;
     private int layoutResID;
     private DrawerItemHolder d;
 
@@ -29,7 +28,7 @@ public class PlayerListAdapter extends ArrayAdapter<PlayerItem> {
      * @param resource  Layout Resource ID
      * @param listItems List of Home Items
      */
-    public PlayerListAdapter(Context context, int resource, List<PlayerItem> listItems) {
+    public FindOpenListAdapter(Context context, int resource, List<OpenGameItem> listItems) {
         super(context, 0, listItems);
         this.context = context;
         this.drawerItemList = listItems;
@@ -43,7 +42,7 @@ public class PlayerListAdapter extends ArrayAdapter<PlayerItem> {
     }
 
     @Override
-    public PlayerItem getItem(int position) {
+    public OpenGameItem getItem(int position) {
         return drawerItemList.get(position);
     }
 
@@ -71,6 +70,7 @@ public class PlayerListAdapter extends ArrayAdapter<PlayerItem> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Initialise view holder and set the data required
+
         View v = convertView;
 
         if (v == null) {
@@ -82,25 +82,41 @@ public class PlayerListAdapter extends ArrayAdapter<PlayerItem> {
             d = (DrawerItemHolder) v.getTag();
         }
 
-        PlayerItem i = getItem(position);
+        OpenGameItem i = getItem(position);
         d.name.setText(i.getName());
-        d.joined.setText(i.getJoined());
-        d.role.setText(i.getRole());
-        d.time.setText(i.getTime());
-        //d.icon.setText(i.getJoined());
+        d.location.setText(i.getLocation());
+        d.date.setText(i.getDate());
+        d.aside.setText(i.getAside() + " Aside");
+        d.mins.setText(i.getMins() + " Mins");
+
+        d.cost.setText((i.getAmount() == 0) ? "Free" : "$" + i.getAmount());
+        d.status.setText(i.getStatus());
+
+        if (i.getStatus().equalsIgnoreCase("Available"))
+            d.icon_status.setImageResource(R.drawable.game_item_status_icon_available);
+        else if (i.getStatus().equalsIgnoreCase("Full")) {
+            d.icon_status.setImageResource(R.drawable.game_item_status_icon_full);
+        }
         return v;
     }
 
     private static class DrawerItemHolder {
-        TextView name, role, joined, time;
-        ImageView icon;
+        TextView name, location, date, aside, mins, cost, status;
+        ImageView image, icon_status;
 
         public DrawerItemHolder(View v) {
-            name = (TextView) v.findViewById(R.id.player_item_label_name);
-            role = (TextView) v.findViewById(R.id.player_item_label_position);
-            joined = (TextView) v.findViewById(R.id.joined_label);
-            time = (TextView) v.findViewById(R.id.hour_label);
-            icon = (ImageView) v.findViewById(R.id.player_item_image);
+            name = (TextView) v.findViewById(R.id.info_container_area);
+            location = (TextView) v.findViewById(R.id.info_container_location);
+            date = (TextView) v.findViewById(R.id.info_container_label_timedate);
+            aside = (TextView) v.findViewById(R.id.info_container_label_aside);
+            mins = (TextView) v.findViewById(R.id.info_container_label_mins);
+            cost = (TextView) v.findViewById(R.id.info_container_label_cost);
+
+            status = (TextView) v.findViewById(R.id.game_item_status_label);
+            icon_status = (ImageView) v.findViewById(R.id.game_item_status_icon);
+
+            image = (ImageView) v.findViewById(R.id.game_item_image);
+
         }
     }
 }

@@ -18,9 +18,9 @@ import android.widget.ListView;
 import com.app.pug.HomeActivity;
 import com.app.pug.R;
 import com.app.pug.UserActivity;
+import com.app.pug.adapters.HomeListAdapter;
 import com.app.pug.framework.Screen;
 import com.app.pug.models.HomeListItem;
-import com.app.pug.util.HomeListAdapter;
 import com.app.pug.utils.PREFUtils;
 
 import java.util.ArrayList;

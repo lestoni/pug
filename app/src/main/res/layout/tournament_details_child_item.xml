@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@android:color/white"
     android:paddingBottom="8dp">
 
     <ImageView
@@ -21,17 +22,16 @@
         android:padding="2dp" />
 
     <TextView
-        android:id="@+id/itemTime"
+        android:id="@+id/textReplyChildItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="5 mins ago"
+        android:text="reply"
         android:textSize="12sp"
-        android:layout_weight="27"
-        android:textColor="@color/home_list_item_color"
+        android:textColor="@color/details_child_reply"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_alignBottom="@+id/imageChildItem"
+        android:layout_below="@+id/textCommentChildItem"
         android:layout_toRightOf="@+id/imageChildItem"
         android:layout_toEndOf="@+id/imageChildItem" />
 
@@ -39,14 +39,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/hintText"
-        android:id="@+id/itemContent"
-        android:textColor="@color/white"
+        android:text="Natasha"
+        android:id="@+id/textNameChildItem"
+        android:textColor="@color/details_child_title"
         android:layout_alignTop="@+id/imageChildItem"
         android:layout_toRightOf="@+id/imageChildItem"
         android:layout_marginLeft="16dp"
         android:textSize="14sp"
         android:layout_marginRight="8dp"
         android:maxLines="2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textCommentChildItem"
+        android:textSize="13sp"
+        android:layout_below="@+id/textNameChildItem"
+        android:layout_alignLeft="@+id/textReplyChildItem"
+        android:layout_alignStart="@+id/textReplyChildItem" />
 
 </RelativeLayout>

@@ -16,9 +16,9 @@ import android.widget.ExpandableListView;
 
 import com.app.pug.HomeActivity;
 import com.app.pug.R;
+import com.app.pug.adapters.DrawerExpandableAdapter;
 import com.app.pug.framework.Screen;
 import com.app.pug.models.DrawerItem;
-import com.app.pug.util.DrawerExpandableAdapter;
 
 import java.util.ArrayList;
 

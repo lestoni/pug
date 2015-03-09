@@ -15,6 +15,7 @@ public class UpcomingPlayedItem {
     public UpcomingPlayedItem() {
         this("", "", 0, 10, new ArrayList<ImageView>());
     }
+
     public UpcomingPlayedItem(String dateTime, String location, int joined, int left, ArrayList<ImageView> images) {
         this.dateTime = dateTime;
         this.location = location;

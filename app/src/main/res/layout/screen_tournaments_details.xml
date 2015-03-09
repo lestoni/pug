@@ -4,12 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+    <com.app.fab.ObservableScrollView
         android:layout_width="match_parent"
         android:background="@color/home_pager_background"
+        android:scrollbars="none"
+        android:id="@+id/scroll"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize">
+        android:paddingTop="?attr/actionBarSize">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.CardView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -20,221 +26,247 @@
             class="android.support.v7.widget.CardView"
             android:id="@+id/view2"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp" >
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
-
-                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/map"
+                android:layout_height="match_parent">
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:name="com.google.android.gms.maps.MapFragment"/>
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
 
-                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="16dp" >
+                    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/map"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:name="com.google.android.gms.maps.MapFragment"/>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:orientation="vertical"
-                        android:layout_toLeftOf="@+id/textView12"
-                        android:layout_toStartOf="@+id/textView12"
-                        android:layout_marginTop="4dp"
-                        android:id="@+id/linearLayout3" >
+                        android:paddingBottom="16dp"
+                        android:paddingTop="16dp">
 
-                        <ImageView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="48dp"
-                            android:adjustViewBounds="true"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_team_2"
-                            android:id="@+id/imageView5"
-                            android:layout_gravity="center_horizontal|bottom" />
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:orientation="vertical"
+                            android:layout_toLeftOf="@+id/textTimeDetails"
+                            android:layout_toStartOf="@+id/textTimeDetails"
+                            android:layout_marginTop="4dp"
+                            android:id="@+id/linearLayout3" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_team_2"
+                                android:id="@+id/imageTeam1Details"
+                                android:layout_gravity="center_horizontal|bottom" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Team Hawk"
+                                android:id="@+id/textTeam1Details"
+                                android:textStyle="bold"
+                                android:layout_gravity="center_horizontal"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:orientation="vertical"
+                            android:layout_toEndOf="@+id/textTimeDetails"
+                            android:layout_toRightOf="@+id/textTimeDetails"
+                            android:layout_marginTop="4dp" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_team_1"
+                                android:id="@+id/imageTeam2Details"
+                                android:layout_gravity="center_horizontal|bottom" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Shark Attack"
+                                android:id="@+id/textTeam2Details"
+                                android:textStyle="bold"
+                                android:layout_gravity="center_horizontal"
+                                android:textSize="14sp" />
+                        </LinearLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Team Hawk"
-                            android:id="@+id/textView13"
-                            android:textStyle="bold"
-                            android:layout_gravity="center_horizontal"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/linearLayout4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:orientation="vertical"
-                        android:layout_toEndOf="@+id/textView12"
-                        android:layout_toRightOf="@+id/textView12"
-                        android:layout_marginTop="4dp" >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="48dp"
-                            android:adjustViewBounds="true"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_team_1"
-                            android:id="@+id/imageView6"
-                            android:layout_gravity="center_horizontal|bottom" />
+                            android:text="3:00 PM"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/textDateDetails"
+                            android:id="@+id/textTimeDetails"
+                            android:textColor="@color/white"
+                            android:background="@drawable/fixture_time_shape"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:paddingRight="4dp"
+                            android:paddingLeft="4dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:layout_marginTop="2dp"
+                            android:textSize="13sp"
+                            android:layout_marginBottom="4dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Shark Attack"
-                            android:id="@+id/textView14"
-                            android:textStyle="bold"
-                            android:layout_gravity="center_horizontal"
-                            android:textSize="14sp" />
-                    </LinearLayout>
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="VS"
+                            android:id="@+id/textView15"
+                            android:layout_alignBottom="@+id/linearLayout4"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="3dp"
+                            android:textSize="12sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="3:00 PM"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/textView18"
-                        android:id="@+id/textView12"
-                        android:textColor="@color/white"
-                        android:background="@drawable/fixture_time_shape"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:paddingRight="4dp"
-                        android:paddingLeft="4dp"
-                        android:paddingTop="2dp"
-                        android:paddingBottom="2dp"
-                        android:layout_marginTop="2dp"
-                        android:textSize="13sp"
-                        android:layout_marginBottom="4dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="Captain Rivera Playground"
+                            android:id="@+id/textPlaygroundDetails"
+                            android:layout_below="@+id/linearLayout3"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="16dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="VS"
-                        android:id="@+id/textView15"
-                        android:layout_alignBottom="@+id/linearLayout4"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="1dp"
-                        android:layout_marginTop="3dp"
-                        android:textSize="12sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="7 joined (3 spots left)"
+                            android:id="@+id/textJoinedDetails"
+                            android:layout_below="@+id/textPlaygroundDetails"
+                            android:layout_centerHorizontal="true" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Captain Rivera Playground"
-                        android:id="@+id/textView16"
-                        android:layout_below="@+id/linearLayout3"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="16dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="Tomorrow"
+                            android:id="@+id/textDateDetails"
+                            android:layout_alignTop="@+id/linearLayout3"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="6dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="7 joined (3 spots left)"
-                        android:id="@+id/textView17"
-                        android:layout_below="@+id/textView16"
-                        android:layout_centerHorizontal="true" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="Challenge created by John Doe"
+                            android:id="@+id/textView19"
+                            android:layout_below="@+id/textJoinedDetails"
+                            android:layout_marginTop="12dp"
+                            android:layout_centerHorizontal="true"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Tomorrow"
-                        android:id="@+id/textView18"
-                        android:layout_alignTop="@+id/linearLayout3"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="6dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Request to Join"
+                            android:id="@+id/btnRequestJoineDetails"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:gravity="center"
+                            android:layout_below="@+id/textView19"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/prompt_review_button_selector"
+                            android:textColor="@color/white"
+                            android:paddingLeft="24dp"
+                            android:paddingRight="24dp"
+                            android:paddingTop="8dp"
+                            android:clickable="true"
+                            android:paddingBottom="8dp"
+                            android:layout_marginTop="12dp" />
+                    </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Challenge created by John Doe"
-                        android:id="@+id/textView19"
-                        android:layout_below="@+id/textView17"
-                        android:layout_marginTop="12dp"
-                        android:layout_centerHorizontal="true"/>
+                    <View android:layout_height="@dimen/dimen_0.5" android:layout_width="match_parent" android:background="@color/drawer_item_divider" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Request to Join"
-                        android:id="@+id/promptReviewSettings"
-                        android:layout_gravity="center_horizontal|bottom"
-                        android:gravity="center"
-                        android:layout_below="@+id/textView19"
-                        android:layout_centerHorizontal="true"
-                        android:background="@drawable/prompt_review_button_selector"
-                        android:textColor="@color/white"
-                        android:paddingLeft="24dp"
-                        android:paddingRight="24dp"
-                        android:paddingTop="8dp"
+                    <ExpandableListView
+                        android:id="@+id/listTournDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:scrollbars="none"
+                        android:background="@color/white"
+                        android:groupIndicator="@color/transparent"
+                        android:choiceMode="singleChoice"
+                        android:childDivider="@color/drawer_item_divider"
+                        android:dividerHeight="@dimen/dimen_0.5"
+                        android:divider="@color/transparent"
                         android:clickable="true"
-                        android:paddingBottom="8dp"
-                        android:layout_marginTop="12dp" />
-                </RelativeLayout>
+                        android:minHeight="100dp"
+                        android:layout_marginTop="4dp" />
 
-                <View android:layout_height="@dimen/dimen_0.5" android:layout_width="match_parent" android:background="@color/drawer_item_divider" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:background="#f4f5f7"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal">
 
-                <ExpandableListView
-                    android:id="@+id/listFixture"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none"
-                    android:background="@color/white"
-                    android:groupIndicator="@color/transparent"
-                    android:choiceMode="singleChoice"
-                    android:childDivider="@color/drawer_item_divider"
-                    android:dividerHeight="@dimen/dimen_0.5"
-                    android:divider="@color/transparent"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:clickable="true" />
+                        <EditText
+                            android:id="@+id/searchGameEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_margin="@dimen/dimen_15"
+                            android:background="@drawable/game_edittext_background"
+                            android:hint="Add Comment or question"
+                            android:padding="@dimen/dimen_8"
+                            android:textSize="14sp"
+                            android:textColor="@color/light_gray"
+                            android:textColorHint="@color/light_gray" />
+
+                    </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:background="#fcfcfc"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
+                    android:layout_marginTop="141dp">
 
-                    <EditText
-                        android:id="@+id/searchGameEditText"
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_15"
-                        android:background="@drawable/game_edittext_background"
-                        android:hint="Add Comment or question"
-                        android:padding="@dimen/dimen_8"
-                        android:textColor="@color/light_gray"
-                        android:textColorHint="@color/light_gray" />
+                        android:id="@+id/imageFloating"
+                        android:src="@drawable/tab_icon_game_inactive"
+                        android:background="@drawable/tourn_details_image_background"
+                        android:layout_gravity="center" />
+                </LinearLayout>
 
-                    </LinearLayout>
-            </LinearLayout>
+
+            </FrameLayout>
 
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
+    </com.app.fab.ObservableScrollView>
 
     <!-- The ToolBar Should Overlay the Content -->
     <LinearLayout
         android:layout_width="match_parent"
         android:background="@color/primary"
         android:orientation="vertical"
+        android:id="@+id/toolbarLayout"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
@@ -249,6 +281,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_marginRight="32dp"
+                android:id="@+id/toolbarRelLayout"
                 android:layout_height="?attr/actionBarSize">
 
                 <TextView

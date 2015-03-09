@@ -1,4 +1,4 @@
-package com.app.pug.util;
+package com.app.pug.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,15 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.pug.R;
-import com.app.pug.models.HomeListItem;
+import com.app.pug.models.PlayerItem;
 
 import java.util.List;
 
-public class HomeListAdapter extends ArrayAdapter<HomeListItem> {
+public class PlayerListAdapter extends ArrayAdapter<PlayerItem> {
 
-    private static final String TAG = "HomeListAdapter";
+    private static final String TAG = "PlayerListAdapter";
     private Context context;
-    private List<HomeListItem> drawerItemList;
+    private List<PlayerItem> drawerItemList;
     private int layoutResID;
     private DrawerItemHolder d;
 
@@ -26,10 +26,10 @@ public class HomeListAdapter extends ArrayAdapter<HomeListItem> {
      * Constructor of the HomeListAdapter
      *
      * @param context   Context
-     * @param resource  Layout Respurce ID
+     * @param resource  Layout Resource ID
      * @param listItems List of Home Items
      */
-    public HomeListAdapter(Context context, int resource, List<HomeListItem> listItems) {
+    public PlayerListAdapter(Context context, int resource, List<PlayerItem> listItems) {
         super(context, 0, listItems);
         this.context = context;
         this.drawerItemList = listItems;
@@ -43,7 +43,7 @@ public class HomeListAdapter extends ArrayAdapter<HomeListItem> {
     }
 
     @Override
-    public HomeListItem getItem(int position) {
+    public PlayerItem getItem(int position) {
         return drawerItemList.get(position);
     }
 
@@ -82,55 +82,25 @@ public class HomeListAdapter extends ArrayAdapter<HomeListItem> {
             d = (DrawerItemHolder) v.getTag();
         }
 
-        HomeListItem i = getItem(position);
+        PlayerItem i = getItem(position);
         d.name.setText(i.getName());
-
-        if (!i.getRole().equals("")) {
-            d.role.setText(i.getRole());
-        } else d.role.setVisibility(View.GONE);
-
-        if (!i.getLocation().equals("")) {
-            d.location.setText(i.getLocation());
-        } else {
-            d.location.setVisibility(View.GONE);
-        }
-
-        if (i.getPlays() > 0) {
-            d.plays.setText(i.getPlays() + " Plays");
-        } else {
-            d.plays.setVisibility(View.GONE);
-        }
-
-        if (i.getFollowers() > 0) {
-            d.followers.setText(i.getFollowers() + " Followers");
-        } else {
-            d.followers.setVisibility(View.GONE);
-        }
-
-        if (i.getFollowing() > 0) {
-            d.following.setText(i.getFollowing() + " Following");
-        } else {
-            d.following.setVisibility(View.GONE);
-        }
-
-        d.icon.setImageResource(i.getIcon());
-
+        d.joined.setText(i.getJoined());
+        d.role.setText(i.getRole());
+        d.time.setText(i.getTime());
+        //d.icon.setText(i.getJoined());
         return v;
     }
 
     private static class DrawerItemHolder {
-        TextView name, role, location, plays, followers, following;
+        TextView name, role, joined, time;
         ImageView icon;
 
         public DrawerItemHolder(View v) {
-            name = (TextView) v.findViewById(R.id.homeListItemName);
-            role = (TextView) v.findViewById(R.id.homeListItemRole);
-            location = (TextView) v.findViewById(R.id.homeListItemLocation);
-            plays = (TextView) v.findViewById(R.id.homeListItemPlays);
-            followers = (TextView) v.findViewById(R.id.homeListItemFollowers);
-            following = (TextView) v.findViewById(R.id.homeListItemFollowing);
-
-            icon = (ImageView) v.findViewById(R.id.homeListItemImage);
+            name = (TextView) v.findViewById(R.id.player_item_label_name);
+            role = (TextView) v.findViewById(R.id.player_item_label_position);
+            joined = (TextView) v.findViewById(R.id.joined_label);
+            time = (TextView) v.findViewById(R.id.hour_label);
+            icon = (ImageView) v.findViewById(R.id.player_item_image);
         }
     }
 }

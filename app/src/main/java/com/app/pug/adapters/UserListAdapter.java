@@ -1,4 +1,4 @@
-package com.app.pug.util;
+package com.app.pug.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -98,7 +98,7 @@ public class UserListAdapter extends ArrayAdapter<UserListItem> {
         public DrawerItemHolder(View v) {
             content = (TextView) v.findViewById(R.id.itemContent);
             time = (TextView) v.findViewById(R.id.itemTime);
-            icon = (ImageView) v.findViewById(R.id.itemImage);
+            icon = (ImageView) v.findViewById(R.id.imageChildItem);
         }
     }
 }

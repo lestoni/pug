@@ -93,5 +93,7 @@
     <!-- TOURNAMENT -->
     <color name="fixture_group_item_background">#f8f8f8</color>
     <color name="fixture_child_title_color">#7b7b7b</color>
+    <color name="details_child_title">#686868</color>
+    <color name="details_child_reply">#cecece</color>
 
 </resources>

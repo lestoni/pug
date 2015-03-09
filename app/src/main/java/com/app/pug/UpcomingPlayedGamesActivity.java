@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.pug.adapters.ScreenPagerAdapter;
-import com.app.pug.fragments.PlayedGamesFragment;
 import com.app.pug.fragments.UpcomingGamesFragment;
 
 public class UpcomingPlayedGamesActivity extends ActionBarActivity {

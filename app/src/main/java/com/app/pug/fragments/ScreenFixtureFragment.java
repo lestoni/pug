@@ -10,10 +10,10 @@ import android.widget.Toast;
 
 import com.app.pug.R;
 import com.app.pug.TournamentDetailsActivity;
+import com.app.pug.adapters.FixtureExpandableAdapter;
 import com.app.pug.framework.Screen;
 import com.app.pug.models.FixtureItem;
 import com.app.pug.models.FixtureModel;
-import com.app.pug.util.FixtureExpandableAdapter;
 
 import java.util.ArrayList;
 
@@ -68,7 +68,7 @@ public class ScreenFixtureFragment extends Screen {
 
         /**
          * Expand all the categories.
-         */
+        */
         int count = ad.getGroupCount();
         for(int i = 0; i < count; i++) {
             list.expandGroup(i);

@@ -2,13 +2,13 @@ package com.app.fab;
 
 import android.widget.ScrollView;
 
-abstract class ScrollViewScrollDetector implements ObservableScrollView.OnScrollChangedListener {
+public abstract class ScrollViewScrollDetector implements ObservableScrollView.OnScrollChangedListener {
     private int mLastScrollY;
     private int mScrollThreshold;
 
-    abstract void onScrollUp();
+    public abstract void onScrollUp();
 
-    abstract void onScrollDown();
+    public abstract void onScrollDown();
 
     @Override
     public void onScrollChanged(ScrollView who, int l, int t, int oldl, int oldt) {

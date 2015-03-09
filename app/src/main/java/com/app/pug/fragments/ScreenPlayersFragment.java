@@ -8,9 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.app.pug.R;
+import com.app.pug.adapters.PlayerListAdapter;
 import com.app.pug.framework.Screen;
 import com.app.pug.models.PlayerItem;
-import com.app.pug.util.PlayerListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

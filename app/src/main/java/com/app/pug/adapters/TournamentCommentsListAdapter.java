@@ -1,7 +1,6 @@
-package com.app.pug.util;
+package com.app.pug.adapters;
 
 import android.content.Context;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,30 +9,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.pug.R;
-import com.app.pug.models.FixtureItem;
-import com.app.pug.models.FixtureModel;
+import com.app.pug.models.CommentsModel;
 
 import java.util.List;
 
-public class FixtureExpandableAdapter extends BaseExpandableListAdapter {
-
-    private static final String TAG = "FixtureExpandableAdapter";
+public class TournamentCommentsListAdapter extends BaseExpandableListAdapter {
+    private static final String TAG = "TournamentCommentsListAdapter";
     private final LayoutInflater inflater;
     private Context context;
-    private List<FixtureModel> modelListModel;
+    private List<List<CommentsModel>> modelListModel;
 
-    private int groupRes = R.layout.screen_fixture_group_item;
-    private int childRes = R.layout.screen_fixture_child_item;
+    private int groupRes = R.layout.tournament_details_group_item;
+    private int childRes = R.layout.tournament_details_child_item;
 
-    public FixtureExpandableAdapter(Context context, List<FixtureModel> modelList) {
+    public TournamentCommentsListAdapter(Context context, List<List<CommentsModel>> modelList) {
         this.modelListModel = modelList;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
-    }
-
-    private android.text.Spanned getHtml(String joined, String spotsLeft) {
-        String html = "<font color=\"#85d2c5\">"+joined+" joined</font> ("+spotsLeft+" spots left)";
-        return Html.fromHtml(html);
     }
 
     /**
@@ -55,9 +47,10 @@ public class FixtureExpandableAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public int getChildrenCount(int groupPosition) {
-        FixtureItem[] childs = modelListModel.get(groupPosition).getItems();
-        if (childs == null) return 0;
-        else return childs.length;
+        if(modelListModel != null && modelListModel.size() > groupPosition){
+            List<CommentsModel> model = modelListModel.get(groupPosition);
+            return model.size();
+        }else return 0;
     }
 
     /**
@@ -67,8 +60,9 @@ public class FixtureExpandableAdapter extends BaseExpandableListAdapter {
      * @return the data child for the specified group
      */
     @Override
-    public FixtureModel getGroup(int groupPosition) {
-        return modelListModel.get(groupPosition);
+    public String getGroup(int groupPosition) {
+        int numComments = getChildrenCount(groupPosition);
+        return numComments +" Comments";
     }
 
     /**
@@ -80,14 +74,14 @@ public class FixtureExpandableAdapter extends BaseExpandableListAdapter {
      * @return the data of the child
      */
     @Override
-    public FixtureItem getChild(int groupPosition, int childPosition) {
-        FixtureItem[] childs = modelListModel.get(groupPosition).getItems();
-        if (childs == null) return null;
-        else {
-            if (childs.length > childPosition)
-                return childs[childPosition];
-            else return null;
-        }
+    public CommentsModel getChild(int groupPosition, int childPosition) {
+        if(modelListModel != null && modelListModel.size() > groupPosition){
+            List<CommentsModel> model = modelListModel.get(groupPosition);
+            if(model.size() > childPosition){
+                return model.get(childPosition);
+            }
+            return null;
+        }else return null;
     }
 
     /**
@@ -153,17 +147,12 @@ public class FixtureExpandableAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         View v = convertView;
         ItemHolder d;
-        FixtureModel i = getGroup(groupPosition);
 
-        //if (v == null) {
             v = inflater.inflate(groupRes, parent, false);
             d = new ItemHolder(v);
-            v.setTag(d);/*
-        } else {
-            d = (ItemHolder) v.getTag();
-        }*/
+            v.setTag(d);
 
-        d.time.setText(i.getTime());
+        d.title.setText(getGroup(groupPosition));
 
         try {
             if (getChildrenCount(groupPosition) > 0) {
@@ -198,7 +187,7 @@ public class FixtureExpandableAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         View v = convertView;
         ChildItemHolder c;
-        FixtureItem i = getChild(groupPosition, childPosition);
+        CommentsModel i = getChild(groupPosition, childPosition);
 
         if (v == null) {
             v = inflater.inflate(childRes, parent, false);
@@ -208,14 +197,9 @@ public class FixtureExpandableAdapter extends BaseExpandableListAdapter {
             c = (ChildItemHolder) v.getTag();
         }
 
-        c.team_left.setText(i.getTeam1());
-        c.team_right.setText(i.getTeam2());
-        c.time.setText(i.getTime());
-        c.playground.setText(i.getPlayground());
-        c.capacity.setText(getHtml(i.getNumJoined()+"", i.getNumSpotsLeft()+""));
-
-        c.team_l.setImageResource(i.getIcon_team_1());
-        c.team_r.setImageResource(i.getIcon_team_2());
+        c.name.setText(i.getName());
+        c.comment.setText(i.getMessage());
+        c.image.setImageResource(i.getImageRes());
 
         return v;
     }
@@ -233,28 +217,25 @@ public class FixtureExpandableAdapter extends BaseExpandableListAdapter {
     }
 
     public static class ItemHolder {
-        public static TextView time;
+        TextView title;
         ImageView iconToggle;
 
         public ItemHolder(View v) {
-            time = (TextView) v.findViewById(R.id.fixture_group_title);
-            iconToggle = (ImageView) v.findViewById(R.id.fixture_group_toggle);
+            title = (TextView) v.findViewById(R.id.textCommentsGroupItem);
+            iconToggle = (ImageView) v.findViewById(R.id.image_group_toggle);
         }
     }
 
     public static class ChildItemHolder {
-        TextView team_left, team_right, time, playground, capacity;
-        ImageView team_l, team_r;
+        TextView name, comment, reply;
+        ImageView image;
 
         public ChildItemHolder(View v) {
-            team_left = (TextView) v.findViewById(R.id.fix_team_left);
-            team_right = (TextView) v.findViewById(R.id.fix_team_right);
-            time = (TextView) v.findViewById(R.id.fix_child_time);
-            playground = (TextView) v.findViewById(R.id.fix_venue);
-            capacity = (TextView) v.findViewById(R.id.fix_capacity);
+            name = (TextView) v.findViewById(R.id.textNameChildItem);
+            comment = (TextView) v.findViewById(R.id.textCommentChildItem);
+            reply = (TextView) v.findViewById(R.id.textReplyChildItem);
 
-            team_l = (ImageView) v.findViewById(R.id.fix_team_image_left);
-            team_r = (ImageView) v.findViewById(R.id.fix_team_image_right);
+            image = (ImageView) v.findViewById(R.id.imageChildItem);
         }
     }
 }

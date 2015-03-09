@@ -16,9 +16,9 @@ import android.widget.ListView;
 import com.app.fab.FloatingActionButton;
 import com.app.fab.ScrollDirectionListener;
 import com.app.pug.R;
+import com.app.pug.adapters.UserListAdapter;
 import com.app.pug.framework.Screen;
 import com.app.pug.models.UserListItem;
-import com.app.pug.util.UserListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
