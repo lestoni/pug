@@ -11,9 +11,9 @@ module.exports = function (m) {
 
     var UserSchema = new Schema({
         user_type:{type:String,default:'player'},
-        pug_credentials: {username:{type:string,required:true,index: { unique: true }},password:{type:string,required:true}},
+        pug_credentials: {username:{type:String,required:true,index: { unique: true }},password:{type:String,required:true}},
         oauth_credentials:{facebook:{id:String,token:String},twitter:{id:String,token:String},google:{id:String,token:String}},
-        account_rescue:{reset_id:{type:string},expires_on:{type:Date}},
+        account_rescue:{reset_id:{type:String},expires_on:{type:Date}},
         created_at: {type:Date,default:Date.now},
         updated_at: {type:Date,default:Date.now}
     });
@@ -24,8 +24,8 @@ module.exports = function (m) {
     UserSchema.pre('save', function (next) {
         var user=this;
         //change the username to lower case
-        user.pug_credentials.username=this.pug_credentials.username.toLowerCase();
-        next();
+        user.pug_credentials.username=user.pug_credentials.username.toLowerCase();
+       // next();
 
 // only hash the password if it has been modified (or is new)
         if (!user.isModified('pug_credentials.password')) return next();
@@ -58,7 +58,7 @@ module.exports = function (m) {
     /**
      * Note this must return a query object.
      * @param q
-     * @param term
+     * @param username
      */
     UserSchema.statics.findUserLike = function findUserLike(q, username) {
         var search = username && username.length ? username.shift() : q && q.username;
@@ -111,5 +111,6 @@ module.exports = function (m) {
      * @constructor
      */
 
+    //var User = mongoose.model('User', UserSchema);return User;
     return {User: m.model('User', UserSchema)};
-}
+};
