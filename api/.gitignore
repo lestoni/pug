@@ -1,0 +1,13 @@
+node_modules
+db
+.idea
+/../app
+/../app-assets
+/../circleindicator
+/../fab
+/../gradle
+/../README.md
+/../settings.gradle
+/../gradlew
+/../gradle.properties
+/../build.gradle
