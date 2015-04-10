@@ -1,21 +1,20 @@
 /**
- * Team model.
+ * Notification model.
  * @param m
- * @returns {{Team: *}}
+ * @returns {{Notification: *}}
  */
 module.exports = function (m) {
     var mongoose = m || require('mongoose'), Schema = m.base.Schema, CallbackQuery = require('../../lib/callback-query')
         , uniqueValidator = require('mongoose-unique-validator');
 
     //plugin the unique validator
-    TeamSchema.plugin(uniqueValidator,{ message: 'Error, {PATH} {VALUE} is already taken.'});
+    NotificationSchema.plugin(uniqueValidator,{ message: 'Error, {PATH} {VALUE} is already taken.'});
 
-    var TeamSchema = new Schema({
-        name:{type:String,required:true,unique:true,index:true},
-        team_icon:{type:String,default:null},
-        games_played:{type:Number,default:0},
-        players:[{ type: Schema.ObjectId, ref: 'Member' }],
-        created_by:[{ type: Schema.ObjectId, ref: 'User' }],
+    var NotificationSchema = new Schema({
+        title:{type:String,default:'New game created'},
+        type:{ type:String, enum:['Game','Follower','Following','Tournament','Rating'],default: 'Game' },
+        payload:{type:Array,default:[]},
+        target:[{who:[{ type: Schema.ObjectId, ref: 'User' }],is_read:{type:Boolean,default:false}}],
         created_at: {type:Date,default:Date.now},
         updated_at: {type:Date,default:Date.now}
     });
@@ -28,7 +27,7 @@ module.exports = function (m) {
     /**
      * Some pre-save functions.
      * */
-    TeamSchema.pre('save', function (next) {
+    NotificationSchema.pre('save', function (next) {
         var member=this;
 
         //check the bio length
@@ -46,34 +45,34 @@ module.exports = function (m) {
 
 
     /**
-     * Note this must return a query object.
-     * @param q
-     * @param search name
+     * This will be exposed as /v1/member/:id/notification/unread
+     * @param id
+     * @param status
      */
-    TeamSchema.statics.findTeamLike = function findTeamLike(q, name) {
-        var search = name && name.length ? name.shift() : q && q.name;
+    NotificationSchema.statics.findUnreadNotification = function findUnreadNotification(id, status) {
+        var search = id && id.length ? id.shift() : id && id.status;
         if (!search)
             return this.find({_id: null});
 
-        return this.find({name: new RegExp(search, 'i')});
+        return this.find({'target.who': id,'target.is_read':status});
     }
 
 
     /**
-     * This will be exposed as /v1/team/search/whatever
+     * This will be exposed as /v1/notification/search/whatever
      * @param q
      * @param search term
      * @return query object
      */
-    TeamSchema.statics.search = function(q, term) {
+    NotificationSchema.statics.search = function(q, term) {
         var search = term && term.length ? term.shift() : q && q.term;
         if (!search)
             return this.find({_id: null});
 
         var regex = {$regex:new RegExp(search, 'i')}
         return this.find({}).or([
-            {name:regex},
-            {created_by:regex}
+            {title:regex},
+            {created_at:regex}
         ]);
 
     }
@@ -86,7 +85,7 @@ module.exports = function (m) {
      * @param q
      * @return {Function}
      */
-    TeamSchema.statics.findRaw = function onFindRaw(query$) {
+    NotificationSchema.statics.findRaw = function onFindRaw(query$) {
         var collection = this.collection;
         return new CallbackQuery(function (cb) {
             collection.find(function (err, cursor) {
@@ -98,11 +97,11 @@ module.exports = function (m) {
 
         });
     }
-    TeamSchema.statics.findByCallback = function onFindByCallback(query$id) {
+    NotificationSchema.statics.findByCallback = function onFindByCallback(query$id) {
         return this.find({_id: query$id}).exec();
     }
 
 
-    //var Team = mongoose.model('Team', TeamSchema);return Team;
-    return {Team: m.model('Team', TeamSchema)};
+    //var Notification = mongoose.model('Notification', NotificationSchema);return Notification;
+    return {Notification: m.model('Notification', NotificationSchema)};
 };

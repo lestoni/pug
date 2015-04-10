@@ -19,7 +19,6 @@ module.exports = function (m) {
         games:[[{ type: Schema.ObjectId, ref: 'Game' }]],
         team_count:{type:Number,default:0},
         comments:[{comment_by:[{ type: Schema.ObjectId, ref: 'Member' }],message:{type:String,default:null},created_at:{type:Date,default:Date.now}}],
-        teams:{team_a:[{ type: Schema.ObjectId, ref: 'Team' }],team_b:[{ type: Schema.ObjectId, ref: 'Team' }]},
         created_by:[{ type: Schema.ObjectId, ref: 'User' }],
         rating:{poor:{type:Number,default:0},medium:{type:Number,default:0},good:{type:Number,default:0},great:{type:Number,default:0}},
         created_at: {type:Date,default:Date.now},
@@ -30,7 +29,7 @@ module.exports = function (m) {
     TournamentSchema.plugin(uniqueValidator,{ message: 'Error, {PATH} {VALUE} is already taken.'});
 
     /**
-     * @Todo implement validation: team_a should always be different from team_b
+     * @Todo implement validation and any other custom end points
      * */
 
     /**
@@ -68,7 +67,7 @@ module.exports = function (m) {
 
 
     /**
-     * This will be exposed as /v1/Tournament/search/whatever
+     * This will be exposed as /v1/tournament/search/whatever
      * @param q
      * @param search term
      * @return query object
@@ -80,12 +79,10 @@ module.exports = function (m) {
 
         var regex = {$regex:new RegExp(search, 'i')}
         return this.find({}).or([
-            {duration:regex},
+            {start_date:regex},
             {status:regex},
-            {game_title:regex},
-            {entry_fee:regex},
-            {location:regex},
-            {scheduled_date:regex}
+            {title:regex},
+            {location:regex}
         ]);
 
     }

@@ -1,21 +1,20 @@
 /**
- * Team model.
+ * Inbox model.
  * @param m
- * @returns {{Team: *}}
+ * @returns {{Inbox: *}}
  */
 module.exports = function (m) {
     var mongoose = m || require('mongoose'), Schema = m.base.Schema, CallbackQuery = require('../../lib/callback-query')
         , uniqueValidator = require('mongoose-unique-validator');
 
     //plugin the unique validator
-    TeamSchema.plugin(uniqueValidator,{ message: 'Error, {PATH} {VALUE} is already taken.'});
+    InboxSchema.plugin(uniqueValidator,{ message: 'Error, {PATH} {VALUE} is already taken.'});
 
-    var TeamSchema = new Schema({
-        name:{type:String,required:true,unique:true,index:true},
-        team_icon:{type:String,default:null},
-        games_played:{type:Number,default:0},
-        players:[{ type: Schema.ObjectId, ref: 'Member' }],
-        created_by:[{ type: Schema.ObjectId, ref: 'User' }],
+    var InboxSchema = new Schema({
+        content:{type:String,default:'Wonna PUG now?'},
+        from:[{ type: Schema.ObjectId, ref: 'Member' }],
+        recipient:[{ type: Schema.ObjectId, ref: 'Member' }],
+        is_read:{type:Boolean,default:false},
         created_at: {type:Date,default:Date.now},
         updated_at: {type:Date,default:Date.now}
     });
@@ -28,7 +27,7 @@ module.exports = function (m) {
     /**
      * Some pre-save functions.
      * */
-    TeamSchema.pre('save', function (next) {
+    InboxSchema.pre('save', function (next) {
         var member=this;
 
         //check the bio length
@@ -46,34 +45,35 @@ module.exports = function (m) {
 
 
     /**
-     * Note this must return a query object.
+     * This will be exposed as /v1/inbox/message/search
      * @param q
      * @param search name
      */
-    TeamSchema.statics.findTeamLike = function findTeamLike(q, name) {
-        var search = name && name.length ? name.shift() : q && q.name;
+    InboxSchema.statics.findInboxLike = function findInboxLike(q, content) {
+        var search = content && content.length ? content.shift() : q && q.name;
         if (!search)
             return this.find({_id: null});
 
-        return this.find({name: new RegExp(search, 'i')});
+        return this.find({content: new RegExp(search, 'i')});
     }
 
 
     /**
-     * This will be exposed as /v1/team/search/whatever
+     * This will be exposed as /v1/inbox/search/whatever
      * @param q
      * @param search term
      * @return query object
      */
-    TeamSchema.statics.search = function(q, term) {
+    InboxSchema.statics.search = function(q, term) {
         var search = term && term.length ? term.shift() : q && q.term;
         if (!search)
             return this.find({_id: null});
 
         var regex = {$regex:new RegExp(search, 'i')}
         return this.find({}).or([
-            {name:regex},
-            {created_by:regex}
+            {recipient:regex},
+            {from:regex},
+            {content:regex}
         ]);
 
     }
@@ -86,7 +86,7 @@ module.exports = function (m) {
      * @param q
      * @return {Function}
      */
-    TeamSchema.statics.findRaw = function onFindRaw(query$) {
+    InboxSchema.statics.findRaw = function onFindRaw(query$) {
         var collection = this.collection;
         return new CallbackQuery(function (cb) {
             collection.find(function (err, cursor) {
@@ -98,11 +98,11 @@ module.exports = function (m) {
 
         });
     }
-    TeamSchema.statics.findByCallback = function onFindByCallback(query$id) {
+    InboxSchema.statics.findByCallback = function onFindByCallback(query$id) {
         return this.find({_id: query$id}).exec();
     }
 
 
-    //var Team = mongoose.model('Team', TeamSchema);return Team;
-    return {Team: m.model('Team', TeamSchema)};
+    //var Inbox = mongoose.model('Inbox', InboxSchema);return Inbox;
+    return {Inbox: m.model('Inbox', InboxSchema)};
 };
