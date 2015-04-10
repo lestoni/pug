@@ -16,14 +16,15 @@ module.exports = function (m) {
         full_name:{type:String,default:null},
         dob:{type:Date,default:'01/01/1970'},
         gender:{type:String,default:null},
-        player:{skills:{type:Array,default:null},games_played:{type:Number,default:0},default_position:{type:String,default:null},
-            ball_handling:{type:String,default:null},height:{type:String,default:null},weight:{type:Number,default:null}},
+        player:{skills:{type:Array,default:null},games_played:{type:Number,default:0},
+        default_position:{type:String,enum:['left-handed','right-handed','both',null],default:null},
+        ball_handling:{type:String,default:null},height:{type:String,default:null},weight:{type:Number,default:null}},
         bio:{type:String,default:null,maxlength:bio_max_length},//max of 160 characters
-    city:{type:String,default:null},
-    state:{type:String,default:null},
-    profile_avatar:{type:String,default:null},
-    profile_extra:{followers:{type:Array,default:[]},following:{type:Array,default:[]}},
-    rating:{poor:{type:Number,default:0},medium:{type:Number,default:0},good:{type:Number,default:0},great:{type:Number,default:0}},
+        city:{type:String,default:null},
+        state:{type:String,default:null},
+        profile_avatar:{type:String,default:null},
+        profile_extra:{followers:{type:[[{ type: Schema.ObjectId, ref: 'Member' }]],default:[]},following:{type:[[{ type: Schema.ObjectId, ref: 'Member' }]],default:[]}},
+        rating:{poor:{type:Number,default:0},medium:{type:Number,default:0},good:{type:Number,default:0},great:{type:Number,default:0}},
         created_at: {type:Date,default:Date.now},
         updated_at: {type:Date,default:Date.now}
     });
@@ -32,7 +33,7 @@ module.exports = function (m) {
     MemberSchema.plugin(uniqueValidator,{ message: 'Error, {PATH} {VALUE} is already taken.'});
 
     /**
-     * @Todo implement upload profile_avatar handler in a controller
+     * @Todo implement upload profile_avatar handler in a controller, and the custom end points
      * */
 
     /**
@@ -60,12 +61,12 @@ module.exports = function (m) {
      * @param q
      * @param search term
      */
-    MemberSchema.statics.findMemberLike = function findMemberLike(q, username) {
-        var search = username && username.length ? username.shift() : q && q.username;
+    MemberSchema.statics.findMemberLike = function findMemberLike(q, email) {
+        var search = email && email.length ? email.shift() : q && q.email;
         if (!search)
             return this.find({_id: null});
 
-        return this.find({'pug_credentials.username': new RegExp(search, 'i')});
+        return this.find({email: new RegExp(search, 'i')});
     }
 
 
@@ -117,6 +118,6 @@ module.exports = function (m) {
     }
 
 
-    //var User = mongoose.model('User', MemberSchema);return User;
-    return {User: m.model('Member', MemberSchema)};
+    //var Member = mongoose.model('Member', MemberSchema);return Member;
+    return {Member: m.model('Member', MemberSchema)};
 };

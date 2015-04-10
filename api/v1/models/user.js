@@ -18,6 +18,10 @@ module.exports = function (m) {
         updated_at: {type:Date,default:Date.now}
     });
 
+    /**
+     * @Todo implement lock account for sometime after several failed login attempts
+     * */
+
     //plugin the unique validator
     UserSchema.plugin(uniqueValidator,{ message: 'Error, {PATH} {VALUE} is already taken.'});
 
