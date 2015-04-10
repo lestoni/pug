@@ -1,7 +1,7 @@
 /**
- * Game model.
+ * Tournament model.
  * @param m
- * @returns {{Game: *}}
+ * @returns {{Tournament: *}}
  */
 module.exports = function (m) {
     var mongoose = m || require('mongoose'), Schema = m.base.Schema, CallbackQuery = require('../../lib/callback-query')
@@ -9,18 +9,16 @@ module.exports = function (m) {
 
     var max_length = [160, 'The value of `{PATH}` (`{VALUE}`) exceeds the maximum allowed ({MAXLENGTH}) characters.']; //custom validator
 
-    var GameSchema = new Schema({
+    var TournamentSchema = new Schema({
         location:[{ type: Schema.ObjectId, ref: 'Location' }],
-        game_title:{type:String,required:true,index:true},
-        scheduled_date:{type:Date,required:true,default:Date.now},
-        start_time:{type:String,required:true,default:'00:00'},
-        duration:{type:Number,required:true,enum:[3,5,7,10,15],default:15},
+        title:{type:String,required:true,index:true},
+        description:{type:String,default:null},
+        start_date:{type:Date,required:true,default:Date.now},
+        end_date:{type:String,required:true,default:'00:00'},
         status:{type:String,enum:['Open', 'In Session', 'Done', 'Postponed', 'Closed', 'Cancelled'],default:'Open'},
+        games:[[{ type: Schema.ObjectId, ref: 'Game' }]],
+        team_count:{type:Number,default:0},
         comments:[{comment_by:[{ type: Schema.ObjectId, ref: 'Member' }],message:{type:String,default:null},created_at:{type:Date,default:Date.now}}],
-        game_mode:{type:String,enum:['1 Aside','2 Aside','3 Aside','4 Aside','5 Aside',null],default:null},
-        scores:{team_a:{type:Number,default:null},team_b:{type:Number,default:null}},
-        entry_fee:{type:Number,default:0},
-        players:{max:{type:Number,default:2},joined:[{ type: Schema.ObjectId, ref: 'Member' }]},
         teams:{team_a:[{ type: Schema.ObjectId, ref: 'Team' }],team_b:[{ type: Schema.ObjectId, ref: 'Team' }]},
         created_by:[{ type: Schema.ObjectId, ref: 'User' }],
         rating:{poor:{type:Number,default:0},medium:{type:Number,default:0},good:{type:Number,default:0},great:{type:Number,default:0}},
@@ -29,7 +27,7 @@ module.exports = function (m) {
     });
 
     //plugin the unique validator
-    GameSchema.plugin(uniqueValidator,{ message: 'Error, {PATH} {VALUE} is already taken.'});
+    TournamentSchema.plugin(uniqueValidator,{ message: 'Error, {PATH} {VALUE} is already taken.'});
 
     /**
      * @Todo implement validation: team_a should always be different from team_b
@@ -38,11 +36,11 @@ module.exports = function (m) {
     /**
      * Some pre-save functions. E.g validate bio length, email address, dob, ...etc
      * */
-    GameSchema.pre('save', function (next) {
-        var game=this;
+    TournamentSchema.pre('save', function (next) {
+        var Tournament=this;
 
         //ensure team_a is not the same as team_b
-        game.validate(function (err) {
+        Tournament.validate(function (err) {
             console.log(String(err)) ;
         })
 
@@ -56,11 +54,11 @@ module.exports = function (m) {
 
 
     /**
-     * This will be exposed as /v1/game/status/open
+     * This will be exposed as /v1/tournament/status/open
      * @param q
      * @param search term
      */
-    GameSchema.statics.findOpenGame = function findOpenGame(q, status) {
+    TournamentSchema.statics.findOpenTournament = function findOpenTournament(q, status) {
         var search = status && status.length ? status.shift() : q && q.status;
         if (!search)
             return this.find({_id: null});
@@ -70,12 +68,12 @@ module.exports = function (m) {
 
 
     /**
-     * This will be exposed as /v1/game/search/whatever
+     * This will be exposed as /v1/Tournament/search/whatever
      * @param q
      * @param search term
      * @return query object
      */
-    GameSchema.statics.search = function(q, term) {
+    TournamentSchema.statics.search = function(q, term) {
         var search = term && term.length ? term.shift() : q && q.term;
         if (!search)
             return this.find({_id: null});
@@ -98,7 +96,7 @@ module.exports = function (m) {
      * @param q
      * @return {Function}
      */
-    GameSchema.statics.findRaw = function onFindRaw(query$) {
+    TournamentSchema.statics.findRaw = function onFindRaw(query$) {
         var collection = this.collection;
         return new CallbackQuery(function (cb) {
             collection.find(function (err, cursor) {
@@ -110,11 +108,11 @@ module.exports = function (m) {
 
         });
     }
-    GameSchema.statics.findByCallback = function onFindByCallback(query$id) {
+    TournamentSchema.statics.findByCallback = function onFindByCallback(query$id) {
         return this.find({_id: query$id}).exec();
     }
 
 
-    //var Game = mongoose.model('Game', GameSchema);return Game;
-    return {Game: m.model('Game', GameSchema)};
+    //var Tournament = mongoose.model('Tournament', TournamentSchema);return Tournament;
+    return {Tournament: m.model('Tournament', TournamentSchema)};
 };
