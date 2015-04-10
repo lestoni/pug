@@ -7,7 +7,7 @@ module.exports = function (m) {
     var mongoose = m || require('mongoose'), Schema = m.base.Schema, CallbackQuery = require('../../lib/callback-query')
         , uniqueValidator = require('mongoose-unique-validator');
 
-    var bio_max_length = [160, 'The value of `{PATH}` (`{VALUE}`) exceeds the maximum allowed ({MAXLENGTH}) characters.']; //custom validator
+    var bio_max_length = [320, 'The value of `{PATH}` (`{VALUE}`) exceeds the maximum allowed ({MAXLENGTH}) characters.']; //custom validator
 
     var MemberSchema = new Schema({
         user:[{ type: Schema.ObjectId, ref: 'User' }], //each member has 1 user account
@@ -19,7 +19,7 @@ module.exports = function (m) {
         player:{skills:{type:Array,default:null},games_played:{type:Number,default:0},
         default_position:{type:String,enum:['left-handed','right-handed','both',null],default:null},
         ball_handling:{type:String,default:null},height:{type:String,default:null},weight:{type:Number,default:null}},
-        bio:{type:String,default:null,maxlength:bio_max_length},//max of 160 characters
+        bio:{type:String,default:null,maxlength:bio_max_length},//max of 320 characters
         city:{type:String,default:null},
         state:{type:String,default:null},
         profile_avatar:{type:String,default:null},
