@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp">
+
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:adjustViewBounds="true"
+        android:id="@+id/homeListItemImage"
+        android:layout_marginLeft="12dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_list_item_3"
+        android:background="@drawable/home_list_item_image"
+        android:contentDescription="@null"
+        android:layout_marginTop="8dp"
+        android:padding="2dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/homeListItemImage"
+        android:layout_toEndOf="@+id/homeListItemImage"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="LeBron James"
+            android:id="@+id/homeListItemName"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/layoutRoleLocation"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/homeListItemName"
+            android:weightSum="100">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Shooting Guard"
+                android:id="@+id/homeListItemRole"
+                android:drawablePadding="3dp"
+                android:drawableLeft="@drawable/ic_item_role"
+                android:textSize="12sp"
+                android:layout_weight="49"
+                android:textColor="@color/light_gray"
+                android:paddingTop="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Cleveland, Ohio"
+                android:id="@+id/homeListItemLocation"
+                android:drawablePadding="3dp"
+                android:layout_weight="49"
+                android:drawableLeft="@drawable/ic_item_location"
+                android:textSize="12sp"
+                android:textColor="@color/light_gray"
+                android:paddingTop="2dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutRoleLocation"
+            android:weightSum="100"
+            android:layout_marginTop="3dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="800 Plays"
+                android:textSize="12sp"
+                android:layout_weight="27"
+                android:id="@+id/homeListItemPlays"
+                android:textColor="@color/home_list_item_color" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="24k Followers"
+                android:textSize="12sp"
+                android:layout_weight="36"
+                android:id="@+id/homeListItemFollowers"
+                android:textColor="@color/home_list_item_color" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="76 Following"
+                android:textSize="12sp"
+                android:layout_weight="36"
+                android:id="@+id/homeListItemFollowing"
+                android:textColor="@color/home_list_item_color" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

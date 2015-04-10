@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/game_item_date_time_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_5">
+
+        <TextView
+            android:id="@+id/game_item_date_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:gravity="center_horizontal"
+            android:text="March 3, 2015 at 5:45PM"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/game_item_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/dimen_5"
+        android:text="Captain Rivera Playground"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/gray" />
+
+    <LinearLayout
+        android:id="@+id/position_count_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/dimen_5"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/position_count_joined"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dimen_5"
+            android:text="8 joined"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/cyan" />
+
+        <TextView
+            android:id="@+id/position_count_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(2 spots left)"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/gray" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/player_item_horizontalscrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:background="@color/lighter_gray">
+
+        <LinearLayout
+            android:id="@+id/game_item_player_container"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:src="@drawable/game_item_player_icon" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/game_item_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:focusableInTouchMode="false"
+        android:src="@drawable/game_item_image" />
+
+    <ImageView
+        android:id="@+id/game_item_status_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/game_item_image"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/dimen_10"
+        android:layout_marginLeft="@dimen/dimen_10"
+        android:layout_marginRight="@dimen/dimen_2"
+        android:src="@drawable/game_item_status_icon_available" />
+
+    <TextView
+        android:id="@+id/game_item_status_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2 AVAILABLE"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:layout_alignBottom="@+id/game_item_status_icon"
+        android:layout_toRightOf="@+id/game_item_status_icon"
+        android:layout_toEndOf="@+id/game_item_status_icon"
+        android:layout_alignTop="@+id/game_item_status_icon"
+        android:gravity="center_vertical"
+        android:textStyle="bold"
+        android:layout_marginLeft="2dp" />
+
+    <LinearLayout
+        android:id="@+id/game_item_info_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignBottom="@+id/game_item_image"
+        android:layout_alignTop="@+id/game_item_image"
+        android:layout_toEndOf="@+id/game_item_image"
+        android:layout_toRightOf="@+id/game_item_image"
+        android:background="@drawable/game_item_info_container_background"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dimen_3"
+        android:paddingRight="@dimen/dimen_2">
+
+        <LinearLayout
+            android:id="@+id/info_container_top"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/info_container_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dimen_2"
+                android:paddingLeft="@dimen/dimen_10"
+                android:drawableRight="@drawable/wheelchair_accessible_small"
+                android:paddingTop="@dimen/dimen_4"
+                android:maxLines="1"
+                android:text="174th Street Playground"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginRight="5dp" />
+
+            <TextView
+                android:id="@+id/info_container_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/browse_location_icon_small"
+                android:drawablePadding="@dimen/dimen_5"
+                android:paddingBottom="@dimen/dimen_4"
+                android:paddingLeft="@dimen/dimen_10"
+                android:maxLines="1"
+                android:textSize="13sp"
+                android:text="E 174 St. &amp; Bronx River Ave."
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/gray"
+                android:gravity="center_vertical" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/info_container_bottom"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen_10"
+            android:weightSum="100"
+            android:background="@drawable/info_container_bottom_background">
+
+            <TextView
+                android:id="@+id/info_container_label_timedate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:drawableLeft="@drawable/browse_location_timedate"
+                android:drawablePadding="@dimen/dimen_3"
+                android:text="13:15 April 19"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="@dimen/dimen_0.5"
+                android:layout_height="@dimen/dimen_20"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dimen_5"
+                android:layout_marginRight="@dimen/dimen_5"
+                android:background="@color/light_gray"
+                android:text="New Text" />
+
+            <TextView
+                android:id="@+id/info_container_label_aside"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:drawableLeft="@drawable/browse_location_asside_icon"
+                android:drawablePadding="@dimen/dimen_3"
+                android:paddingBottom="@dimen/dimen_3"
+                android:paddingTop="@dimen/dimen_3"
+                android:text="5 Aside"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:gravity="center_vertical" />
+
+            <View
+                android:id="@+id/textView9"
+                android:layout_width="@dimen/dimen_0.5"
+                android:layout_height="@dimen/dimen_20"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dimen_5"
+                android:layout_marginRight="@dimen/dimen_5"
+                android:background="@color/light_gray" />
+
+            <TextView
+                android:id="@+id/info_container_label_mins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:drawableLeft="@drawable/browse_location_mins"
+                android:drawablePadding="@dimen/dimen_3"
+                android:paddingBottom="@dimen/dimen_3"
+                android:paddingTop="@dimen/dimen_3"
+                android:text="7 Mins"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="@dimen/dimen_0.5"
+                android:layout_height="@dimen/dimen_20"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dimen_5"
+                android:layout_marginRight="@dimen/dimen_5"
+                android:background="@color/light_gray"
+                android:text="New Text" />
+
+            <TextView
+                android:id="@+id/info_container_label_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:drawableLeft="@drawable/browse_location_cost"
+                android:drawablePadding="@dimen/dimen_5"
+                android:paddingBottom="@dimen/dimen_3"
+                android:paddingTop="@dimen/dimen_3"
+                android:text="Free"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:gravity="center_vertical" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

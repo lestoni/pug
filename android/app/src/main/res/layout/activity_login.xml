@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@drawable/ic_background">
+
+    <ImageView
+        android:id="@+id/imageLoginIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/pug_icon"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_new_app_icon" />
+
+    <TextView
+        android:id="@+id/textLoginAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageLoginIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="@string/login_app_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textLoginAppDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textLoginAppName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:text="@string/login_app_description"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:typeface="serif" />
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="false">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/loginPanel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textLoginTour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:drawablePadding="8dp"
+                    android:text="@string/login_take_tour"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/imageLoginTour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/tour_selector"
+                    android:clickable="true"
+                    android:contentDescription="@string/tour_icon_description"
+                    android:src="@drawable/ic_tour" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/buttonLoginFacebook"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/loginPanel"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/fb_button_selector"
+                android:clickable="true"
+                android:onClick="onLogin"
+                android:drawableLeft="@drawable/ic_facebook"
+                android:drawablePadding="16dp"
+                android:drawableStart="@drawable/ic_facebook"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="2dp"
+                android:text="@string/sign_with_facebook"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/buttonLogin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/buttonLoginFacebook"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/button_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onLogin"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/log_in"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/login_bottom_panel_shape"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/line" />
+
+                <Spinner
+                    android:id="@+id/spinnerLoginLanguage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/spinner_item_selector"
+                    android:entries="@array/language" />
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
