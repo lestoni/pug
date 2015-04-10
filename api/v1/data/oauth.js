@@ -1,3 +1,7 @@
+
+/**
+ * Just some dummy data to 3 create test users on startup
+ * */
 var _id = require('mongoose').Types.ObjectId;
 
 exports.User = [

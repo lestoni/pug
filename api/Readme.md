@@ -1,6 +1,6 @@
 #PUG api powered by mers library
 
-==Author==
+#Author
 @JohnAdamsy for Coders4Africa
 
 #Mers
@@ -356,6 +356,5 @@ DepartmentSchema.method.hello = function DepartmentSchema$hello(query$name, sess
 Deleting is follows the rules of as a put, however, it has an option, of deleteRef, when you
 are deleteing a nested ref'd object and want to delete it from the refer'd collection. see
 routes-user-mocha.js
-
 
 

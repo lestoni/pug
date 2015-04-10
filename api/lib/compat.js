@@ -22,5 +22,6 @@ module.exports = {
             console.log('body-parser not available attempting to use bodyParser');
             return  express.bodyParser;
         }
-    }())
+    }()),
+
 };

@@ -1,5 +1,5 @@
 /**
- * Wrap the export so that a mongoose can be passed in.  This is useful, for testing, and managing connections.
+ * User model. Wrap the export so that a mongoose can be passed in.  This is useful, for testing, and managing connections.
  * @param m
  * @returns {{User: *}}
  */
@@ -11,12 +11,15 @@ module.exports = function (m) {
 
     var UserSchema = new Schema({
         user_type:{type:String,default:'player'},
-        pug_credentials: {username:{type:String,required:true,index: { unique: true }},password:{type:String,required:true}},
-        oauth_credentials:{facebook:{id:String,token:String},twitter:{id:String,token:String},google:{id:String,token:String}},
-        account_rescue:{reset_id:{type:String},expires_on:{type:Date}},
+        pug_credentials: {username:{type:String,required:true,index:true,unique: true },password:{type:String,required:true}},
+        oauth_credentials:{facebook:{id:{type:String,default:null},token:{type:String,default:null}},twitter:{id:{type:String,default:null},token:{type:String,default:null}},google:{id:{type:String,default:null},token:{type:String,default:null}}},
+        account_rescue:{reset_id:{type:String,default:null},expires_on:{type:Date,default:null}},
         created_at: {type:Date,default:Date.now},
         updated_at: {type:Date,default:Date.now}
     });
+
+    //plugin the unique validator
+    UserSchema.plugin(uniqueValidator,{ message: 'Error, {PATH} {VALUE} is already taken.'});
 
     /**
      * Some pre-save functions. E.g hash password,set password reset token expiry datetime, compare passwords
@@ -47,8 +50,6 @@ module.exports = function (m) {
 
     });
 
-    //plugin the unique validator
-    UserSchema.plugin(uniqueValidator);
 
     /**
      * Some post-save functions
@@ -68,10 +69,10 @@ module.exports = function (m) {
         return this.find({'pug_credentials.username': new RegExp(search, 'i')});
     }
 
-    UserSchema.methods.findCommentsLike = function (q, term) {
+    /*UserSchema.methods.findCommentsLike = function (q, term) {
         var search = term || q.title;
         return this.find({comments: new RegExp(search, 'i')});
-    }
+    }*/
 
     //compare a password. Useful for user login with a pug password
     UserSchema.methods.comparePassword = function(candidatePassword, cb) {
