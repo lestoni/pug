@@ -1,4 +1,4 @@
-#PUG api powered by node express and mongo
+#PUG api powered by node express and mongo. 
 
 ###Author
 @JohnAdamsy for Coders4Africa
@@ -20,6 +20,8 @@ Wiring up the boxes on Google cloud as I speak..oh as I type this. Then will poi
 
 Not the final documentation.
 =========================
+
+Sticking to [RESTful APIs best practices] (http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful) all the way. [@Amadou] (https://github.com/maxosba) thanks for the link again, can't say it enough.
 
 Lifted from [baugarten's](https://github.com/baugarten) [repo] (https://github.com/baugarten/node-restful). 
 Which I hope will get time to contribute to as well. There are some few needs :)
