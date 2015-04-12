@@ -16,6 +16,8 @@ Wiring up the boxes on Google cloud as I speak..oh as I type this. Then will poi
 3. Serve via HTTPS
 4. Hook to monitoring services such as new Relic, Paperptrail, StackDriver etc
 
+
+
 Not the final documentation.
 =========================
 
@@ -79,11 +81,11 @@ Use `skip` and `limit` filters for your pagination heavy lifting
 
 #### Sorting the result
 
-Use a `sort` querystring parameter with the property you want to sort on. `/users/?sort=pug_credentials.username` will give you a list sorted on the `pug_credentials.username` property, with an ascending sort order by default.
+Use a `sort` querystring parameter with the property you want to sort on. `/user/?sort=pug_credentials.username` will give you a list sorted on the `pug_credentials.username` property, with an ascending sort order by default.
 
-To change the sort order? 
-Add a MINUS before your value: `/users/?sort=-updated_at` Sorts the results  by the `updated_at` in DESC order
-Add a PLUS before your value: `/users/?sort=+updated_at` Sorts the results  by the `updated_at` in ASC order
+### To change the sort order? 
+Add a MINUS before your value: `/user/?sort=-updated_at` Sorts the results  by the `updated_at` in DESC order  
+Add a PLUS before your value: `/user/?sort=+updated_at` Sorts the results  by the `updated_at` in ASC order
 
 #### Filtering the results
 
