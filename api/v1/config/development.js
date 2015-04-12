@@ -23,7 +23,8 @@ module.exports={
         callbackURL: 'http://localhost:3000/auth/google/callback'
     },
     http:{
-        port:3040
+        port:3040,
+        host:'127.0.0.1'
     },
     emailFrom: 'SENDER EMAIL ADDRESS', // sender address like ABC <abc@example.com>
     mailer: {

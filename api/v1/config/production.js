@@ -26,7 +26,8 @@ module.exports={
         pass: 'dbPassword'
     },
     http:{
-        port:3500
+        port:8083,
+        host:'10.240.84.40'
     },
     facebook: {
         clientID: 'DEFAULT_APP_ID',
