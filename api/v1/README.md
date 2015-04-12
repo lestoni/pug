@@ -1,11 +1,9 @@
-#PUG api. Hacked with ease using the mers library.
-mers extends express and node js.
+##PUG api powered by node express and mongo
 
 
 ##Installation
 
 ```sh
-  $ cd pug
   $ npm install
   $ node ./app.js
 
