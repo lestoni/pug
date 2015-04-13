@@ -273,6 +273,6 @@ User.methods([
 
 function noop(req, res, next) { next(); }
 
-module.exports = mongoose.model('User', UserSchema);
-mongoose.model('User', UserSchema);
-exports = module.exports = User;
+exports=module.exports=module.exports = mongoose.model('User', UserSchema);
+//mongoose.model('User', UserSchema);
+//exports = module.exports = User;

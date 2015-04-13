@@ -33,7 +33,10 @@ app.mongoose = mongoose; // used for testing
 
 var connection=mongoose.connect(config.db); //connect to mongo
 
-require('pow-mongoose-fixtures').load('../data', connection); //preload db with test data
+//only run this in development environment
+if(app.get('env')!=='production'){
+    require('pow-mongoose-fixtures').load('../data', connection); //preload db with test data
+}
 
 
 //register all models here for now

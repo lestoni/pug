@@ -27,6 +27,7 @@ module.exports={
     },
     http:{
         port:8083,
+        /*host:'127.0.0.1'*/
         host:'10.240.84.40'
     },
     facebook: {
