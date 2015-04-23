@@ -6,6 +6,7 @@ var _id = require('mongoose').Types.ObjectId;
 
 exports.User = [
     {
+        _id:new _id(),
         user_type: 'test-player',
         pug_credentials: {username:'kali',password:'secret123'},
         oauth_credentials:{facebook:{id:null,token:null},twitter:{id:null,token:null},google:{id:null,token:null}},
@@ -14,6 +15,7 @@ exports.User = [
         updated_at: {type:Date,default:Date.now}
     },
     {
+        _id:new _id(),
         user_type: 'test-player',
         pug_credentials: {username:'kobe',password:'secret121'},
         oauth_credentials:{facebook:{id:null,token:null},twitter:{id:null,token:null},google:{id:null,token:null}},
@@ -22,6 +24,7 @@ exports.User = [
         updated_at: {type:Date,default:Date.now}
     },
     {
+        _id:new _id(),
         user_type: 'test-player',
         pug_credentials: {username:'lebron',password:'secret111'},
         oauth_credentials:{facebook:{id:null,token:null},twitter:{id:null,token:null},google:{id:null,token:null}},

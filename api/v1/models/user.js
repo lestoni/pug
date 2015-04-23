@@ -8,7 +8,7 @@ var restful=require('node-restful'),
     uniqueValidator = require('mongoose-unique-validator'),
     bcrypt = require('bcrypt'),
     moment=require('moment'),
-   LOG_TAG=moment().format('ddd')+' '+moment().format()+' /user',
+    LOG_TAG=moment().format('ddd')+' '+moment().format()+' /user',
     SALT_WORK_FACTOR = 10,
     MAX_LOGIN_ATTEMPTS = 5, // max of 5 attempts
     LOCK_TIME = (1/12) * 60 * 60 * 1000; //lock account for 5 minutes
@@ -53,48 +53,48 @@ UserSchema.methods.incLoginAttempts = function(cb) {// if we have a previous loc
     }
     return this.update(updates, cb);
 }
-UserSchema.plugin(uniqueValidator,{ message: 'Error, {PATH} {VALUE} is already taken.'});
+UserSchema.plugin(uniqueValidator,{ message: 'Username {VALUE} is already taken.'});
 
 UserSchema.virtual('isLocked').get(function() {// check for a future lockUntil timestamp
-        return !!(this.lockUntil && this.lockUntil > Date.now());
-    });
+    return !!(this.lockUntil && this.lockUntil > Date.now());
+});
 
 /**
  * pre-save functions. E.g hash password,set password reset token expiry datetime, compare passwords
  * */
 UserSchema.pre('save', function (next) {
-        var user=this;
-        //change the username to lower case
-        user.pug_credentials.username=user.pug_credentials.username.toLowerCase();
-        // next();
+    var user=this;
+    //change the username to lower case
+    user.pug_credentials.username=user.pug_credentials.username.toLowerCase();
+    // next();
 
 // only hash the password if it has been modified (or is new)
-        if (!user.isModified('pug_credentials.password')) return next();
+    if (!user.isModified('pug_credentials.password')) return next();
 
 // generate a salt
-        bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+        if (err) return next(err);
+
+        // hash the password using our new salt
+        bcrypt.hash(user.pug_credentials.password, salt, function(err, hash) {
             if (err) return next(err);
 
-            // hash the password using our new salt
-            bcrypt.hash(user.pug_credentials.password, salt, function(err, hash) {
-                if (err) return next(err);
-
-                // override the clear text password with the hashed one
-                user.pug_credentials.password = hash;
-                next();
-            });
+            // override the clear text password with the hashed one
+            user.pug_credentials.password = hash;
+            next();
         });
-
-
     });
 
 
-    // expose enum on the model, and provide an internal convenience reference
-    var reasons = UserSchema.statics.failedLogin = {
-        NOT_FOUND: 0,
-        PASSWORD_INCORRECT: 1,
-        MAX_ATTEMPTS: 2
-    };
+});
+
+
+// expose enum on the model, and provide an internal convenience reference
+var reasons = UserSchema.statics.failedLogin = {
+    NOT_FOUND: 0,
+    PASSWORD_INCORRECT: 1,
+    MAX_ATTEMPTS: 2
+};
 
 UserSchema.statics.getAuthenticated = function(username, password, cb) {
     this.findOne({ 'pug_credentials.username': username }, function(err, user) {
@@ -142,42 +142,56 @@ UserSchema.statics.getAuthenticated = function(username, password, cb) {
     });
 };
 
-    /**
-     * @Todo JohnAdamsy hide {password,loginAttempts,lockUntil} field on response object to client
-     *
-     * */
+/**
+ * @Todo JohnAdamsy hide {password,loginAttempts,lockUntil} field on response object to client
+ *
+ * */
 
 
-    /**
-     * Some post-save functions
-     * */
+/**
+ * Some post-save functions
+ * */
 
 
-    /**
-     * Note this must return a query object.
-     * @param q
-     * @param username
-     */
-    UserSchema.statics.findUserLike = function findUserLike(q, username) {
-        var search = username && username.length ? username.shift() : q && q.username;
-        if (!search)
-            return this.find({_id: null});
+/**
+ * Note this must return a query object.
+ * @param q
+ * @param username
+ */
+UserSchema.statics.findUserLike = function findUserLike(q, username) {
+    var search = username && username.length ? username.shift() : q && q.username;
+    if (!search)
+        return this.find({_id: null});
 
-        return this.find({'pug_credentials.username': new RegExp(search, 'i')});
+    return this.find({'pug_credentials.username': new RegExp(search, 'i')});
+}
+
+/*UserSchema.methods.findCommentsLike = function (q, term) {
+ var search = term || q.title;
+ return this.find({comments: new RegExp(search, 'i')});
+ }*/
+
+//compare a password. Useful for user login with a pug password
+/* UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+ bcrypt.compare(candidatePassword, this.pug_credentials.password, function(err, isMatch) {
+ if (err) return cb(err);
+ cb(null, isMatch);
+ });
+ };*/
+
+//transform schema object
+UserSchema.set('toJSON', {
+    transform: function(doc, ret, options) {
+        var retJson = {
+            id: ret._id,
+            updated_at: ret.updated_at,
+            created_at: ret.created_at,
+            name:ret.pug_credentials.username,
+            user_type:ret.user_type
+        };
+        return retJson;
     }
-
-    /*UserSchema.methods.findCommentsLike = function (q, term) {
-     var search = term || q.title;
-     return this.find({comments: new RegExp(search, 'i')});
-     }*/
-
-    //compare a password. Useful for user login with a pug password
-   /* UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-        bcrypt.compare(candidatePassword, this.pug_credentials.password, function(err, isMatch) {
-            if (err) return cb(err);
-            cb(null, isMatch);
-        });
-    };*/
+});
 
 var validateSearchTerm = function(req, res, next) {
     if (!req.body.username || !req.body.password)
@@ -200,12 +214,15 @@ var validateSearchTerm = function(req, res, next) {
     return next(); // Call the handler
 };
 
+//var transformObject=function(req,)
+
+
 
 var User =restful.model('user',UserSchema)
-    .removeOptions({
-        sort: 'field -created_at'
-    })
-    .includeSchema(true),
+        .removeOptions({
+            sort: 'field -created_at'
+        })
+        .includeSchema(true),
     response={};
 User.methods([
     'get',
@@ -226,9 +243,8 @@ User.methods([
                     //user is authenticated
                     //res.status = 200;
                     console.log(LOG_TAG+'/login:->login success');
-                    // res.bundle is what is returned
-                    //res.bundle = user;
-                    return res.send(user);
+                    delete user.pug_credentials.password;
+                    return res.send({status:200,data:user});
                 } else {
                     //user could not be logged in
                     //determine why they could not be logged on
@@ -269,10 +285,10 @@ User.methods([
     .before('put', noop)
     .after('put', noop)
     .before('login', validateSearchTerm); //before searching ensure we have a search item
-    //.after('login', after);
+//.after('login', after);
 
 function noop(req, res, next) { next(); }
 
-exports=module.exports=module.exports = mongoose.model('User', UserSchema);
-//mongoose.model('User', UserSchema);
-//exports = module.exports = User;
+//module.exports = mongoose.model('User', UserSchema);
+mongoose.model('User', UserSchema);
+exports = module.exports = User;
