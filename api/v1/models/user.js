@@ -53,7 +53,7 @@ UserSchema.methods.incLoginAttempts = function(cb) {// if we have a previous loc
     }
     return this.update(updates, cb);
 }
-UserSchema.plugin(uniqueValidator,{ message: 'Error, {PATH} {VALUE} is already taken.'});
+UserSchema.plugin(uniqueValidator,{ message: 'Username {VALUE} is already taken.'});
 
 UserSchema.virtual('isLocked').get(function() {// check for a future lockUntil timestamp
         return !!(this.lockUntil && this.lockUntil > Date.now());
@@ -179,6 +179,20 @@ UserSchema.statics.getAuthenticated = function(username, password, cb) {
         });
     };*/
 
+//transform schema object
+UserSchema.set('toJSON', {
+    transform: function(doc, ret, options) {
+        var retJson = {
+            id: ret._id,
+            updated_at: ret.updated_at,
+            created_at: ret.created_at,
+            name:ret.pug_credentials.username,
+            user_type:ret.user_type
+        };
+        return retJson;
+    }
+});
+
 var validateSearchTerm = function(req, res, next) {
     if (!req.body.username || !req.body.password)
         var response={
@@ -199,6 +213,9 @@ var validateSearchTerm = function(req, res, next) {
     req.body.username = req.body.username.toLowerCase();
     return next(); // Call the handler
 };
+
+//var transformObject=function(req,)
+
 
 
 var User =restful.model('user',UserSchema)
@@ -226,9 +243,8 @@ User.methods([
                     //user is authenticated
                     //res.status = 200;
                     console.log(LOG_TAG+'/login:->login success');
-                    // res.bundle is what is returned
-                    //res.bundle = user;
-                    return res.send(user);
+                    delete user.pug_credentials.password;
+                    return res.send({status:200,data:user});
                 } else {
                     //user could not be logged in
                     //determine why they could not be logged on
@@ -273,6 +289,6 @@ User.methods([
 
 function noop(req, res, next) { next(); }
 
-module.exports = mongoose.model('User', UserSchema);
+//module.exports = mongoose.model('User', UserSchema);
 mongoose.model('User', UserSchema);
 exports = module.exports = User;
