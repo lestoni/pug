@@ -5,7 +5,7 @@
   "author": "Opiyo Adams <adams.opiyo@gmail.com>",
   "private": true,
   "dependencies": {
-    "bcrypt": "^0.8.2",
+    "bcrypt": "^5.0.0",
     "body-parser": "latest",
     "express": "latest",
     "mers": "latest",
